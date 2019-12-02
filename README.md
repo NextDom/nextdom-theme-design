@@ -42,3 +42,4 @@ Pour appliquer ce "thème" à votre design sous NextDom, vous devez effectuer le
 *la largeur et hauteur sont à définir selon la résolution requise tout comme pour le design, cependant il est préférable de mettre une largeur moins importante*
 
 - Le design est terminé, il reste à l'alimenter avec vos équipements !
+![](doc/images/theme_adminLTE.gif)
