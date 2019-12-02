@@ -11,7 +11,7 @@
 
 Avant toute chose il vous faut connaitre la résolution d'écran de votre périphérique : Hauteur & Largeur
 
-Une fois noté, récupérer le fichier html du thème choisis et chercher/remplacer *height:1050px;* par la hauteur  de votre écran (étant donné qu'il y a 8 menus, il y a 8 "écrans design" Vous devez donc modifier cette hauteur 8 fois..
+Une fois noté, copier le contenu du fichier html du thème choisis et rensiegner les pages que vous souahitez, leur couleur, titre, etc ...
 
 ### Configuration du thème
 
