@@ -11,7 +11,7 @@
 
 Avant toute chose il vous faut connaitre la résolution d'écran de votre périphérique : Hauteur & Largeur
 
-Une fois noté, copier le contenu du fichier html du thème choisis et rensiegner les pages que vous souahitez, leur couleur, titre, etc ...
+Une fois noté, copier le contenu du fichier html du thème choisi et renseigner les pages que vous souhaitez, leur couleur, titre, etc ...
 
 ### Configuration du thème
 
@@ -23,7 +23,7 @@ Pour appliquer ce "thème" à votre design sous NextDom, vous devez effectuer le
 
 ![](doc/images/configurer_design.png)
 
-- Dans lea fenêtre de configuration, remplir comme suit :
+- Dans la fenêtre de configuration, remplir comme suit :
 
 ![](doc/images/configuration_design.png)
 *la largeur et hauteur sont à définir selon la résolution requise (hauteur à saisir = 8x hauteur d'écran)*
