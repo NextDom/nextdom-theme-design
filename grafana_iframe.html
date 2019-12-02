@@ -1,0 +1,23 @@
+<button style="top:0;position:absolute;right:0;" onclick="refreshYourIframe()"><i class="fa fa-refresh"></i></button>
+<div style="height:100%;width:100%;">
+    <iframe id="youriframe" width="100%" height="100%" frameborder="0"/>
+</div>
+<script>
+    function refreshYourIframe(){
+        let iframeId = "youriframe";
+        let src = "http://192.168.100.203:3000/d-solo/9P_w0NJWk/new-dashboard-copy?orgId=1&from=%%%FROM%%%&to=%%%TO%%%&refresh=10s&panelId=10";
+        let hourBefore = 1;
+        let hourAfter = 0;
+
+        let iframe = document.getElementById(iframeId);
+        let d = new Date();
+        let from = new Date();
+        let to = new Date();
+        from.setHours(d.getHours()-hourBefore);
+        to.setHours(d.getHours()+hourAfter);
+        src = src.replace(/%%%FROM%%%/g, from.getTime());
+        src = src.replace(/%%%TO%%%/g, to.getTime());
+        iframe.src = src;
+    }
+    refreshYourIframe();
+</script>
