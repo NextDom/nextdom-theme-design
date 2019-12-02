@@ -1,9 +1,6 @@
 <script>
 
     var json_theme_adminLTE = {
-        "ui": [{
-            "height": "1050px"
-        }],
         "page": [
             {"id":"informations","label": "Informations","color":"teal","icon":"fa-info","panelColor":"#6C8192"},
             {"id":"chauffage","label": "Chauffage","color":"blue","icon":"fa-fire","panelColor":"#6C8192"},
@@ -22,25 +19,26 @@
     }
 
     function createButtonMenu(menu, pageData, number) {
+
+        let link = document.createElement("a");
+        link.href = "#" + pageData["id"];
+        if(number > 0){
+            link.style.marginLeft = "5px";
+        }
+        link.style.marginTop = "5px";
+        link.style.height = "100%";
+        link.style.width = "100%";
+
         let info_box = document.createElement("div");
         info_box.className = "info-box bg-" + pageData["color"];
-        if(number > 0){
-            info_box.style.marginLeft = "5px";
-        }
-        info_box.style.marginTop = "5px";
-        info_box.style.height = "100%";
-        info_box.style.width = "100%";
 
         let info_box_icon = document.createElement("span");
         info_box_icon.className = "info-box-icon";
 
-        let link = document.createElement("a");
-        link.href = "#" + pageData["id"];
 
         let i = document.createElement("i");
         i.className = "fa " + pageData["icon"];
-        link.appendChild(i);
-        info_box_icon.appendChild(link);
+        info_box_icon.appendChild(i);
 
         let info_box_content = document.createElement("div");
         info_box_content.className = "info-box-content";
@@ -60,8 +58,8 @@
         info_box_content.appendChild(progress);
         info_box.appendChild(info_box_icon);
         info_box.appendChild(info_box_content);
-
-        menu.appendChild(info_box);
+        link.appendChild(info_box)
+        menu.appendChild(link);
     }
 
     function createPage(divMain, pageData) {
