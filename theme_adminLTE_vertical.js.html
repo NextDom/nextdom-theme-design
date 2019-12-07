@@ -74,13 +74,15 @@
         page.appendChild(menu);
 
         let content = document.createElement("div");
+        content.style.display = "flex";
         content.style.width = "100%";
         content.style.marginTop = "20px";
 
         let info_box = document.createElement("div");
         info_box.className = "info-box bg-" + pageData["color"];
         info_box.style.minHeight = "27px";
-        info_box.style.width = "100%";
+        info_box.style.width = "15%";
+        info_box.style.marginBottom = "0px";
 
         let info_box_icon = document.createElement("span");
         info_box_icon.className = "info-box-icon";
@@ -106,7 +108,7 @@
         let panel = document.createElement("div");
         panel.className = "panel panel-info";
         panel.style.height = "100%";
-        panel.style.width = "100%";
+        panel.style.width = "85%";
 
         let panel_body = document.createElement("div");
         panel_body.className = "panel-body";
