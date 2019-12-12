@@ -9,9 +9,11 @@ Son originalité est de proposer 2 menus différents en fonction des besoins de 
 
 ### Prérequis
 
-Avant toute chose, il vous faut connaitre la résolution d'écran de votre périphérique : Hauteur & Largeur
+- Avant toute chose, il vous faut connaitre la résolution d'écran de votre périphérique : Hauteur & Largeur
 
-Une fois noté, copier le contenu du fichier menu.html et renseigner pour chaque item des menus (ligne <li>) son nom et le lien vers la page de design souhaitée.
+- Une fois noté, copier le contenu du fichier menu.html et renseigner pour chaque item des menus (ligne li) son nom et le lien vers la page de design souhaitée.
+
+- Il faut ensuite copier le dossier /var/www/html/data/custom/montheme dans le répertoire /data/custom
 
 ### Configuration du thème
 
