@@ -34,10 +34,25 @@ Pour appliquer ce "thème" à votre design sous NextDom, vous devez effectuer le
 ![](../adminLTE/doc/images/paramètre_widget_text_html.png)
 
 - Dans la fenêtre de paramètrage, remplir comme suit :
+
+
+&nbsp;
 Profondeur : mettre au dernier plan (0)
+
+
+&nbsp;
 Position X et Position Y : mettre 0
+
+
+&nbsp;
 Largeur et Hauteur : adapter à la largeur et hauteur du design
+
+
+&nbsp;
 Transparent : activer la transparence
+
+
+&nbsp;
 Texte : coller le contenu modifié de menu.html
 
 - Le design est terminé, il reste à l'alimenter avec vos équipements !
