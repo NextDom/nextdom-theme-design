@@ -41,4 +41,4 @@ Transparent : activer la transparence
 Texte : coller le contenu modifié de menu.html
 
 - Le design est terminé, il reste à l'alimenter avec vos équipements !
-![](/doc/images/theme_menusMultiples.png)
+![](doc/images/theme_menusMultiples.png)
