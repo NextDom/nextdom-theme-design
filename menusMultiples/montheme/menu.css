@@ -29,9 +29,12 @@ BODY {
   width: 32px; height: 32px;
 }
 
-/* Définition des icones perso. */
+/* Dï¿½finition des icones perso. */
 .icon-design-jeedom {
   background-image: url("images/icon_mini_jeedom.png");
+}
+.icon-design-nextdom {
+  background-image: url("images/icon_mini_nextdom.png");
 }
 .icon-design-detect_on {
   background-image: url("images/icon_dect_on.png");
