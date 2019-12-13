@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Barre latérale qui réduit la page (5 effets) - script html CSS gratuit : Outils-web.com</title>
+<meta name="description" content="La page se rétrécit pour laisser apparaitre le menu sur le coté des 4 que vous avez choisi." />
+<meta name="Robots" content="all"/>
+  <!--
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="data/custom/montheme/effet3D/css/normalize.css" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="data/custom/montheme/effet3D/css/icons.css" /> -->
+<link rel="stylesheet" type="text/css" href="data/custom/montheme/effet3D/css/style5.css" />
+<LINK href="data/custom/montheme/menu.css" rel="stylesheet" type="text/css">
+<script src="data/custom/montheme/effet3D/js/modernizr.custom.js"></script>
+
+<script language="Javascript">
+  // Affichage du plan idPlan
+  function gotoPlan(idPlan) {
+    planHeader_id=idPlan;
+    displayPlan();
+  }
+</script>
+
+</head>
+<body>
+<nav id="bt-menu" class="bt-menu">
+	<!-- ouverture -->
+	<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+	<!-- laisser bt-icon et changer l'icone au choix voir fichier css/icons.css-->			
+	<ul>
+      	<li><a onClick="gotoPlan(42);" target="_blank">Accueil</a></li>
+		<li><a onClick="gotoPlan(43);" target="_blank">Rdc</a></li>
+		<li><a onClick="gotoPlan(44);" target="_blank">Etage</a></li>
+		<li><a onClick="gotoPlan(45);" target="_blank">Cam&eacute;ras</a></li>
+		<li><a onClick="gotoPlan(46);" target="_blank">Ouvertures</a></li>
+		<li><a onClick="gotoPlan(47);" target="_blank">Chauffage</a></li>
+	</ul>
+	<!-- partie 2 -->	
+	<ul>
+      	<!--<li>
+			<a onClick="gotoPlan(22);" target="_blank" class="icon-design-jeedom">
+      			
+      			Maison
+    		</a>
+      	</li>-->
+		<li><a onClick="gotoPlan(42);" target="_blank" class="bt-icon icon-design-jeedom">Accueil</a></li>
+		<li><a onClick="gotoPlan(43);" target="_blank" class="bt-icon icon-design-home">Rdc</a></li>
+		<li><a onClick="gotoPlan(44);" target="_blank" class="bt-icon icon-design-home">Etage</a></li>
+		<li><a onClick="gotoPlan(45);" target="_blank" class="bt-icon icon-design-camera">Cam&eacute;ras</a></li>
+	</ul>
+</nav>
+<script src="data/custom/montheme/effet3D/js/classie.js"></script>
+<script src="data/custom/montheme/effet3D/js/borderMenu.js"></script>
+<!-- source : http://tympanus.net/codrops/ -->
+</body>
+</html>
