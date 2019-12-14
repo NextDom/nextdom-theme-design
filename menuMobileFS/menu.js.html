@@ -1,0 +1,405 @@
+<style>
+
+	.r-button {
+		--uirButtonBackgroundColor: var(--rButtonBackgroundColor, transparent);
+		--uirButtonPadding: var(--rButtonPadding, var(--rButtonPaddingTop, 0) var(--rButtonPaddingRight, 0) var(--rButtonPaddingBottom, 0) var(--rButtonPaddingLeft, 0));
+		--uirButtonBorderWidth: var(--rButtonBorderWidth, 0);
+		--uirButtonBorderStyle: var(--rButtonBorderStyle, solid);
+		--uirButtonBorderColor: var(--rButtonBorderColor, currentColor);
+		--uirButtonFontFamily: var(--rButtonFontFamily, inherit);
+		--uirButtonFontSize: var(--rButtonFontSize, inherit);
+		--uirButtonColor: var(--rButtonColor);
+
+		background-color: var(--uirButtonBackgroundColor);
+		padding: var(--uirButtonPadding);
+
+		border-width: var(--uirButtonBorderWidth);
+		border-style: var(--uirButtonBorderStyle);
+		border-color: var(--uirButtonBorderColor);
+
+		cursor: pointer;
+
+		font-family: var(--uirButtonFontFamily);
+		font-size: var(--uirButtonFontSize);
+	}
+
+	.r-button::-moz-focus-inner,
+	.r-button[type="button"]::-moz-focus-inner,
+	.r-button[type="reset"]::-moz-focus-inner,
+	.r-button[type="submit"]::-moz-focus-inner {
+		border-style: none;
+		padding: 0;
+	}
+
+	.r-link {
+		--uirLinkDisplay: var(--rLinkDisplay, inline-flex);
+		--uirLinkTextColor: var(--rLinkTextColor);
+		--uirLinkTextDecoration: var(--rLinkTextDecoration, none);
+
+		display: var(--uirLinkDisplay) !important;
+		color: var(--uirLinkTextColor) !important;
+		text-decoration: var(--uirLinkTextDecoration) !important;
+	}
+
+	.r-list {
+		--uirListPaddingLeft: var(--rListPaddingLeft, 0);
+		--uirListMarginTop: var(--rListMarginTop, 0);
+		--uirListMarginBottom: var(--rListMarginBottom, 0);
+		--uirListListStyle: var(--rListListStyle, none);
+
+		padding-left: var(--uirListPaddingLeft) !important;
+		margin-top: var(--uirListMarginTop) !important;
+		margin-bottom: var(--uirListMarginBottom) !important;
+		list-style: var(--uirListListStyle) !important;
+	}
+
+	.m-hamburger {
+		--uiHamburgerDisplay: var(--hamburgerDisplay, inline-flex);
+		--uiHamburgerWidth: var(--hamburgerWidth, 28px);
+		--uiHamburgerHeight: var(--hamburgerHeight, 20px);
+		--uiHamburgerThickness: var(--hamburgerThickness, 4px);
+		--uiHamburgerBorderRadius: var(--hamburgerBorderRadius, 5px);
+		--uiHamburgerBgColor: var(--hamburgerBgColor, currentColor);
+
+		display: var(--uiHamburgerDisplay);
+		width: var(--uiHamburgerWidth);
+		height: var(--uiHamburgerHeight);
+
+		position: relative;
+		text-indent: -9999px;
+	}
+
+	.m-hamburger::before,
+	.m-hamburger::after,
+	.m-hamburger__label {
+		width: 100%;
+		height: var(--uiHamburgerThickness);
+		border-radius: var(--uiHamburgerBorderRadius);
+		background-color: var(--uiHamburgerBgColor);
+
+		position: absolute;
+		left: 0;
+	}
+
+	.m-hamburger::before,
+	.m-hamburger::after {
+		content: "";
+	}
+
+	.m-hamburger::before {
+		top: 0;
+	}
+
+	.m-hamburger::after {
+		bottom: 0;
+	}
+
+	.m-hamburger__label {
+		/* The calculation of middle hamburger button line position */
+
+		top: calc(50% - calc(var(--uiHamburgerThickness) / 2));
+	}
+
+	.menu {
+		--uiMenuCircleSize: var(--menuCircleSize, 100px);
+		--uiMenuCircleOffset: var(--menuCircleOffset, 10px);
+		--uiMenuCircleBgColor: var(--menuCircleBgColor, currentColor);
+
+		--hamburgerWidth: var(--menuHamburgerWidth, 28px);
+		--hamburgerHeight: var(--menuHamburgerHeight, 20px);
+		--hamburgerBgColor: var(--menuHamburgerBgColor, #fff);
+
+		box-sizing: border-box;
+		width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 9998;
+	}
+
+	.menu__nav {
+		box-sizing: border-box;
+		width: 100%;
+		height: 0;
+
+		transition: opacity .2s ease-out;
+		opacity: 0;
+
+		display: flex;
+		align-items: flex-end;
+		z-index: 2;
+	}
+
+	.menu__list {
+		width: 100%;
+		max-height: 100%;
+		display: none;
+
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.menu__toggle {
+		box-sizing: border-box;
+		width: var(--uiMenuCircleSize);
+		height: calc(var(--uiMenuCircleSize) / 2);
+		padding: var(--uiMenuCircleOffset);
+
+		flex: none;
+
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+	}
+
+	.menu__toggle::before {
+		/*
+  1. The font-size property is used to simplify calculations of the element's sizes and position
+  2. The negative value for the bottom property need for hiding half of circle. 
+  */
+
+		content: "";
+		width: 1em;
+		height: 1em;
+		font-size: var(--uiMenuCircleSize);
+		/* 1 */
+
+		background-color: var(--uiMenuCircleBgColor);
+		border-radius: 50%;
+
+		position: absolute;
+		bottom: -.5em;
+		/* 2 */
+		left: calc(50% - .5em);
+
+		will-change: width, height;
+		transition: transform .25s cubic-bezier(0.04, -0.1, 0.29, 0.98),
+			width .25s cubic-bezier(0.04, -0.1, 0.29, 0.98),
+			height .25s cubic-bezier(0.04, -0.1, 0.29, 0.98);
+	}
+
+	.menu__hamburger::before {
+		/* Increase of click button area   */
+
+		content: "";
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.m-hamburger::before,
+	.m-hamburger::after,
+	.m-hamburger__label {
+		transition-timing-function: ease;
+		transition-duration: .15s;
+	}
+
+	.m-hamburger::before,
+	.m-hamburger::after {
+		transition-property: transform;
+	}
+
+	.m-hamburger__label {
+		transition-property: transform, opacity;
+	}
+
+	.menu__hamburger:focus {
+		outline: none;
+	}
+
+	.menu_activated {
+		height: 100%;
+	}
+
+	.menu_activated .menu__nav {
+		height: 100%;
+		opacity: 1;
+
+		will-change: opacity;
+		transition-duration: .2s;
+		transition-delay: .3s;
+	}
+
+	.menu_activated .menu__toggle::before {
+		width: 100vmax;
+		height: 100vmax;
+		transform: translate3d(-50vh, -50vh, 0) scale(5);
+		transition-duration: 1s;
+	}
+
+	.menu_activated .menu__list {
+		display: block;
+	}
+
+	.menu_activated .m-hamburger::before {
+		top: 50%;
+		transform: translate3d(0, -50%, 0) rotate(45deg);
+	}
+
+	.menu_activated .m-hamburger::after {
+		transform: translate3d(0, -50%, 0) rotate(135deg);
+		top: 50%;
+	}
+
+	.menu_activated .m-hamburger__label {
+		transform: rotate(-45deg) translate3d(-.285em, -.3em, 0);
+		opacity: 0;
+	}
+
+	:root {
+		--colorWhite: #fff;
+		--colorMain: #4557bb;
+		--rLinkTextColor: var(--colorMain);
+		--menuCircleSize: 100px;
+		--menuCircleBgColor: var(--colorMain);
+		--menuHamburgerWidth: 28px;
+		--menuHamburgerHeight: 20px;
+		--menuHamburgerBgColor: var(--colorWhite);
+	}
+
+	@media (min-width: 768px) {
+
+		html {
+			font-size: 62.5%;
+		}
+	}
+
+	@media (max-width: 767px) {
+
+		html {
+			font-size: 50%;
+		}
+	}
+
+	body {
+		display: flex;
+		height: 100vh;
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+		font-size: 1.6rem;
+	}
+
+	.page {
+		max-width: 380px;
+		padding: 10px;
+		margin: auto;
+		text-align: center;
+	}
+
+	.page__name {
+		display: block;
+		font-size: 3rem;
+		font-weight: 700;
+	}
+
+	.page__hint {
+		display: block;
+		line-height: 1.45;
+		margin-top: 1rem;
+	}
+
+	.menu__group {
+		--rLinkTextColor: var(--colorWhite);
+
+		padding: .5rem 3rem;
+		font-size: 3.2rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+</style>
+
+<div class="page">
+
+</div>
+<div class="menu">
+	<nav class="menu__nav">
+		<ul class="r-list menu__list" id="menu_items">
+		</ul>
+	</nav>
+	<div class="menu__toggle">
+		<button class="r-button menu__hamburger">
+			<span class="m-hamburger">
+				<span class="m-hamburger__label">Open menu</span>
+			</span>
+		</button>
+	</div>
+</div>
+
+<script language="javascript">
+
+    // Affichage du plan idPlan
+    function gotoPlan(idPlan) {
+		planHeader_id = idPlan;
+		displayPlan();
+    }
+
+
+	(function () {
+		'use strict';
+
+		class Menu {
+			constructor(settings) {
+				this.menuNode = settings.menuNode;
+			}
+
+			toggleMenuState(className) {
+				if (typeof className !== 'string' || className.length === 0) {
+					return console.log('you did not give the class for toggleState function');
+				}
+				return this.menuNode.classList.toggle(className);
+			}
+		}
+
+		const jsMenuNode = document.querySelector('.menu');
+		const demoMenu = new Menu({
+			menuNode: jsMenuNode
+		});
+
+		function callMenuToggle(event) {
+			demoMenu.toggleMenuState('menu_activated');
+		}
+
+		jsMenuNode.querySelector('.menu__hamburger').addEventListener('click', callMenuToggle);
+	})();
+
+	var json_theme_mobile_fs = {
+		"page":[
+			{"label":"Accueil","link":"1"},
+			{"label":"Cuisine","link":"2"},
+			{"label":"Salon","link":"3"},
+			{"label":"Séjour","link":"4"},
+			{"label":"Chambre","link":"5"},
+			{"label":"Garage","link":"6"}
+		]
+	}
+
+	function createThemeMenuMobileFS() {
+
+		let menu_items = document.getElementById('menu_items');
+
+		for (let i = 0; i < json_theme_mobile_fs["page"].length; i++) {
+			let item = document.createElement("li");
+			item.className="menu__group";
+			let link = document.createElement("a");
+			link.setAttribute("onclick", "gotoPlan(" + json_theme_mobile_fs["page"][i]["link"] + ")");
+			link.className = "r-link menu__link";
+			link.text = json_theme_mobile_fs["page"][i]["label"]
+			item.append(link);
+			menu_items.append(item);
+		} 
+	};
+
+	// creation dynamique du menu Mobile Fullscreen
+	createThemeMenuMobileFS();
+
+</script>
