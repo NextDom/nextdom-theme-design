@@ -1,0 +1,180 @@
+<style>
+  body {
+
+  background: -webkit-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* W3C */
+        
+}
+
+.parent2 {
+  top:15px;
+  left:15px;
+  position:fixed;
+ display:block;
+  width:100px;
+  height:100px;
+  background-color:transparent;
+  border-radius:50%;
+  z-index:20;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.test1 {
+  width:60%;
+  height:60%;
+  background-color:dimGray;
+  border-radius:50%;
+  position:absolute;
+  color:white;
+  text-align:center;
+  line-height:70px;
+    top:25%;
+  left:25%;
+  z-index:19;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    position:absolute;
+}
+.test2 {
+  width:60%;
+  height:60%;
+  background-color:dimGray;
+  border-radius:50%;
+  position:absolute;
+  color:white;
+  text-align:center;
+  line-height:70px;
+    top:25%;
+  left:25%;
+  z-index:19;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .2s;
+}
+.test3 {
+  width:60%;
+  height:60%;
+  background-color:dimGray;
+  border-radius:50%;
+  position:absolute;
+  color:white;
+  text-align:center;
+  line-height:70px;
+    top:25%;
+  left:25%;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .4s;  
+}
+  .test4 {
+  width:60%;
+  height:60%;
+  background-color:dimGray;
+  border-radius:50%;
+  position:absolute;
+  color:white;
+  text-align:center;
+  line-height:70px;
+  top:25%;
+  left:25%;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .6s;  
+}
+.mask2 {
+  top:15px;
+  left:15px;
+  width:100px;
+  height:100px;
+  background:darkSlateGray;
+  border-radius:50%;
+  position:absolute;
+  z-index:21;
+  color:white;
+  text-align:center;
+  line-height:120px;
+  cursor:pointer;
+  position:fixed;
+}
+</style>
+<!--
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+-->
+<div class="parent2" id="parent2">
+  <!--
+  <div onclick="gotoPlan(1);" class="test1"><i class="fa fa-user fa-2x"></i></div>
+  <div onclick="gotoPlan(2);" class="test2"><i class="fa fa-graduation-cap fa-2x"></i></div>
+  <div onclick="gotoPlan(3);" class="test3"><i class="fa fa-code fa-2x"></i></div>
+  <div onclick="gotoPlan(4);" class="test4"><i class="fa fa-envelope-o fa-2x"></i></div>
+  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+  -->
+</div>
+
+<script language="javascript">
+  // ATTENTION : 4 lignes obligatoires
+  var json_theme_menu_circulaire = {
+    "page":[
+      {"label":"fa fa-user fa-2x", "link":"1"},
+      {"label":"fa fa-graduation-cap fa-2x", "link":"2"},
+      {"label":"fa fa-code fa-2x", "link":"3"},
+      {"label":"fa fa-envelope-o fa-2x", "link":"4"}
+    ]
+  }
+
+  // Affichage du plan idPlan
+  function gotoPlan(idPlan) {
+    planHeader_id = idPlan;
+    displayPlan();
+  }
+
+  function createThemeMenuCirculaire() {
+
+    let menu_parent2 = document.getElementById('parent2');
+
+    for (let i = 0; i < json_theme_menu_circulaire["page"].length; i++) {
+      let menu_item=document.createElement("div"); 
+      menu_item.setAttribute("onclick", "gotoPlan(" + json_theme_menu_circulaire["page"][i]["link"] + ")" ); 
+      menu_item.className = "test" + (i+1);
+
+      let menu_item_i = document.createElement("i");
+      menu_item_i.className = json_theme_menu_circulaire["page"][i]["label"];
+      menu_item.appendChild(menu_item_i);
+
+      menu_parent2.appendChild(menu_item);
+    } 
+
+    let menu_div_fin=document.createElement("div"); 
+    menu_div_fin.className="mask2";
+    let menu_i_fin=document.createElement("i");
+    menu_i_fin.className="fa fa-home fa-3x" ;
+    menu_div_fin.appendChild(menu_i_fin);
+    menu_parent2.appendChild(menu_div_fin);
+  }; 
+    
+    // creation dynamique du menu Mobile Fullscreen 
+    createThemeMenuCirculaire();
+
+  $(document).ready(function() {
+
+  var active1 = false;
+  var active2 = false;
+  var active3 = false;
+  var active4 = false;
+
+  $('.parent2').on('mousedown touchstart', function() {
+    
+    if (!active1) $(this).find('.test1').css({'background-color': 'gray', 'transform': 'translate(0px,125px)'});
+    else $(this).find('.test1').css({'background-color': 'dimGray', 'transform': 'none'}); 
+     if (!active2) $(this).find('.test2').css({'background-color': 'gray', 'transform': 'translate(60px,105px)'});
+    else $(this).find('.test2').css({'background-color': 'darkGray', 'transform': 'none'});
+      if (!active3) $(this).find('.test3').css({'background-color': 'gray', 'transform': 'translate(105px,60px)'});
+    else $(this).find('.test3').css({'background-color': 'silver', 'transform': 'none'});
+      if (!active4) $(this).find('.test4').css({'background-color': 'gray', 'transform': 'translate(125px,0px)'});
+    else $(this).find('.test4').css({'background-color': 'silver', 'transform': 'none'});
+    active1 = !active1;
+    active2 = !active2;
+    active3 = !active3;
+    active4 = !active4;
+      
+  });
+});
+</script>
