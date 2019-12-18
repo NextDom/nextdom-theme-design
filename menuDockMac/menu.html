@@ -1,0 +1,283 @@
+<html>
+<head>
+<title>Design Dock Mac</title>
+<style>
+  body {
+  height:100%;
+  width:100%;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/blurbg.png) no-repeat;
+  background-size: cover;
+}
+
+
+#osxdock-page {
+    color: #fff;
+    padding-bottom: 2em;
+    margin-bottom: -2em;
+}
+
+#osxdock-page h1,#osxdock-page h2 {
+    color: #fff;
+}
+
+
+div.cap {
+    display: block;
+    height: 100px;
+    width: 40px;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) bottom left no-repeat;
+}
+
+div.cap.left {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+div.cap.right {
+    background-position: right bottom;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+ul.osx-dock {
+    display: inline-block;
+    height: 130px;
+    padding: 0 40px 0 0;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) no-repeat right bottom;
+    overflow: hidden;
+    margin: 0 0 0 40px;
+}
+
+ul.osx-dock li {
+    display: block;
+    position: relative;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 60px 0 4px 0;
+    -webkit-transition: 0.15s linear;
+    -webkit-transition-property: -webkit-transform margin;
+    text-align: center;
+}
+
+ul.osx-dock li a {
+    display: block;
+    height: 50px;
+    padding: 0 1px;
+    -webkit-transition: 0.15s linear;
+    -webkit-transition-property: -webkit-transform margin;
+    margin: 0;
+    -webkit-box-reflect: below 2px -webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(0.45,transparent),to(rgba(255,255,255,0.25)));
+}
+
+ul.osx-dock li a img {
+    width: 48px;
+}
+
+ul.osx-dock li:hover {
+    margin-left: 9px;
+    margin-right: 9px;
+    z-index: 200;
+}
+
+ul.osx-dock li:hover a {
+    -webkit-transform-origin: center bottom;
+    -webkit-transform: scale(1.5);
+}
+
+ul.osx-dock li.nearby {
+    margin-left: 6px;
+    margin-right: 6px;
+    z-index: 100;
+}
+
+ul.osx-dock li.nearby a {
+    -webkit-transform-origin: center bottom;
+    -webkit-transform: scale(1.25);
+}
+
+ul.osx-dock li span {
+    background: rgba(0,0,0,0.75);
+    position: absolute;
+    bottom: 80px;
+    margin: 0 auto;
+    display: none;
+    width: auto;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+    -webkit-border-radius: 6px;
+    color: #fff;
+}
+
+ul.osx-dock li:hover span {
+    display: block;
+}
+
+div#dockContainer {
+    position: fixed;
+    bottom: 12px;
+    height: 120px;
+    padding: 50px 0 0;
+    text-align: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    width: 100%;
+    line-height: 1;
+    z-index: 100;
+}
+
+div#dockWrapper {
+    width: auto;
+    display: inline-block;
+    position: relative;
+    border-bottom: solid 2px rgba(255,255,255,.35);
+    line-height: 0;
+}
+
+#dockContainer,#dockContainer * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+</style>
+<script language="javascript">
+    $(document).ready(function(){
+        $("ul.osx-dock li").each(function (type) {
+            $(this).hover(function () {
+                $(this).prev("li").addClass("nearby");
+                $(this).next("li").addClass("nearby");
+            },
+            function () {
+                $(this).prev("li").removeClass("nearby");
+                $(this).next("li").removeClass("nearby");
+            });
+        });
+    });
+
+    // Affichage du plan idPlan
+    function gotoPlan(idPlan) {
+        planHeader_id = idPlan;
+        displayPlan();
+    }
+</script>
+</head>
+
+<body>
+	<div id="dockContainer">
+		<div id="dockWrapper">
+			<ul class="osx-dock">
+				<li class="active">
+					<a onClick="gotoPlan(1);" target="_blank" title="Accueil"><img
+						src="data/custom/montheme/images/icon_mini_nextdom.png" />
+				  </a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(2);" target="_blank" title="Rdc"><img
+						src="data/custom/montheme/images/icon_rdc.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(3);" target="_blank" title="Etage"><img
+						src="data/custom/montheme/images/icon_etage.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(4);" target="_blank" title="TV"><img
+						src="data/custom/montheme/images/icon_tv.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(5);" target="_blank" title="Volets"><img
+						src="data/custom/montheme/images/icon_volets_light.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(6);" target="_blank" title="Chauffage"><img
+						src="data/custom/montheme/images/icon_chauffage.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(7);" target="_blank" title="Réseau"><img
+						src="data/custom/montheme/images/icon_reseau.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(8);" target="_blank" title="Planning"><img
+						src="data/custom/montheme/images/icon_planning.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(9);" target="_blank" title="Menu 9"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(10);" target="_blank" title="Menu 10"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(11);" target="_blank" title="Menu 11"><img src="
+					https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
+				</li>
+				  <li>
+					<a onClick="gotoPlan(12);" target="_blank" title="Menu 12"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(13);" target="_blank" title="Menu 13"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
+				</li>
+				<li class="active">
+					<a onClick="gotoPlan(14);" target="_blank" title="Menu 14"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/linkedin-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(15);" target="_blank" title="Menu 15"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/facebook-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(16);" target="_blank" title="Menu 16"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
+				</li>
+				<li>
+				<a onClick="gotoPlan(17);" target="_blank" title="Menu 17"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(18);" target="_blank" title="Menu 18"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(19);" target="_blank" title="Menu 19"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(20);" target="_blank" title="Menu 20"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(21);" target="_blank" title="Menu 21"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/facebook-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(22);" target="_blank" title="Menu 22"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(23);" target="_blank" title="Menu 23"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(24);" target="_blank" title="Menu 24"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(25);" target="_blank" title="Menu 25"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
+				</li>
+				<li>
+					<a onClick="gotoPlan(26);" target="_blank" title="Menu 26"><img
+						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!--
+  Menu pour Design Nextdom/Jeedom (@noodom)
+
+  - Copier menu.css dans /data/custom/montheme
+  - Si utilisation d'icones perso.
+    - Copier les images des icones perso. dans /data/custom/montheme/images
+    - Créer la liste des icones perso. en css /data/custom/montheme/menu.css
+    - Modifier les liens vers les icones (ex : <i class="icon-design-jeedom"></i>)
+  - Si utilisation des icones fontawesome standards
+    - Modifier les liens vers les icones (ex : <i class="fas fa-igloo"></i>)
+    (Liste des icones disponibles ici : https://fontawesome.com/icons?d=gallery)
+  - Si pas d'utilisation des icones fontawesome standards
+    - Supprimer le lien vers font-awesome.min.css (pour alléger le chargement de la page)
+  - Dans le code HTML ci-dessous :
+    - Modifier l'arborescence du menu pour adapter le contenu à ses besoins
+    - Pour chaque appel à "gotoPlan(XXX);", modifier XXX par l'identifiant de votre page Design cible.
+    - Dans le mode Design, pour chaque page du menu, passer en mode édition, puis ajouter "Texte/html" puis copier/coller ce code HTML
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Design Fly Out Menu</title>
+
+<!-- Utile seulement si on utilise les icônes de fontawesome -->
+<!-- A supprimer (page plus légère) si utilisation seulement d'icones ajoutés dans le répertoire /data/custom/montheme/images -->
+<!-- link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" /-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<LINK href="data/custom/montheme/menu.css" rel="stylesheet" type="text/css">
+
+<script language="Javascript">
+  // Affichage du plan idPlan
+  function gotoPlan(idPlan) {
+    planHeader_id=idPlan;
+    displayPlan();
+  }
+</script>
+
+</head>
+<body>
+
+<ul class="drawer">
+  <li>
+    <a href="javascript:void(0)">
+      <i class="icon-design-jeedom"></i>
+      <span>Maison</span>
+    </a>
+    <ul>
+      <li>
+        <a onClick="gotoPlan(22);" target="_blank">
+          <i class="fa fa-info-circle"></i>
+          <span>Accueil</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(23);" target="_blank">
+          <i class="icon-design-home"></i>
+          <span>RDC</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(24);" target="_blank">
+          <i class="icon-design-home"></i>
+          <span>Etage</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(25);" target="_blank">
+          <i class="fas fa-car"></i>
+          <span>Ext&eacute;rieur</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(26);" target="_blank">
+          <i class="icon-design-camera"></i>
+          <span>S&eacute;curit&eacute;</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(27);" target="_blank">
+          <i class="fas fa-cloud-sun"></i>
+          <span>M&eacute;t&eacute;o</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:void(0)">
+      <i class="fas fa-clipboard-list"></i>
+      <span>R&eacute;sum&eacute;s</span>
+    </a>
+    <ul>
+      <li>
+        <a onClick="gotoPlan(29);" target="_blank">
+          <i class="icon-design-volets"></i>
+          <span>Ouvertures</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(30);" target="_blank">
+          <i class="icon-design-lumiere"></i>
+          <span>Lumi&egrave;res</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(31);" target="_blank">
+          <i class="icon-design-chauffage"></i>
+          <span>Chauffage</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(32);" target="_blank">
+          <i class="icon-design-temperature"></i>
+          <span>Temp&eacute;ratures</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(33);" target="_blank">
+          <i class="icon-design-reseau"></i>
+          <span>Supervision</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:void(0)">
+      <i class="fas fa-file-video"></i>
+      <span>Multimedia</span>
+    </a>
+    <ul>
+      <li>
+        <a onClick="gotoPlan(34);" target="_blank">
+          <i class="fas fa-couch"></i>
+          <span>Salon</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(35);" target="_blank">
+          <i class="fas fa-bed"></i>
+          <span>Chambre</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:void(0)">
+      <i class="fas fa-cogs"></i>
+      <span>Param&egrave;tres</span>
+    </a>
+    <ul>
+      <li>
+        <a onClick="gotoPlan(36);" target="_blank">
+          <i class="fas fa-bullhorn"></i>
+          <span>Alarmes</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(37);" target="_blank">
+          <i class="fas fa-keyboard"></i>
+          <span>Automatismes</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(38);" target="_blank">
+          <i class="fas fa-project-diagram"></i>
+          <span>Divers</span>
+        </a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(49);" target="_blank">
+          <i class="fas fa-project-diagram"></i>
+          <span>Resolution</span>
+        </a>
+      </li>
+	</ul>
+  </li>
+</ul>
+
+<!-- Inspiration : Ian Lunn https://codepen.io/IanLunn/ / https://codepen.io/IanLunn/pen/NPapxy -->
+
+</body>
+</html>

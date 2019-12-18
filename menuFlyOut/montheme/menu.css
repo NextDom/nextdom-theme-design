@@ -1,0 +1,183 @@
+
+/*
+BODY {
+    margin: 40px;
+}:
+*/
+
+.iconlabel {
+    display: inline;
+    position: relative;
+    top: 7px;
+    vertical-align: top;
+    margin-left: 24px;
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 36px; height: 36px;
+}
+
+[class^="icon-design-"],
+[class*=" icon-design-"] {
+  display: inline;
+  position: relative;
+  vertical-align: top;
+  margin-left: 24px;
+  background-size: 30px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 32px; height: 32px;
+}
+
+/* Définition des icones perso. */
+.icon-design-jeedom {
+  background-image: url("images/icon_mini_jeedom.png");
+}
+.icon-design-nextdom {
+  background-image: url("images/icon_mini_nextdom.png");
+}
+.icon-design-detect_on {
+  background-image: url("images/icon_dect_on.png");
+}
+.icon-design-camera {
+  background-image: url("images/icon_cam.png");
+}
+.icon-design-chauffage {
+  background-image: url("images/icon_chauffage.png");
+}
+.icon-design-lumiere {
+  background-image: url("images/icon_light.png");
+}
+.icon-design-reseau {
+  background-image: url("images/icon_reseau.png");
+}
+.icon-design-home {
+  background-image: url("images/icon_home.png");
+}
+.icon-design-volets {
+  background-image: url("images/icon_volets.png");
+}
+.icon-design-temperature {
+  background-image: url("images/icon_temp.png");
+}
+
+
+body, ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Decor */
+/*
+body {
+  background: #000000;
+}
+*/
+
+.drawer {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: .4em 0;
+  background: #630AFF;
+  color: white;
+  text-align: center;
+  /* Remove 4px gap between <li> */
+  font-size: 0;
+}
+.drawer li {
+  pointer-events: none;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  list-style: none;
+  line-height: 100%;
+  transform: translateZ(0);
+}
+.drawer a {
+  pointer-events: auto;
+  position: relative;
+  display: block;
+  min-width: 5em;
+  margin-bottom: .4em;
+  padding: .4em;
+  line-height: 100%;
+  /* Reset font-size */
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+}
+.drawer a:active, .drawer a:focus {
+  background: #28BBFF;
+}
+.drawer i {
+  display: block;
+  margin-bottom: .2em;
+  font-size: 2em;
+}
+.drawer span {
+  font-size: .625em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+.drawer li:hover ul {
+  /* Open the fly-out menu */
+  transform: translateX(0);
+  background: #28BBFF;
+  /* Enable this if you wish to replicate hoverIntent */
+}
+.drawer > li {
+  display: block;
+  /* Add a shadow to the top-level link */
+  /* Show the shadow when the link is hovered over */
+  /* Fly out menus */
+}
+.drawer > li > a {
+  background: #630AFF;
+}
+.drawer > li:hover {
+  z-index: 100;
+}
+.drawer > li:hover a {
+  background: #28BBFF;
+}
+.drawer > li a:hover {
+  background: #0094FF;
+}
+.drawer > li > a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 4px;
+  opacity: 0;
+  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, transparent));
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 );
+  transition: opacity 0.5s;
+}
+.drawer > li:hover a:after {
+  opacity: 1;
+}
+.drawer > li ul {
+  position: absolute;
+  /* Stack below the top level */
+  z-index: -1;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  width: auto;
+  white-space: nowrap;
+  /* Close the menus */
+  transform: translateX(-100%);
+  background: #28BBFF;
+  transition: 0.5s transform;
+}
