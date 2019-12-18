@@ -1,0 +1,285 @@
+<style>
+body {
+  background: #009688;
+  color: white;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.menu {
+  -webkit-filter: url("#shadowed-goo");
+          filter: url("#shadowed-goo");
+}
+
+.menu-item, .menu-open-button {
+  background: #ffc107;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  position: absolute;
+  top: 20px;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  transition: -webkit-transform ease-out 200ms;
+  transition: transform ease-out 200ms;
+  transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+}
+
+.menu-open {
+  display: none;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background: white;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -12.5px;
+  margin-top: -1.5px;
+  transition: -webkit-transform 200ms;
+  transition: transform 200ms;
+  transition: transform 200ms, -webkit-transform 200ms;
+}
+
+.hamburger-1 {
+  -webkit-transform: translate3d(0, -8px, 0);
+          transform: translate3d(0, -8px, 0);
+}
+
+.hamburger-2 {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.hamburger-3 {
+  -webkit-transform: translate3d(0, 8px, 0);
+          transform: translate3d(0, 8px, 0);
+}
+
+.menu-open:checked + .menu-open-button .hamburger-1 {
+  -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+          transform: translate3d(0, 0, 0) rotate(45deg);
+}
+.menu-open:checked + .menu-open-button .hamburger-2 {
+  -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
+          transform: translate3d(0, 0, 0) scale(0.1, 1);
+}
+.menu-open:checked + .menu-open-button .hamburger-3 {
+  -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+          transform: translate3d(0, 0, 0) rotate(-45deg);
+}
+
+.menu {
+  position: absolute;
+  left: 50%;
+  margin-left: -80px;
+  padding-top: 20px;
+  padding-left: 80px;
+  width: 650px;
+  height: 150px;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: white;
+  color: #ffc107;
+}
+.menu-item:nth-child(3) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(4) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(5) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(6) {
+  transition-duration: 180ms;
+}
+
+.menu-open-button {
+  z-index: 2;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: 400ms;
+  -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+          transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  cursor: pointer;
+}
+
+.menu-open-button:hover {
+  -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+          transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+  -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+          transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.menu-open:checked ~ .menu-item:nth-child(3) {
+  transition-duration: 170ms;
+  -webkit-transform: translate3d(80px, 0, 0);
+          transform: translate3d(80px, 0, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(4) {
+  transition-duration: 250ms;
+  -webkit-transform: translate3d(160px, 0, 0);
+          transform: translate3d(160px, 0, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(5) {
+  transition-duration: 330ms;
+  -webkit-transform: translate3d(240px, 0, 0);
+          transform: translate3d(240px, 0, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(6) {
+  transition-duration: 410ms;
+  -webkit-transform: translate3d(320px, 0, 0);
+          transform: translate3d(320px, 0, 0);
+}
+
+</style>
+
+<nav class="menu" id="menu">
+  
+</nav>
+
+
+<!-- filters -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="shadowed-goo">
+          
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+          <feComposite in2="shadow" in="goo" result="goo" />
+          <feComposite in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+      <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feComposite in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+    </defs>
+</svg>
+
+<script language="javascript">
+  // ATTENTION : 4 lignes max pour autorisées pour "page"
+  // chaque ligne correspond à un item du menu
+  // iframe=oui : utilisation d'une iframe pour la navigation / iframe=non : pas d'utilisation d'une iframe pour la navigation
+  // si iframe=oui, il faut préciser la largeur et la hauteur de l'iframe
+  var json_theme_menu_gooey = {
+    "page": [
+      {"label": "fa fa-bar-chart","link": "1"},
+      {"label": "fa fa-plus","link": "2"},
+      {"label": "fa fa-heart","link": "3"},
+      {"label": "fa fa-envelope","link": "4"}
+    ],
+    "iframe": "oui",
+    "largeur": "1300px",
+    "hauteur": "780px"
+  }
+
+  function getUrlDestination(idPlan) {
+    return 'index.php?v=d&p=plan&plan_id=' + idPlan + '&fullscreen=1';
+  }
+  
+  // Affichage du plan idPlan
+  function gotoPlan(idPlan) {
+    let frame_destination = document.getElementById('iframe_a');
+    if (frame_destination === null) {
+      // pas de frame
+      planHeader_id = idPlan;
+      displayPlan();
+    }
+    else {
+      // gestion de la navigation par frame
+      frame_destination.src = getUrlDestination(idPlan);
+    }
+  }
+
+  function createThemeMenuGooey() {
+
+    let menu_id = document.getElementById('menu');
+
+    let menu_input = document.createElement("input");
+    menu_input.type = "checkbox";
+    menu_input.href = "#";
+    menu_input.className = "menu-open";
+    menu_input.name = "menu-open";
+    menu_input.id = "menu-open";
+
+    menu_id.appendChild(menu_input);
+
+    let menu_label = document.createElement("label");
+    menu_label.className = "menu-open-button";
+    menu_label.setAttribute("for", "menu-open");
+    // 4 items max autorisés
+    for (let i = 0; i < Math.min(3, json_theme_menu_gooey["page"].length); i++) {
+      let label_span = document.createElement("span");
+      label_span.className = "hamburger hamburger-" + (i+1);
+      menu_label.appendChild(label_span);
+    }
+    menu_id.appendChild(menu_label);
+
+    for (let i = 0; i < Math.min(4, json_theme_menu_gooey["page"].length); i++) {
+      let menu_item = document.createElement("a");
+      menu_item.setAttribute("onclick", "gotoPlan(" + json_theme_menu_gooey["page"][i]["link"] + ")");
+      menu_item.className = "menu-item";
+ 
+      let menu_i = document.createElement("i");
+      menu_i.className = json_theme_menu_gooey["page"][i]["label"];
+      menu_item.appendChild(menu_i);
+
+      menu_id.appendChild(menu_item);
+    }
+
+    if ((typeof json_theme_menu_gooey["iframe"] !== undefined) && (json_theme_menu_gooey["iframe"] === "oui")) {
+      // iframe pour afficher la page courante
+      let menu_f = document.createElement("div");
+      menu_f.className = "menuf";
+      let menu_iframe = document.createElement("iframe");
+      menu_iframe.id = "iframe_a";
+      menu_iframe.width = json_theme_menu_gooey["largeur"];
+      menu_iframe.height = json_theme_menu_gooey["hauteur"];
+      menu_iframe.frameBorder = "0";
+      menu_iframe.scrolling = "no";
+      menu_iframe.src = getUrlDestination(json_theme_menu_gooey["page"][0]["link"]);
+
+      menu_f.appendChild(menu_iframe);
+      menu_id.appendChild(menu_f);
+    }
+  };
+
+  // creation dynamique du menu Mobile Gooey 
+  createThemeMenuGooey();
+</script>
