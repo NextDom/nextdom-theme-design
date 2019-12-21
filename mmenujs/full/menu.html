@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="@noodom, inspiration www.mmenusjs.com" />
+		<meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+
+		<title>Design navigation mmenu full</title>
+
+		<!-- 
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		-->
+		<link rel="stylesheet" href="data/custom/montheme/mmenujs/full/css/custom.css" />
+		<link rel="stylesheet" href="data/custom/montheme/mmenujs/full/dist/mmenu.css" />
+
+		<style>
+			:root {
+				--mm-sidebar-expanded-size: 300px;
+			}
+			.mm-menu {
+				--mm-listitem-size: 50px;
+				--mm-navbar-size: 50px;
+			}
+
+			@media (min-width: 992px) {
+				.header a {
+					display: none;
+				}
+			}
+
+			.mm-navbar_tabs span {
+				display: inline-block;
+				margin-left: 8px;
+			}
+			@media (max-width: 450px) {
+				.mm-navbar_tabs span {
+					display: none;
+				}
+			}
+        </style>
+        <script language="Javascript">
+            // chaque ligne correspond à un item du menu
+            // iframe=oui : utilisation d'une iframe pour la navigation / iframe=non : pas d'utilisation d'une iframe pour la navigation
+            // si iframe=oui, il faut préciser la largeur et la hauteur de l'iframe (correspondant à la taille du text/html ajouté pour ce menu)
+            // Contenu du menu mmenu :
+            // Pour chaque item du menu, il faut définir : {"label":"texte de l'item à afficher dans le menu", "link" : "idDesignDeDestination"}
+            // - label : texte de l'item du menu
+            // - link : id du design de destination de l'item du menu (inutile si l'item a des sous-menus)
+            //       il est possible de remplacer l'id du design par une url d'un site : il sera ouvert dans un onglet différent
+            // - page : liste des sous-menus de l'item (contiendra une liste d'items pour le sous-menu)
+            var json_theme_mmenu = {
+                "onglet1":[
+                    {"label":"Accueil","link":"1"},
+                    {"label":"RDC",
+                        "page":[
+                            {"label":"Cuisine", "link":"2"},
+                            {"label":"Salon","link":"3"},
+                            {"label":"Séjour","link":"4"},
+                            {"label":"Chambre","link":"5"}
+                        ]
+                    },
+                    {"label":"Etage",
+                        "page":[
+                            {"label":"Chambre 1", "link":"6"},
+                            {"label":"Chambre 2","link":"7"},
+                            {"label":"Bureau","link":"8"},
+                            {"label":"Salle de bain","link":"9"}
+                        ]
+                    },
+                    {"label":"Garage","link":"10"}
+                ],
+                "onglet2":[
+                    {"label":"Lumières","link":"14"},
+                    {"label":"Ouvertures","link":"15"},
+                    {"label":"Volets","link":"16"},
+                    {"label":"Alarme","link":"17"}
+                ],
+                "onglet3":[
+                    {"label":"Nextdom","link":"https://www.nextdom.org/"},
+                    {"label":"Forum Nextdom","link":"https://www.nextdom.org/forum/"},
+                    {"label":"Blog Nextdom","link":"https://www.nextdom.org/category/blog/"},
+                    {"label":"Discord Nextdom","link":"https://discordapp.com/invite/vavsXN"},
+                    {"label":"Jeedom","link":"https://www.jeedom.com/site/fr/"},
+                    {"label":"Forum Jeedom","link":"https://community.jeedom.com/"}
+                ],
+                "iframe": "oui",
+                "largeur": "412px",
+                "hauteur": "726px"
+            }
+
+            // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+            var homeLink = "";
+
+            function getUrlDestination(urlParam) {
+                if (isNaN(urlParam)) {
+                    return urlParam;
+                }
+                else {
+                    return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+                }
+            }
+            
+            function gotoLink(link) {
+                switch (link) {
+                    case 0:
+                        gotoPlan(homeLink);
+                        break;
+                    case 2:
+                        gotoPlan("https://twitter.com/next_dom");
+                        break;
+                    case 3:
+                        gotoPlan("https://github.com/NextDom");
+                        break;
+                    case 4:
+                        gotoPlan("https://www.instagram.com/next_dom/");
+                        break;
+                    case 5:
+                        gotoPlan("https://www.facebook.com/nextdomprofil/");
+                        break;
+                    case 6:
+                        gotoPlan("https://www.youtube.com/channel/UCylTxP4o72Z3KfcANnATWUQ/videos");
+                        break;
+                    case 7:
+                        gotoPlan("https://discordapp.com/invite/vavsXN");
+                        break;
+                    default:
+                        gotoPlan("https://www.nextdom.org");
+                }
+            }
+
+            // Affichage du plan idPlan ou d'une url externe
+            function gotoPlan(idPlan) {
+                let frame_destination = document.getElementById('iframe_a');
+                let urlDestination = getUrlDestination(idPlan);
+
+                if (isNaN(idPlan)) {
+                    // url externe
+                    window.open(urlDestination,'_blank');
+                }
+                else {
+                    if (frame_destination === null) {
+                        // pas de frame
+                        if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+                            window.location.href = urlDestination;
+                        }
+                    }
+                    else {
+                        // gestion de la navigation par frame
+                        if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+                            frame_destination.src = urlDestination;
+                        }
+                    }
+                }
+
+                // ferme le menu après sélection d'un item
+                mm.API.close();
+            }
+        </script>
+	</head>
+	<body>
+		<div id="page">
+			<div class="header">
+				<a href="#menu"><span></span></a>
+				Nextdom
+			</div>
+			<div class="content" style="padding:0px">
+                <div id="i_frame">
+                    <!-- Div pour inclure les écrans de design dans une iframe -->
+                </div>
+			</div>
+			<nav id="menu">
+				<div id="panel-onglet1">
+
+				</div>
+
+				<div id="panel-onglet2">
+
+                </div>
+
+				<div id="panel-onglet3">
+
+                </div>
+
+                <script language="javascript">
+                    // construction d'un item du menu avec sous-menu
+                    function createPage(ul_div_main, pageData) {
+                        let li_menu = document.createElement("li");
+
+                        let span_li = document.createElement("span");
+                        span_li.innerText = pageData["label"];
+                        
+                        // creation sous-menu
+                        let fils_menu = document.createElement("ul");
+
+                        for (let i = 0; i < pageData["page"].length; i++) {
+                            if (typeof(pageData["page"][i]["page"]) === "undefined") {
+                                // menu sans sous-menu
+                                createItem(fils_menu,pageData["page"][i]);
+                            }
+                            else {
+                                // menu avec sous-menu
+                                createPage(fils_menu,pageData["page"][i]);
+                            }
+                        }
+
+                        li_menu.appendChild(span_li);
+                        li_menu.appendChild(fils_menu);
+
+                        ul_div_main.appendChild(li_menu);
+                    }
+
+                    // construction d'un item du menu sans sous-menu
+                    function createItem(ul_div_main, itemData) {
+                        let item = document.createElement("li");
+                        let link = document.createElement("a");
+                        link.setAttribute("onclick", "gotoPlan('" + itemData["link"] + "')");
+                        link.text = itemData["label"]
+                        item.append(link);
+
+                        ul_div_main.appendChild(item);
+
+                        if (homeLink === "") {
+                            homeLink = itemData["link"];
+                        }
+                    }
+
+                    function createThemeMenuMmenujs(){
+
+                        // creation de la frame
+                        let menu_id = document.getElementById('i_frame');
+
+                        if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "oui")) {
+                            // iframe pour afficher la page courante
+                            let menu_f = document.createElement("div");
+                            menu_f.className = "menuf";
+                            let menu_iframe = document.createElement("iframe");
+                            menu_iframe.id = "iframe_a";
+                            menu_iframe.width = json_theme_mmenu["largeur"];
+                            menu_iframe.height = json_theme_mmenu["hauteur"];
+                            menu_iframe.frameBorder = "0";
+                            menu_iframe.scrolling = "no";
+                            menu_iframe.src = "";
+
+                            menu_f.appendChild(menu_iframe);
+                            menu_id.appendChild(menu_f);
+                        }
+                        
+                        // creation du menu
+                        // onglet 1
+                        let div_main = document.getElementById('panel-onglet1');
+
+                        let ul_div_main = document.createElement("ul");
+
+                        for (let i = 0; i < json_theme_mmenu["onglet1"].length; i++) {
+                            if (typeof(json_theme_mmenu["onglet1"][i]["page"]) === "undefined") {
+                                // menu sans sous-menu
+                                createItem(ul_div_main,json_theme_mmenu["onglet1"][i]);
+                            }
+                            else {
+                                // menu avec sous-menu
+                                createPage(ul_div_main,json_theme_mmenu["onglet1"][i]);
+                            }
+                        }
+                    
+                        div_main.appendChild(ul_div_main);
+
+                        // onglet 2
+                        let div_main2 = document.getElementById('panel-onglet2');
+
+                        let ul_div_main2 = document.createElement("ul");
+
+                        for (let i = 0; i < json_theme_mmenu["onglet2"].length; i++) {
+                            if (typeof(json_theme_mmenu["onglet2"][i]["page"]) === "undefined") {
+                                // menu sans sous-menu
+                                createItem(ul_div_main2,json_theme_mmenu["onglet2"][i]);
+                            }
+                            else {
+                                // menu avec sous-menu
+                                createPage(ul_div_main2,json_theme_mmenu["onglet2"][i]);
+                            }
+                        }
+
+                        div_main2.appendChild(ul_div_main2);
+
+                        // onglet 3
+                        let div_main3 = document.getElementById('panel-onglet3');
+
+                        let ul_div_main3 = document.createElement("ul");
+
+                        for (let i = 0; i < json_theme_mmenu["onglet3"].length; i++) {
+                            if (typeof(json_theme_mmenu["onglet3"][i]["page"]) === "undefined") {
+                                // menu sans sous-menu
+                                createItem(ul_div_main3,json_theme_mmenu["onglet3"][i]);
+                            }
+                            else {
+                                // menu avec sous-menu
+                                createPage(ul_div_main3,json_theme_mmenu["onglet3"][i]);
+                            }
+                        }
+
+                        div_main3.appendChild(ul_div_main3);
+
+                        if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "oui")) {
+                            gotoPlan(homeLink);
+                        }
+                    };
+
+                    // creation dynamique du menu mmenujs
+                    createThemeMenuMmenujs();
+
+                </script>
+			</nav>
+		</div>
+
+		<!-- mmenu scripts -->
+		<script src="data/custom/montheme/mmenujs/full/dist/mmenu.polyfills.js"></script>
+		<script src="data/custom/montheme/mmenujs/full/dist/mmenu.js"></script>
+		<script>
+			var mm = new Mmenu(
+				document.querySelector('#menu'),
+				{
+					extensions : [ 'theme-dark', 'shadow-page', "listview-justify", "position-left"],
+					setSelected	: true,
+					counters	: false,
+					searchfield : {
+						placeholder		: 'Filtre des menus'
+					},
+					iconbar		: {
+						use 		: true,
+						top 		: [
+							'<a onclick="gotoLink(0)"><span class="fa fa-home"></span></a>'
+						],
+						bottom 		: [
+							'<a onclick="gotoLink(1)"> <span class="fa fa-laptop"></span></a>',
+							'<a onclick="gotoLink(2)"> <span class="fa fa-twitter"></span></a>',
+							'<a onclick="gotoLink(3)"> <span class="fa fa-code-branch"></span></a>',
+							'<a onclick="gotoLink(4)"> <span class="fa fa-instagram"></span></a>',
+							'<a onclick="gotoLink(5)"> <span class="fa fa-facebook"></span></a>',
+							'<a onclick="gotoLink(6)"> <span class="fab fa-youtube"></span></a>',
+							'<a onclick="gotoLink(7)"> <span class="fab fa-discord"></span></a>'
+						]
+					},
+					sidebar		: {
+						collapsed		: {
+							use 			: false,
+							hideNavbar		: true
+						},
+						expanded		: {
+							use 			: false
+						}
+					},
+					navbars		: [
+						{
+							content		: [ 'searchfield' ]
+						}, {
+							type		: 'tabs',
+							content		: [
+								'<a href="#panel-onglet1"><i class="fa fa-bars"></i> <span>Onglet 1</span></a>',
+								'<a href="#panel-onglet2"><i class="fas fa-clipboard-list"></i> <span>Onglet 2</span></a>',
+								'<a href="#panel-onglet3"><i class="fas fa-heart"></i> <span>Onglet 3</span></a>'
+							]
+						}, {
+							content		: [ 'prev', 'breadcrumbs', 'close' ]
+						}, {
+							position	: 'bottom',
+							content : [ '<a onclick="gotoLink(1)"><img src="data/custom/montheme/mmenujs/full/images/nextdom.png"></a>' ]
+						}
+					]
+				}, {
+					searchfield : {
+						clear 		: true
+					},
+					navbars		: {
+						breadcrumbs	: {
+							removeFirst	: false
+						}
+					}
+				}
+			);
+
+			document.addEventListener( 'click', function( evnt ) {
+				var anchor = evnt.target.closest( 'a[href^="#/"]' );
+				if ( anchor ) {
+					evnt.preventDefault();
+				}
+			});
+		</script>
+	</body>
+</html>
