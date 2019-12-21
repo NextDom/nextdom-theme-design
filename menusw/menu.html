@@ -1,0 +1,54 @@
+<!--
+  Menu StarWars pour Design Nextdom (@noodom)
+
+  - Copier script.js et style.css dans /data/custom/montheme/sw
+  - Dans le code HTML ci-dessous :
+    - Modifier l'arborescence du menu pour adapter le contenu à ses besoins
+    - Pour chaque appel à "gotoPlan(XXX);", modifier XXX par l'identifiant de votre page Design cible.
+    - Dans le mode Design, pour chaque page du menu, passer en mode édition, puis ajouter "Texte/html" puis copier/coller ce code HTML
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script language="Javascript">
+		// Affichage du plan idPlan
+		function gotoPlan(idPlan) {
+			planHeader_id=idPlan;
+			displayPlan();
+		}
+	</script>
+</head>
+<body>
+<div id="container">
+  <div id="burger">
+          <div class="bun top"></div>
+          <div class="filling"></div>
+          <div class="bun bottom"></div>
+  </div>
+</div>
+
+<nav>
+  <ul>
+    <li>
+      <a onClick="gotoPlan(22);" target="_blank">Accueil</a>
+    </li>
+    <li class="green">
+      <a onClick="gotoPlan(22);" target="_blank">RDC</a>
+    </li>
+    <li class="red">
+      <a onClick="gotoPlan(22);" target="_blank">Etage</a>
+    </li>
+    <li class="yellow">
+      <a onClick="gotoPlan(29);" target="_blank">Ouvertures</a>
+    </li>
+    <li class="purple">
+      <a onClick="gotoPlan(32);" target="_blank">Temp&eacute;ratures</a>
+    </li>
+  </ul>
+</nav>
+	<link rel="stylesheet" href="data/custom/montheme/sw/style.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script language="javascript" src="data/custom/montheme/sw/script.js"></script>
+</body>
+<html>
