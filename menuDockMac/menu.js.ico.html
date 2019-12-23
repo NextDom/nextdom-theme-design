@@ -1,0 +1,363 @@
+<html>
+
+<head>
+	<title>Design Dock Mac</title>
+	<style>
+		body {
+			height: 100%;
+			width: 100%;
+			background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/blurbg.png) no-repeat;
+			background-size: cover;
+		}
+
+
+		#osxdock-page {
+			color: #fff;
+			padding-bottom: 2em;
+			margin-bottom: -2em;
+		}
+
+		#osxdock-page h1,
+		#osxdock-page h2 {
+			color: #fff;
+		}
+
+
+		div.cap {
+			display: block;
+			height: 100px;
+			width: 40px;
+			background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) bottom left no-repeat;
+		}
+
+		div.cap.left {
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+		}
+
+		div.cap.right {
+			background-position: right bottom;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
+
+		ul.osx-dock {
+			display: inline-block;
+			height: 130px;
+			padding: 0 40px 0 0;
+			background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) no-repeat right bottom;
+			overflow: hidden;
+			margin: 0 0 0 40px;
+		}
+
+		ul.osx-dock li {
+			display: block;
+			position: relative;
+			float: left;
+			width: 50px;
+			height: 50px;
+			margin: 60px 0 4px 0;
+			-webkit-transition: 0.15s linear;
+			-webkit-transition-property: -webkit-transform margin;
+			text-align: center;
+		}
+
+		ul.osx-dock li a {
+			display: block;
+			height: 50px;
+			padding: 0 1px;
+			-webkit-transition: 0.15s linear;
+			-webkit-transition-property: -webkit-transform margin;
+			margin: 0;
+			-webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.45, transparent), to(rgba(255, 255, 255, 0.25)));
+		}
+
+		ul.osx-dock li a img {
+			width: 48px;
+		}
+
+		ul.osx-dock li:hover {
+			margin-left: 9px;
+			margin-right: 9px;
+			z-index: 200;
+		}
+
+		ul.osx-dock li:hover a {
+			-webkit-transform-origin: center bottom;
+			-webkit-transform: scale(1.5);
+		}
+
+		ul.osx-dock li.nearby {
+			margin-left: 6px;
+			margin-right: 6px;
+			z-index: 100;
+		}
+
+		ul.osx-dock li.nearby a {
+			-webkit-transform-origin: center bottom;
+			-webkit-transform: scale(1.25);
+		}
+
+		ul.osx-dock li span {
+			background: rgba(0, 0, 0, 0.75);
+			position: absolute;
+			bottom: 80px;
+			margin: 0 auto;
+			display: none;
+			width: auto;
+			font-size: 11px;
+			font-weight: bold;
+			padding: 3px 6px;
+			-webkit-border-radius: 6px;
+			color: #fff;
+		}
+
+		ul.osx-dock li:hover span {
+			display: block;
+		}
+
+		div#dockContainer {
+			position: fixed;
+			bottom: 12px;
+			height: 120px;
+			padding: 50px 0 0;
+			text-align: center;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			width: 100%;
+			line-height: 1;
+			z-index: 100;
+		}
+
+		div#dockWrapper {
+			width: auto;
+			display: inline-block;
+			position: relative;
+			border-bottom: solid 2px rgba(255, 255, 255, .35);
+			line-height: 0;
+		}
+
+		#dockContainer,
+		#dockContainer * {
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+	</style>
+	<script language="javascript">
+		$(document).ready(function () {
+			$("ul.osx-dock li").each(function (type) {
+				$(this).hover(function () {
+						$(this).prev("li").addClass("nearby");
+						$(this).next("li").addClass("nearby");
+					},
+					function () {
+						$(this).prev("li").removeClass("nearby");
+						$(this).next("li").removeClass("nearby");
+					});
+			});
+		});
+
+		// Affichage du plan idPlan
+		function gotoPlan(idPlan) {
+			planHeader_id = idPlan;
+			displayPlan();
+		}
+	</script>
+</head>
+
+<body>
+	<div id="dockContainer">
+		<div id="dockWrapper">
+			<ul class="osx-dock" id="osx-dock">
+			</ul>
+		</div>
+	</div>
+	<script language="javascript">
+		// pour chaque item du menu renseigner les différents champs :
+		// - label : libellé du champ à afficher dans le menu
+		// - link : identifiant du design destinataire du lien du menu
+		// - icone : icone à afficher pour l'item du menu
+		// - customIcone (facultatif) : nécessaire si on souhaite afficher un icône autre que ceux présents dans le pack choisi
+		//     il faut, dans ce cas, mettre ce champ à "oui" et préciser où récupérer l'icône personnalisé
+		//     	- "icone": "monRepertoire/nomIconePerso.png"
+		//     	- "customIcone": "oui" 
+		//     Il faut alors copier l'icône sous /data/custom/packIcones/customIcones/monRepertoire/nomIconePerso.png
+		// - packIconesName : nom du pack d'icônes pour le menu
+		// - packIconesColor : couleur de fond des icônes
+		var json_theme_menu_dock_mac = {
+			"page": [{
+					"label": "Accueil",
+					"link": "1",
+					"icone": "home"
+				},
+				{
+					"label": "Eclairage",
+					"link": "2",
+					"icone": "ampoule",
+				},
+				{
+					"label": "Données",
+					"link": "3",
+					"icone": "data"
+				},
+				{
+					"label": "Energie",
+					"link": "4",
+					"icone": "energie"
+				},
+				{
+					"label": "Monitoring",
+					"link": "5",
+					"icone": "monitoring"
+				},
+				{
+					"label": "Outils",
+					"link": "6",
+					"icone": "outil"
+				},
+				{
+					"label": "Chauffage",
+					"link": "7",
+					"icone": "radiateur"
+				},
+				{
+					"label": "Sécurité",
+					"link": "8",
+					"icone": "securite"
+				},
+				{
+					"label": "Eclairage",
+					"link": "9",
+					"icone": "icon_volets.png",
+					"customIcone": "oui"
+				},
+				{
+					"label": "Google",
+					"link": "10",
+					"icone": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png",
+					"customIcone": "oui"
+				},
+				{
+					"label": "Chrome",
+					"link": "11",
+					"icone": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png",
+					"customIcone": "oui"
+				}
+			],
+			"packIconesName": "pack2", // nom du pack d'icônes
+			"packIconesColor": "green" // valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
+		}
+
+		function checkImage(imageSrc) {
+			var image = new Image();
+			image.src = imageSrc;
+			if (!image.src.startsWith("http")) {
+				image.src = window.location.protocol + "://" + window.location.hostname + image.src;
+			}
+			return (image.width != 0);
+		}
+
+		// Affichage du plan idPlan
+		function gotoPlan(idPlan) {
+			planHeader_id = idPlan;
+			displayPlan();
+		}
+
+		function createThemeMenuDockMac() {
+
+			// récupération du pack d'icônes
+			let defaultPackIconeName = "pack1";
+			let defaultPackIconesColor = "default";
+			let packIconesName = defaultPackIconeName;
+			let packIconesColor = defaultPackIconesColor;
+
+			if (typeof (json_theme_menu_dock_mac["packIconesName"]) !== "undefined") {
+				packIconesName = json_theme_menu_dock_mac["packIconesName"];
+			}
+			if (typeof (json_theme_menu_dock_mac["packIconesColor"]) !== "undefined") {
+				packIconesColor = json_theme_menu_dock_mac["packIconesColor"];
+			}
+
+			let menu_dockWrapper = document.getElementById('osx-dock');
+
+			for (let i = 0; i < json_theme_menu_dock_mac["page"].length; i++) {
+				let menu_item = document.createElement("li");
+				if (i == 0) {
+					menu_item.className = "active";
+				}
+				let menu_item_a = document.createElement("a");
+				menu_item_a.setAttribute("onclick", "gotoPlan(" + json_theme_menu_dock_mac["page"][i]["link"] + ")");
+				menu_item_a.title = json_theme_menu_dock_mac["page"][i]["label"];
+				let menu_item_a_img = document.createElement("img");
+				if (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("http")) {
+					// récupération de l'icone personalisé sous forme d'url
+					menu_item_a_img.src = json_theme_menu_dock_mac["page"][i]["icone"];
+				} else if ((typeof (json_theme_menu_dock_mac["page"][i]["customIcone"]) !== "undefined") &&
+					(json_theme_menu_dock_mac["page"][i]["customIcone"] === "oui")) {
+					// récupération de l'icône personnalisé (customIcone=oui ou url)
+					let slash = (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("/")) ? "" : "/";
+					let extension = (json_theme_menu_dock_mac["page"][i]["icone"].toLowerCase().endsWith(".png")) ? "" :".png";
+					menu_item_a_img.src = "data/custom/packIcones/customIcones" +
+						slash +
+						json_theme_menu_dock_mac["page"][i]["icone"] +
+						extension;
+				} else {
+					// récuperation de l'icône du pack
+					menu_item_a_img.src = "data/custom/packIcones/" + packIconesName + "/" +
+						json_theme_menu_dock_mac["page"][i]["icone"] + "_" + packIconesColor + ".png";
+				}
+
+				// vérification existence de l'icone
+				let defaultIcone = "";
+				let replaceIcone = false;
+				if (!checkImage(menu_item_a_img.src)) {
+					if (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("http")) {
+						// image web inexistante
+						replaceIcone = true;
+					} else {
+						// icone demandée inexistante
+						defaultIcone = "data/custom/packIcones/" + defaultPackIconeName + "/" + json_theme_menu_dock_mac["page"][i]["icone"] + "_" + packIconesColor + ".png";
+						if (checkImage(defaultIcone)) {
+							// icône du pack par défaut avec la couleur demandée
+							menu_item_a_img.src = defaultIcone;
+						} else {
+							replaceIcone = true;
+						}
+					}
+
+					if (replaceIcone) {
+						defaultIcone = "data/custom/packIcones/" + packIconesName + "/vierge_" + packIconesColor + ".png";
+						if (checkImage(defaultIcone)) {
+							// icône vierge du pack et couleur demandés
+							menu_item_a_img.src = defaultIcone;
+						} else {
+							defaultIcone = defaultIcone = "data/custom/packIcones/" + defaultPackIconeName + "/vierge_" +
+								packIconesColor + ".png";
+							if (checkImage(defaultIcone)) {
+								// icône vierge du pack par défaut avec la couleur demandée
+								menu_item_a_img.src = defaultIcone;
+							} else {
+								// icône vierge du pack et couleur par défaut
+								menu_item_a_img.src = "data/custom/packIcones/" + defaultPackIconeName + "/vierge_" +
+									defaultPackIconesColor + ".png";
+							}
+						}
+					}
+				}
+
+				menu_item_a.appendChild(menu_item_a_img);
+				menu_item.appendChild(menu_item_a);
+
+				menu_dockWrapper.appendChild(menu_item);
+			}
+		};
+
+		// creation dynamique du menu Mobile Fullscreen 
+		createThemeMenuDockMac();
+	</script>
+</body>
+
+</html>
