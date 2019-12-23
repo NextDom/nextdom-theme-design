@@ -179,76 +179,76 @@
 		// pour chaque item du menu renseigner les différents champs :
 		// - label : libellé du champ à afficher dans le menu
 		// - link : identifiant du design destinataire du lien du menu
-		// - icone : icone à afficher pour l'item du menu
-		// - customIcone (facultatif) : nécessaire si on souhaite afficher un icône autre que ceux présents dans le pack choisi
+		// - icon : icône à afficher pour l'item du menu
+		// - customIcon (facultatif) : nécessaire si on souhaite afficher un icône autre que ceux présents dans le pack choisi
 		//     il faut, dans ce cas, mettre ce champ à "oui" et préciser où récupérer l'icône personnalisé
-		//     	- "icone": "monRepertoire/nomIconePerso.png"
-		//     	- "customIcone": "oui" 
-		//     Il faut alors copier l'icône sous /data/custom/packIcones/customIcones/monRepertoire/nomIconePerso.png
-		// - packIconesName : nom du pack d'icônes pour le menu
-		// - packIconesColor : couleur de fond des icônes
+		//     	- "icon": "monRepertoire/nomIconePerso.png"
+		//     	- "customIcon": "oui" 
+		//     Il faut alors copier l'icône sous /data/custom/packIcons/customIcons/monRepertoire/nomIconePerso.png
+		// - packIconsName : nom du pack d'icônes pour le menu
+		// - packIconsColor : couleur de fond des icônes
 		var json_theme_menu_dock_mac = {
 			"page": [{
 					"label": "Accueil",
 					"link": "1",
-					"icone": "home"
+					"icon": "home"
 				},
 				{
 					"label": "Eclairage",
 					"link": "2",
-					"icone": "ampoule",
+					"icon": "ampoule",
 				},
 				{
 					"label": "Données",
 					"link": "3",
-					"icone": "data"
+					"icon": "data"
 				},
 				{
 					"label": "Energie",
 					"link": "4",
-					"icone": "energie"
+					"icon": "energie"
 				},
 				{
 					"label": "Monitoring",
 					"link": "5",
-					"icone": "monitoring"
+					"icon": "monitoring"
 				},
 				{
 					"label": "Outils",
 					"link": "6",
-					"icone": "outil"
+					"icon": "outil"
 				},
 				{
 					"label": "Chauffage",
 					"link": "7",
-					"icone": "radiateur"
+					"icon": "radiateur"
 				},
 				{
 					"label": "Sécurité",
 					"link": "8",
-					"icone": "securite"
+					"icon": "securite"
 				},
 				{
 					"label": "Eclairage",
 					"link": "9",
-					"icone": "icon_volets.png",
-					"customIcone": "oui"
+					"icon": "icon_volets.png",
+					"customIcon": "oui"
 				},
 				{
 					"label": "Google",
 					"link": "10",
-					"icone": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png",
-					"customIcone": "oui"
+					"icon": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png",
+					"customIcon": "oui"
 				},
 				{
 					"label": "Chrome",
 					"link": "11",
-					"icone": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png",
-					"customIcone": "oui"
+					"icon": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png",
+					"customIcon": "oui"
 				}
 			],
-			"packIconesName": "pack2", // nom du pack d'icônes
-			"packIconesColor": "green" // valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
+			"packIconsName": "pack2", // nom du pack d'icônes
+			"packIconsColor": "green" // valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
 		}
 
 		function checkImage(imageSrc) {
@@ -269,16 +269,16 @@
 		function createThemeMenuDockMac() {
 
 			// récupération du pack d'icônes
-			let defaultPackIconeName = "pack1";
-			let defaultPackIconesColor = "default";
-			let packIconesName = defaultPackIconeName;
-			let packIconesColor = defaultPackIconesColor;
+			let defaultPackIconsName = "pack1";
+			let defaultPackIconsColor = "default";
+			let packIconsName = defaultPackIconsName;
+			let packIconsColor = defaultPackIconsColor;
 
-			if (typeof (json_theme_menu_dock_mac["packIconesName"]) !== "undefined") {
-				packIconesName = json_theme_menu_dock_mac["packIconesName"];
+			if (typeof (json_theme_menu_dock_mac["packIconsName"]) !== "undefined") {
+				packIconsName = json_theme_menu_dock_mac["packIconsName"];
 			}
-			if (typeof (json_theme_menu_dock_mac["packIconesColor"]) !== "undefined") {
-				packIconesColor = json_theme_menu_dock_mac["packIconesColor"];
+			if (typeof (json_theme_menu_dock_mac["packIconsColor"]) !== "undefined") {
+				packIconsColor = json_theme_menu_dock_mac["packIconsColor"];
 			}
 
 			let menu_dockWrapper = document.getElementById('osx-dock');
@@ -292,57 +292,57 @@
 				menu_item_a.setAttribute("onclick", "gotoPlan(" + json_theme_menu_dock_mac["page"][i]["link"] + ")");
 				menu_item_a.title = json_theme_menu_dock_mac["page"][i]["label"];
 				let menu_item_a_img = document.createElement("img");
-				if (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("http")) {
-					// récupération de l'icone personalisé sous forme d'url
-					menu_item_a_img.src = json_theme_menu_dock_mac["page"][i]["icone"];
-				} else if ((typeof (json_theme_menu_dock_mac["page"][i]["customIcone"]) !== "undefined") &&
-					(json_theme_menu_dock_mac["page"][i]["customIcone"] === "oui")) {
-					// récupération de l'icône personnalisé (customIcone=oui ou url)
-					let slash = (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("/")) ? "" : "/";
-					let extension = (json_theme_menu_dock_mac["page"][i]["icone"].toLowerCase().endsWith(".png")) ? "" :".png";
-					menu_item_a_img.src = "data/custom/packIcones/customIcones" +
+				if (json_theme_menu_dock_mac["page"][i]["icon"].startsWith("http")) {
+					// récupération de l'icône personnalisé sous forme d'url
+					menu_item_a_img.src = json_theme_menu_dock_mac["page"][i]["icon"];
+				} else if ((typeof (json_theme_menu_dock_mac["page"][i]["customIcon"]) !== "undefined") &&
+					(json_theme_menu_dock_mac["page"][i]["customIcon"] === "oui")) {
+					// récupération de l'icône personnalisé (customIcon=oui ou url)
+					let slash = (json_theme_menu_dock_mac["page"][i]["icon"].startsWith("/")) ? "" : "/";
+					let extension = (json_theme_menu_dock_mac["page"][i]["icon"].toLowerCase().endsWith(".png")) ? "" :".png";
+					menu_item_a_img.src = "data/custom/packIcons/customIcons" +
 						slash +
-						json_theme_menu_dock_mac["page"][i]["icone"] +
+						json_theme_menu_dock_mac["page"][i]["icon"] +
 						extension;
 				} else {
 					// récuperation de l'icône du pack
-					menu_item_a_img.src = "data/custom/packIcones/" + packIconesName + "/" +
-						json_theme_menu_dock_mac["page"][i]["icone"] + "_" + packIconesColor + ".png";
+					menu_item_a_img.src = "data/custom/packIcons/" + packIconsName + "/" +
+						json_theme_menu_dock_mac["page"][i]["icon"] + "_" + packIconsColor + ".png";
 				}
 
-				// vérification existence de l'icone
-				let defaultIcone = "";
-				let replaceIcone = false;
+				// vérification existence de l'icône
+				let defaultIcon = "";
+				let replaceIcon = false;
 				if (!checkImage(menu_item_a_img.src)) {
-					if (json_theme_menu_dock_mac["page"][i]["icone"].startsWith("http")) {
+					if (json_theme_menu_dock_mac["page"][i]["icon"].startsWith("http")) {
 						// image web inexistante
-						replaceIcone = true;
+						replaceIcon = true;
 					} else {
-						// icone demandée inexistante
-						defaultIcone = "data/custom/packIcones/" + defaultPackIconeName + "/" + json_theme_menu_dock_mac["page"][i]["icone"] + "_" + packIconesColor + ".png";
-						if (checkImage(defaultIcone)) {
+						// icône demandée inexistante
+						defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + json_theme_menu_dock_mac["page"][i]["icon"] + "_" + packIconsColor + ".png";
+						if (checkImage(defaultIcon)) {
 							// icône du pack par défaut avec la couleur demandée
-							menu_item_a_img.src = defaultIcone;
+							menu_item_a_img.src = defaultIcon;
 						} else {
-							replaceIcone = true;
+							replaceIcon = true;
 						}
 					}
 
-					if (replaceIcone) {
-						defaultIcone = "data/custom/packIcones/" + packIconesName + "/vierge_" + packIconesColor + ".png";
-						if (checkImage(defaultIcone)) {
+					if (replaceIcon) {
+						defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
+						if (checkImage(defaultIcon)) {
 							// icône vierge du pack et couleur demandés
-							menu_item_a_img.src = defaultIcone;
+							menu_item_a_img.src = defaultIcon;
 						} else {
-							defaultIcone = defaultIcone = "data/custom/packIcones/" + defaultPackIconeName + "/vierge_" +
-								packIconesColor + ".png";
-							if (checkImage(defaultIcone)) {
+							defaultIcon = defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
+								packIconsColor + ".png";
+							if (checkImage(defaultIcon)) {
 								// icône vierge du pack par défaut avec la couleur demandée
-								menu_item_a_img.src = defaultIcone;
+								menu_item_a_img.src = defaultIcon;
 							} else {
 								// icône vierge du pack et couleur par défaut
-								menu_item_a_img.src = "data/custom/packIcones/" + defaultPackIconeName + "/vierge_" +
-									defaultPackIconesColor + ".png";
+								menu_item_a_img.src = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
+									defaultPackIconsColor + ".png";
 							}
 						}
 					}
