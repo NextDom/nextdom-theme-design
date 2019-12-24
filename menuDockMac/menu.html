@@ -1,283 +1,508 @@
 <html>
+
 <head>
-<title>Design Dock Mac</title>
-<style>
-  body {
-  height:100%;
-  width:100%;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/blurbg.png) no-repeat;
-  background-size: cover;
-}
+	<title>Design Dock Mac</title>
+	<style>
+		body {
+			height: 100%;
+			width: 100%;
+			background: url(data/custom/themes/menuDockMac/images/blurbg.png) no-repeat;
+			background-size: cover;
+		}
 
 
-#osxdock-page {
-    color: #fff;
-    padding-bottom: 2em;
-    margin-bottom: -2em;
-}
+		#osxdock-page {
+			color: #fff;
+			padding-bottom: 2em;
+			margin-bottom: -2em;
+		}
 
-#osxdock-page h1,#osxdock-page h2 {
-    color: #fff;
-}
+		#osxdock-page h1,
+		#osxdock-page h2 {
+			color: #fff;
+		}
 
 
-div.cap {
-    display: block;
-    height: 100px;
-    width: 40px;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) bottom left no-repeat;
-}
+		div.cap {
+			display: block;
+			height: 100px;
+			width: 40px;
+			background: url(data/custom/themes/menuDockMac/images/dock-background-left.png) bottom left no-repeat;
+		}
 
-div.cap.left {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-}
+		div.cap.left {
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+		}
 
-div.cap.right {
-    background-position: right bottom;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
+		div.cap.right {
+			background-position: right bottom;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
 
-ul.osx-dock {
-    display: inline-block;
-    height: 130px;
-    padding: 0 40px 0 0;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/dock-background-left.png) no-repeat right bottom;
-    overflow: hidden;
-    margin: 0 0 0 40px;
-}
+		ul.osx-dock {
+			display: inline-block;
+			padding: 0 40px 0 0;
+			background: url(data/custom/themes/menuDockMac/images/dock-background-left.png) no-repeat right bottom;
+			overflow: hidden;
+			margin: 0 0 0 40px;
+		}
 
-ul.osx-dock li {
-    display: block;
-    position: relative;
-    float: left;
-    width: 50px;
-    height: 50px;
-    margin: 60px 0 4px 0;
-    -webkit-transition: 0.15s linear;
-    -webkit-transition-property: -webkit-transform margin;
-    text-align: center;
-}
+		ul.osx-dock li {
+			display: block;
+			position: relative;
+			float: left;
+			margin: 60px 0 4px 0;
+			-webkit-transition: 0.15s linear;
+			-webkit-transition-property: -webkit-transform margin;
+			text-align: center;
+		}
 
-ul.osx-dock li a {
-    display: block;
-    height: 50px;
-    padding: 0 1px;
-    -webkit-transition: 0.15s linear;
-    -webkit-transition-property: -webkit-transform margin;
-    margin: 0;
-    -webkit-box-reflect: below 2px -webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(0.45,transparent),to(rgba(255,255,255,0.25)));
-}
+		ul.osx-dock li a {
+			display: block;
+			padding: 0 1px;
+			-webkit-transition: 0.15s linear;
+			-webkit-transition-property: -webkit-transform margin;
+			margin: 0;
+			-webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.45, transparent), to(rgba(255, 255, 255, 0.25)));
+		}
 
-ul.osx-dock li a img {
-    width: 48px;
-}
+		ul.osx-dock li:hover {
+			margin-left: 9px;
+			margin-right: 9px;
+			z-index: 200;
+		}
 
-ul.osx-dock li:hover {
-    margin-left: 9px;
-    margin-right: 9px;
-    z-index: 200;
-}
+		ul.osx-dock li:hover a {
+			-webkit-transform-origin: center bottom;
+			-webkit-transform: scale(1.5);
+		}
 
-ul.osx-dock li:hover a {
-    -webkit-transform-origin: center bottom;
-    -webkit-transform: scale(1.5);
-}
+		ul.osx-dock li.nearby {
+			margin-left: 6px;
+			margin-right: 6px;
+			z-index: 100;
+		}
 
-ul.osx-dock li.nearby {
-    margin-left: 6px;
-    margin-right: 6px;
-    z-index: 100;
-}
+		ul.osx-dock li.nearby a {
+			-webkit-transform-origin: center bottom;
+			-webkit-transform: scale(1.25);
+		}
 
-ul.osx-dock li.nearby a {
-    -webkit-transform-origin: center bottom;
-    -webkit-transform: scale(1.25);
-}
+		ul.osx-dock li span {
+			background: rgba(0, 0, 0, 0.75);
+			position: absolute;
+			bottom: 80px;
+			margin: 0 auto;
+			display: none;
+			width: auto;
+			font-size: 11px;
+			font-weight: bold;
+			padding: 3px 6px;
+			-webkit-border-radius: 6px;
+			color: #fff;
+		}
 
-ul.osx-dock li span {
-    background: rgba(0,0,0,0.75);
-    position: absolute;
-    bottom: 80px;
-    margin: 0 auto;
-    display: none;
-    width: auto;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 6px;
-    -webkit-border-radius: 6px;
-    color: #fff;
-}
+		ul.osx-dock li:hover span {
+			display: block;
+		}
 
-ul.osx-dock li:hover span {
-    display: block;
-}
+		div#dockContainer {
+			position: fixed;
+			bottom: 12px;
+			height: 120px;
+			padding: 50px 0 0;
+			text-align: center;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			width: 100%;
+			line-height: 1;
+			z-index: 100;
+		}
 
-div#dockContainer {
-    position: fixed;
-    bottom: 12px;
-    height: 120px;
-    padding: 50px 0 0;
-    text-align: center;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    width: 100%;
-    line-height: 1;
-    z-index: 100;
-}
+		div#dockWrapper {
+			width: auto;
+			display: inline-block;
+			position: relative;
+			border-bottom: solid 2px rgba(255, 255, 255, .35);
+			line-height: 0;
+		}
 
-div#dockWrapper {
-    width: auto;
-    display: inline-block;
-    position: relative;
-    border-bottom: solid 2px rgba(255,255,255,.35);
-    line-height: 0;
-}
-
-#dockContainer,#dockContainer * {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-</style>
-<script language="javascript">
-    $(document).ready(function(){
-        $("ul.osx-dock li").each(function (type) {
-            $(this).hover(function () {
-                $(this).prev("li").addClass("nearby");
-                $(this).next("li").addClass("nearby");
-            },
-            function () {
-                $(this).prev("li").removeClass("nearby");
-                $(this).next("li").removeClass("nearby");
-            });
-        });
-    });
-
-    // Affichage du plan idPlan
-    function gotoPlan(idPlan) {
-        planHeader_id = idPlan;
-        displayPlan();
-    }
-</script>
+		#dockContainer,
+		#dockContainer * {
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+	</style>
 </head>
 
 <body>
-	<div id="dockContainer">
-		<div id="dockWrapper">
-			<ul class="osx-dock">
-				<li class="active">
-					<a onClick="gotoPlan(1);" target="_blank" title="Accueil"><img
-						src="data/custom/montheme/images/icon_mini_nextdom.png" />
-				  </a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(2);" target="_blank" title="Rdc"><img
-						src="data/custom/montheme/images/icon_rdc.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(3);" target="_blank" title="Etage"><img
-						src="data/custom/montheme/images/icon_etage.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(4);" target="_blank" title="TV"><img
-						src="data/custom/montheme/images/icon_tv.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(5);" target="_blank" title="Volets"><img
-						src="data/custom/montheme/images/icon_volets_light.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(6);" target="_blank" title="Chauffage"><img
-						src="data/custom/montheme/images/icon_chauffage.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(7);" target="_blank" title="Réseau"><img
-						src="data/custom/montheme/images/icon_reseau.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(8);" target="_blank" title="Planning"><img
-						src="data/custom/montheme/images/icon_planning.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(9);" target="_blank" title="Menu 9"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(10);" target="_blank" title="Menu 10"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(11);" target="_blank" title="Menu 11"><img src="
-					https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
-				</li>
-				  <li>
-					<a onClick="gotoPlan(12);" target="_blank" title="Menu 12"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(13);" target="_blank" title="Menu 13"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
-				</li>
-				<li class="active">
-					<a onClick="gotoPlan(14);" target="_blank" title="Menu 14"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/linkedin-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(15);" target="_blank" title="Menu 15"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/facebook-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(16);" target="_blank" title="Menu 16"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
-				</li>
-				<li>
-				<a onClick="gotoPlan(17);" target="_blank" title="Menu 17"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(18);" target="_blank" title="Menu 18"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(19);" target="_blank" title="Menu 19"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(20);" target="_blank" title="Menu 20"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(21);" target="_blank" title="Menu 21"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/facebook-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(22);" target="_blank" title="Menu 22"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(23);" target="_blank" title="Menu 23"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(24);" target="_blank" title="Menu 24"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/safari-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(25);" target="_blank" title="Menu 25"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/lastfm-icon.png" /></a>
-				</li>
-				<li>
-					<a onClick="gotoPlan(26);" target="_blank" title="Menu 26"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/notable-icon.png" /></a>
-				</li>
-			</ul>
+	<div class="content" style="padding:0px">
+		<div id="i_frame">
+			<!-- Div pour inclure les écrans de design dans une iframe -->
 		</div>
 	</div>
+	<div id="dockContainer">
+		<div id="dockWrapper">
+		</div>
+	</div>
+	<script language="javascript">
+		// Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+		// A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json
+		// *** NE PAS MODIFIER ***
+		var defaultIconWidth = 48; // largeur d'affichage de l'icône
+		var defaultIconHeight = 48;
+		var defaultIframeWidth = 1080;
+		var defaultIframHeight = 580;
+		var defaultPackIconsName = "pack1";
+		var defaultPackIconsColor = "default";
+		var waitForLoadingFrame = 1; // ms
+		var checkIcon = false;
 
+		// pour chaque item du menu renseigner les différents champs :
+		// - label : libellé du champ à afficher dans le menu
+		// - link : identifiant du design destinataire du lien du menu
+		// - icon : icône à afficher pour l'item du menu
+		// - customIcon (facultatif) : nécessaire si on souhaite afficher un icône autre que ceux présents dans le pack choisi
+		//     il faut, dans ce cas, mettre ce champ à "yes" et préciser où récupérer l'icône personnalisé
+		//     	- "icon": "monRepertoire/nomIconePerso.png"
+		//     	- "customIcon": "yes" 
+		//     Il faut alors copier l'icône sous /data/custom/packIcons/customIcons/monRepertoire/nomIconePerso.png
+		//
+		// - Pour les valeurs de chaque icône, les possibilités sont donc :
+		//   - un nom d'icône présent dans les packs d'icônes proposés par défaut par Nextdom
+		//     ex : "home", "eclairage"," energie", "radiateur", ..
+		//   - un nom d'icône perso à ajouter (voir ci-dessus avec customIcon)
+		//   - un lien externe pour l'image de l'icône
+		//   ex : "icon":"https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png",
+		//      "link":"https://www.google.fr/"
+		//
+		// Utilisation des packs d'icônes présents dans Nextdom
+		// - packIconsName : nom du pack d'icônes pour le menu
+		// - packIconsColor : couleur de fond des icônes
+		//
+		// Gestion des liens dans une iframe : mettre iframe à yes et définir sa largeur et sa hauteur
+		// - "iframe": "yes"
+		// - "frameWidth": "1024px"
+		// - "frameHeight": "580px"
+		//
+		// Pour avoir le menu sous les designs des liens, mettre la (hauteur de la frame + 80) pour la hauteur de l'équipement du text/html du menu
+		// Pour la largeur del'équipement text/html du menu, mettre la même largeur que la frame
+
+		// *** PREMIERE UTILISATION ***
+		// - Recopier sous /data/custom le dossier /themes/menuDockMac 
+		//     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design/tree/master/menuDockMac)
+		// - (Si non déjà présent) Recopier sous /data/custom le dossier /packIcons 
+		//     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design)
+		// - Copier le contenu de ce fichier dans une page de design (clic droit, sélectionner "Edition", puis clic droit, sélectionner "Ajout texte/html")
+		//
+		// JSON de configuration à modifier pour personnaliser son menu :
+		// *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+		var json_theme_menu_dock_mac = {
+			"page": [{
+					"label": "Accueil",
+					"link": "1",
+					"icon": "home"
+				},
+				{
+					"label": "Eclairage",
+					"link": "2",
+					"icon": "ampoule",
+				},
+				{
+					"label": "Données",
+					"link": "3",
+					"icon": "data"
+				},
+				{
+					"label": "Energie",
+					"link": "4",
+					"icon": "energie"
+				},
+				{
+					"label": "Monitoring",
+					"link": "5",
+					"icon": "monitoring"
+				},
+				{
+					"label": "Outils",
+					"link": "6",
+					"icon": "outil"
+				},
+				{
+					"label": "Chauffage",
+					"link": "7",
+					"icon": "radiateur"
+				},
+				{
+					"label": "Sécurité",
+					"link": "8",
+					"icon": "securite"
+				},
+				/*{
+					"label": "Test Fontawesome",
+					"link": "9",
+					"icon": "fab fa-apple"
+				},*/
+				{
+					"label": "Test custom icon",
+					"link": "9",
+					"icon": "icon_volets.png",
+					"customIcon": "yes"
+				},
+				/*{
+					"label": "Google",
+					"link": "10",
+					"icon": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/google-icon.png"
+				},
+				{
+					"label": "Chrome",
+					"link": "11",
+					"icon": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/151734/chrome-icon.png"
+				}*/
+			],
+			"packIconsName": "pack2", // (facultatif) nom du pack d'icônes
+			"packIconsColor": "red", // (facultatif) valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
+			"iframe": "yes", // (facultatif) gestion de la navigation par frame
+			"frameWidth": "1024px", // (facultatif) largeur de la frame
+			"frameHeight": "580px", // (facultatif) hauteur de la frame
+			"iconWidth": "48", // (facultatif) largeur des icônes
+			"iconHeight": "48", // (facultatif) hauteur des icônes
+			"timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+			"checkIcon": "yes" // (facultatif) vérification de l'existence des icônes (avec remplacement par icônes du pack par défaut si absent)
+		}
+
+		// *** FIN DES MODIFICATIONS ***
+
+		function loadFrame() {
+			if ((typeof json_theme_menu_dock_mac["iframe"] !== undefined) && (json_theme_menu_dock_mac["iframe"] === "yes")) {
+				gotoPlan(homeLink);
+			}
+		}
+
+		$(document).ready(function () {
+			$("ul.osx-dock li").each(function (type) {
+				$(this).hover(function () {
+						$(this).prev("li").addClass("nearby");
+						$(this).next("li").addClass("nearby");
+					},
+					function () {
+						$(this).prev("li").removeClass("nearby");
+						$(this).next("li").removeClass("nearby");
+					});
+			});
+
+			// gestion par frame : affichage du premier lien au chargement
+			if (waitForLoadingFrame != 0) {
+				setTimeout(loadFrame, waitForLoadingFrame);
+			}
+		});
+
+		function checkImage(urlImage) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('HEAD', urlImage, false);
+			xhr.send();
+
+			return (xhr.status != "404");
+		}
+
+		// url de page d'accueil (premier lien du menu récupéré dynamiquement)
+		var homeLink = "";
+
+		function getUrlDestination(urlParam) {
+			if (isNaN(urlParam)) {
+				return urlParam;
+			} else {
+				return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+			}
+		}
+
+		// Affichage du plan idPlan
+		function gotoPlan(idPlan) {
+			let frame_destination = document.getElementById('iframe_a');
+			let urlDestination = getUrlDestination(idPlan);
+
+			if (isNaN(idPlan)) {
+				// url externe
+				window.open(urlDestination, '_blank');
+			} else {
+				if (frame_destination === null) {
+					// pas de frame
+					if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+						window.location.href = urlDestination;
+					}
+				} else {
+					// gestion de la navigation par frame
+					if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+						frame_destination.src = urlDestination;
+					}
+				}
+			}
+		}
+
+		function createThemeMenuDockMac() {
+
+			// récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+			if ((typeof json_theme_menu_dock_mac["timeout"] !== undefined) && !isNaN(json_theme_menu_dock_mac["timeout"])) {
+				waitForLoadingFrame = json_theme_menu_dock_mac["timeout"];
+			}
+
+			// récupération du paramètre pour savoir si on vérifie l'existence des images pour les icônes ou non ("oui" / "non")
+			if (typeof json_theme_menu_dock_mac["checkIcon"] !== undefined) {
+				checkIcon = json_theme_menu_dock_mac["checkIcon"];
+			}
+
+			// creation de la frame
+			let menu_id = document.getElementById('i_frame');
+
+			if ((typeof json_theme_menu_dock_mac["iframe"] !== undefined) && (json_theme_menu_dock_mac["iframe"] === "yes")) {
+				// iframe pour afficher la page courante
+				let menu_f = document.createElement("div");
+				menu_f.className = "menuf";
+				let menu_iframe = document.createElement("iframe");
+				menu_iframe.id = "iframe_a";
+				let frameWidth = defaultIframeWidth;
+				if (typeof (json_theme_menu_dock_mac["frameWidth"]) !== "undefined") {
+					menu_iframe.width = json_theme_menu_dock_mac["frameWidth"];
+				}
+				let frameHeight = defaultIframHeight;
+				if (typeof (json_theme_menu_dock_mac["frameHeight"]) !== "undefined") {
+					menu_iframe.height = json_theme_menu_dock_mac["frameHeight"];
+				}
+				menu_iframe.frameBorder = "0";
+				menu_iframe.scrolling = "no";
+				menu_iframe.src = "";
+
+				menu_f.appendChild(menu_iframe);
+				menu_id.appendChild(menu_f);
+			}
+
+			// récupération du pack d'icônes
+			let packIconsName = defaultPackIconsName;
+			let packIconsColor = defaultPackIconsColor;
+
+			// nom du pack
+			if (typeof (json_theme_menu_dock_mac["packIconsName"]) !== "undefined") {
+				packIconsName = json_theme_menu_dock_mac["packIconsName"];
+			}
+
+			// couleur du pack (ex : "default, "red", "blue", "yel", "green", "dark")
+			if (typeof (json_theme_menu_dock_mac["packIconsColor"]) !== "undefined") {
+				packIconsColor = json_theme_menu_dock_mac["packIconsColor"];
+			}
+
+			// largeur et hauteur des icônes
+			let iconWidth = defaultIconWidth; // largeur d'un icône par défaut
+			if (typeof (json_theme_menu_dock_mac["iconWidth"]) !== "undefined") {
+				iconWidth = parseInt(json_theme_menu_dock_mac["iconWidth"]);
+			}
+			let iconHeight = defaultIconHeight; // hauteur d'un icône par défaut
+			if (typeof (json_theme_menu_dock_mac["iconHeight"]) !== "undefined") {
+				iconHeight = parseInt(json_theme_menu_dock_mac["iconHeight"]);
+			}
+
+			let menu_dockWrapper = document.getElementById("dockWrapper");
+			let menu_dock_ul = document.createElement("ul");
+			menu_dock_ul.className = "osx-dock";
+			menu_dock_ul.id = "osx-dock";
+			menu_dock_ul.style.height = iconHeight + 82;
+
+			for (let i = 0; i < json_theme_menu_dock_mac["page"].length; i++) {
+				let menu_item = document.createElement("li");
+				if (i == 0) {
+					menu_item.className = "active";
+				}
+				menu_item.style.width = (iconWidth + 2) + "px";
+				menu_item.style.height = (iconHeight + 2) + "px";
+				let menu_item_a = document.createElement("a");
+				menu_item_a.style.height = (iconHeight + 2) + "px";
+
+				let link = json_theme_menu_dock_mac["page"][i]["link"];
+				if (homeLink === "") {
+					homeLink = link;
+				}
+
+				menu_item_a.setAttribute("onclick", "gotoPlan(" + link + ")");
+				menu_item_a.title = json_theme_menu_dock_mac["page"][i]["label"];
+				let menu_item_a_img = document.createElement("img");
+				let menu_item_fa = document.createElement("i");
+				let icon = json_theme_menu_dock_mac["page"][i]["icon"];
+				if (icon.startsWith("fa ") || icon.startsWith("fab ") || icon.startsWith("fas ")) {
+					// récupération de l'icône au format fontawesome
+					menu_item_fa.className = icon;
+					menu_item_a.appendChild(menu_item_fa);
+				} else {
+					let defaultIcon = icon;
+					if (!icon.startsWith("http")) { // récupération de l'icône pas sous forme sous forme d'url
+						if ((typeof (json_theme_menu_dock_mac["page"][i]["customIcon"]) !== "undefined") &&
+							(json_theme_menu_dock_mac["page"][i]["customIcon"] === "yes")) {
+							// récupération de l'icône personnalisé (customIcon=yes)
+							let slash = (icon.startsWith("/")) ? "" : "/";
+							let extension = (icon.toLowerCase().endsWith(".png")) ? "" : ".png";
+							defaultIcon = "data/custom/packIcons/customIcons" +
+								slash +
+								icon +
+								extension;
+						} else {
+							// récuperation de l'icône du pack
+							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor +
+								".png";
+						}
+
+						// vérification existence de l'icône
+						if (!checkImage(defaultIcon)) {
+							// icône du pack demandé avec la couleur par défaut
+							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" +
+								defaultPackIconsColor + ".png";
+							if (!checkImage(defaultIcon)) {
+								// icône du pack par défaut avec la couleur demandée
+								defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" +
+									packIconsColor + ".png";
+								if (!checkImage(defaultIcon)) {
+									// icône du pack par défaut avec la couleur par défaut
+									defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" +
+										defaultPackIconsColor + ".png";
+									if (!checkImage(defaultIcon)) {
+										// icône vierge du pack et couleur demandés
+										defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor +
+											".png";
+										if (!checkImage(defaultIcon)) {
+											// icône vierge du pack par défaut avec la couleur demandée
+											defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
+												packIconsColor + ".png";
+											if (!checkImage(defaultIcon)) {
+												// icône vierge du pack et couleur par défaut
+												defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
+													defaultPackIconsColor + ".png";
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					// ajout de l'icône (source, largeur, hauteur)
+					menu_item_a_img.src = defaultIcon;
+					menu_item_a_img.width = iconWidth;
+					menu_item_a_img.height = iconHeight;
+
+					menu_item_a.appendChild(menu_item_a_img);
+				}
+				menu_item.appendChild(menu_item_a);
+
+				menu_dock_ul.appendChild(menu_item);
+				menu_dockWrapper.appendChild(menu_dock_ul);
+			}
+		};
+
+		// création dynamique du menu Dock Mac 
+		createThemeMenuDockMac();
+	</script>
 </body>
+
 </html>
