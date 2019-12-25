@@ -14,14 +14,14 @@ Une fois noté, copier le contenu du fichier html du thème choisi et renseigner
 
 ![](doc/images/menu_index.png)
 soit id =     le logo /home/png et le titre  Home
-<! &plan_id=3&fullscreen=1'"><img src="data/custom/montheme/logo/home.png" height=20px width=20px/> Home -->
+<! &plan_id=3&fullscreen=1'"><img src="data/custom/themes/menuResponsive/logo/home.png" height=20px width=20px/> Home -->
 
 ajuster le nombre de menu en supprimant, ou en dupliquant les lignes de menu
 
 
 nota ne pas oublier de faire correspondre l'id de Home a l'id du lien de l'iframe
 
-<! &plan_id=3&fullscreen=1'"><img src="data/custom/montheme/logo/home.png" height=20px width=20px/> Home -->	
+<! &plan_id=3&fullscreen=1'"><img src="data/custom/themes/menuResponsive/logo/home.png" height=20px width=20px/> Home -->	
 
 <! id="iframe_a" height="780px" width="1300px" frameBorder="0" scrolling="no" src="index.php?v=d&p=plan&plan_id=3&fullscreen=1"-->	
 

@@ -14,7 +14,7 @@ Il donne aussi la possibilité de naviguer à l'aide d'onglets, de filtrer l'aff
 
 - Copier le contenu du fichier /full/menu.html pur la version full (ou /light/menu.html) 
 
-- Copier le dossier /montheme dans le répertoire /var/www/html/data/custom de Nextdom
+- Copier le dossier /themes dans le répertoire /var/www/html/data/custom de Nextdom
 
 - Renseigner le contenu du menu : 
 

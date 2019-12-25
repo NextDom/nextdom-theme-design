@@ -13,7 +13,7 @@ Son originalité est de proposer 2 menus différents en fonction des besoins de 
 
 - Une fois noté, copier le contenu du fichier menu.html et renseigner pour chaque item des menus (ligne li) son nom et le lien vers la page de design souhaitée.
 
-- Il faut ensuite copier le dossier /montheme dans le répertoire /var/www/html/data/custom de Nextdom
+- Il faut ensuite copier le dossier /themes dans le répertoire /var/www/html/data/custom de Nextdom
 
 ### Configuration du thème
 
