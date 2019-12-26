@@ -1,221 +1,220 @@
 <style>
-body {
-background: #8bc34a;
-color: white;
-text-align: center;
-}
+  body {
+    background: #8bc34a;
+    color: white;
+    text-align: center;
+  }
 
-a {
-color: inherit;
-}
+  a {
+    color: inherit;
+  }
 
-h1, h2, h3, h4 {
-margin: 0;
-margin-bottom: 10px;
-margin-top: 10px;
-}
+  h1, h2, h3, h4 {
+    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 
-h1 {
-font-size: 3em;
-}
+  h1 {
+    font-size: 3em;
+  }
 
-.menu {
--webkit-filter: url("#goo");
-filter: url("#goo");
-}
+  .menu {
+    -webkit-filter: url("#goo");
+    filter: url("#goo");
+  }
 
-.menu-item, .menu-open-button {
-background: #e91e63;
-border-radius: 100%;
-width: 80px;
-height: 80px;
-margin-left: -40px;
-position: absolute;
-top: 20px;
-color: white;
-text-align: center;
-line-height: 80px;
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
-transition: -webkit-transform ease-out 200ms;
-transition: transform ease-out 200ms;
-transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
-}
+  .menu-item,
+  .menu-open-button {
+    background: #e91e63;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    position: absolute;
+    top: 20px;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transition: -webkit-transform ease-out 200ms;
+    transition: transform ease-out 200ms;
+    transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+  }
 
-.menu-open {
-display: none;
-}
+  .menu-open {
+    display: none;
+  }
 
-.hamburger {
-width: 25px;
-height: 3px;
-background: white;
-display: block;
-position: absolute;
-top: 50%;
-left: 50%;
-margin-left: -12.5px;
-margin-top: -1.5px;
-transition: -webkit-transform 200ms;
-transition: transform 200ms;
-transition: transform 200ms, -webkit-transform 200ms;
-}
+  .hamburger {
+    width: 25px;
+    height: 3px;
+    background: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12.5px;
+    margin-top: -1.5px;
+    transition: -webkit-transform 200ms;
+    transition: transform 200ms;
+    transition: transform 200ms, -webkit-transform 200ms;
+  }
 
-.hamburger-1 {
--webkit-transform: translate3d(0, -8px, 0);
-transform: translate3d(0, -8px, 0);
-}
+  .hamburger-1 {
+    -webkit-transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -8px, 0);
+  }
 
-.hamburger-2 {
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
-}
+  .hamburger-2 {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
-.hamburger-3 {
--webkit-transform: translate3d(0, 8px, 0);
-transform: translate3d(0, 8px, 0);
-}
+  .hamburger-3 {
+    -webkit-transform: translate3d(0, 8px, 0);
+    transform: translate3d(0, 8px, 0);
+  }
 
-.menu-open:checked + .menu-open-button .hamburger-1 {
--webkit-transform: translate3d(0, 0, 0) rotate(45deg);
-transform: translate3d(0, 0, 0) rotate(45deg);
-}
-.menu-open:checked + .menu-open-button .hamburger-2 {
--webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
-transform: translate3d(0, 0, 0) scale(0.1, 1);
-}
-.menu-open:checked + .menu-open-button .hamburger-3 {
--webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
-transform: translate3d(0, 0, 0) rotate(-45deg);
-}
+  .menu-open:checked+.menu-open-button .hamburger-1 {
+    -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
 
-.menu {
-position: absolute;
-left: 50%;
-margin-left: -190px;
-padding-top: 20px;
-padding-left: 190px;
-width: 380px;
-height: 250px;
-box-sizing: border-box;
-font-size: 20px;
-text-align: left;
-}
+  .menu-open:checked+.menu-open-button .hamburger-2 {
+    -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
+    transform: translate3d(0, 0, 0) scale(0.1, 1);
+  }
 
-.menu-item:hover {
-background: white;
-color: #e91e63;
-}
-.menu-item:nth-child(3) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(4) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(5) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(6) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(7) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(8) {
-transition-duration: 180ms;
-}
-.menu-item:nth-child(9) {
-transition-duration: 180ms;
-}
+  .menu-open:checked+.menu-open-button .hamburger-3 {
+    -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+    transform: translate3d(0, 0, 0) rotate(-45deg);
+  }
 
-.menu-open-button {
-z-index: 2;
-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-transition-duration: 400ms;
--webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-cursor: pointer;
-}
+  .menu {
+    position: absolute;
+    left: 50%;
+    margin-left: -190px;
+    padding-top: 20px;
+    padding-left: 190px;
+    width: 380px;
+    height: 250px;
+    box-sizing: border-box;
+    font-size: 20px;
+    text-align: left;
+  }
 
-.menu-open-button:hover {
--webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-}
+  .menu-item:hover {
+    background: white;
+    color: #e91e63;
+  }
 
-.menu-open:checked + .menu-open-button {
-transition-timing-function: linear;
-transition-duration: 200ms;
--webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-}
+  .menu-item:nth-child(3) {
+    transition-duration: 180ms;
+  }
 
-.menu-open:checked ~ .menu-item {
-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-}
-.menu-open:checked ~ .menu-item:nth-child(3) {
-transition-duration: 180ms;
--webkit-transform: translate3d(0.08361px, -104.99997px, 0);
-transform: translate3d(0.08361px, -104.99997px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(4) {
-transition-duration: 280ms;
--webkit-transform: translate3d(90.9466px, -52.47586px, 0);
-transform: translate3d(90.9466px, -52.47586px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(5) {
-transition-duration: 380ms;
--webkit-transform: translate3d(90.9466px, 52.47586px, 0);
-transform: translate3d(90.9466px, 52.47586px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(6) {
-transition-duration: 480ms;
--webkit-transform: translate3d(0.08361px, 104.99997px, 0);
-transform: translate3d(0.08361px, 104.99997px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(7) {
-transition-duration: 580ms;
--webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
-transform: translate3d(-90.86291px, 52.62064px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(8) {
-transition-duration: 680ms;
--webkit-transform: translate3d(-91.03006px, -52.33095px, 0);
-transform: translate3d(-91.03006px, -52.33095px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(9) {
-transition-duration: 780ms;
--webkit-transform: translate3d(-0.25084px, -104.9997px, 0);
-transform: translate3d(-0.25084px, -104.9997px, 0);
-}
+  .menu-item:nth-child(4) {
+    transition-duration: 180ms;
+  }
 
+  .menu-item:nth-child(5) {
+    transition-duration: 180ms;
+  }
 
+  .menu-item:nth-child(6) {
+    transition-duration: 180ms;
+  }
+
+  .menu-item:nth-child(7) {
+    transition-duration: 180ms;
+  }
+
+  .menu-item:nth-child(8) {
+    transition-duration: 180ms;
+  }
+
+  .menu-item:nth-child(9) {
+    transition-duration: 180ms;
+  }
+
+  .menu-open-button {
+    z-index: 2;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-duration: 400ms;
+    -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+    cursor: pointer;
+  }
+
+  .menu-open-button:hover {
+    -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+  }
+
+  .menu-open:checked+.menu-open-button {
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+    transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+  }
+
+  .menu-open:checked~.menu-item {
+    transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(3) {
+    transition-duration: 180ms;
+    -webkit-transform: translate3d(0.08361px, -104.99997px, 0);
+    transform: translate3d(0.08361px, -104.99997px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(4) {
+    transition-duration: 280ms;
+    -webkit-transform: translate3d(90.9466px, -52.47586px, 0);
+    transform: translate3d(90.9466px, -52.47586px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(5) {
+    transition-duration: 380ms;
+    -webkit-transform: translate3d(90.9466px, 52.47586px, 0);
+    transform: translate3d(90.9466px, 52.47586px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(6) {
+    transition-duration: 480ms;
+    -webkit-transform: translate3d(0.08361px, 104.99997px, 0);
+    transform: translate3d(0.08361px, 104.99997px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(7) {
+    transition-duration: 580ms;
+    -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
+    transform: translate3d(-90.86291px, 52.62064px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(8) {
+    transition-duration: 680ms;
+    -webkit-transform: translate3d(-91.03006px, -52.33095px, 0);
+    transform: translate3d(-91.03006px, -52.33095px, 0);
+  }
+
+  .menu-open:checked~.menu-item:nth-child(9) {
+    transition-duration: 780ms;
+    -webkit-transform: translate3d(-0.25084px, -104.9997px, 0);
+    transform: translate3d(-0.25084px, -104.9997px, 0);
+  }
 </style>
 
-<script language="javascript">
- 
-    // Affichage du plan idPlan
-    function gotoPlan(idPlan) {
-        planHeader_id = idPlan;
-        displayPlan();
-    }
-</script>
-
-<nav class="menu">
-  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
-  <label class="menu-open-button" for="menu-open">
-    <span class="hamburger hamburger-1"></span>
-    <span class="hamburger hamburger-2"></span>
-    <span class="hamburger hamburger-3"></span>
-  </label>
-
-  <a onclick="gotoPlan(1);" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
-  <a onclick="gotoPlan(2);" class="menu-item"> <i class="fa fa-plus"></i> </a>
-  <a onclick="gotoPlan(3);" class="menu-item"> <i class="fa fa-heart"></i> </a>
-  <a onclick="gotoPlan(4);" class="menu-item"> <i class="fa fa-envelope"></i> </a>
-  <a onclick="gotoPlan(5);" class="menu-item"> <i class="fa fa-cog"></i> </a>
-  <a onclick="gotoPlan(6);" class="menu-item"> <i class="fa fa-ellipsis-h"></i> </a>
+<nav class="menu" id="menu" style="padding-left:120px;margin-top:100px">
+  <!-- Div pour inclure le menu -->
 </nav>
 
+<div class="content" style="padding:0px">
+  <div id="i_frame">
+    <!-- Div pour inclure les écrans de design dans une iframe -->
+  </div>
+</div>
 
 <!-- filters -->
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -237,3 +236,162 @@ transform: translate3d(-0.25084px, -104.9997px, 0);
     </filter>
   </defs>
 </svg>
+
+<script language="javascript">
+	  // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+	  // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
+	  // *** NE PAS MODIFIER ***
+	  var defaultIframeWidth = 1080;
+	  var defaultIframHeight = 580;
+	  var waitForLoadingFrame = 1; // ms
+
+	  // pour chaque item du menu renseigner les différents champs :
+	  // - label : libellé du champ à afficher dans le menu
+	  // - link : identifiant du design destinataire du lien du menu
+	  //
+	  // Gestion des liens dans une iframe : mettre iframe à yes et définir sa largeur et sa hauteur
+	  // - "iframe": "yes"
+	  // - "frameWidth": "1024px"
+	  // - "frameHeight": "580px"
+	  //
+	  // *** PREMIERE UTILISATION ***
+	  // - Copier le contenu de ce fichier dans une page de design (clic droit, sélectionner "Edition", puis clic droit, sélectionner "Ajout texte/html")
+	  //
+	  // JSON de configuration à modifier pour personnaliser son menu :
+	  // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+	  // ATTENTION : 6 LIGNES MAX AUTORISEES
+    var json_theme_menu_gooey = {
+      "page": [
+        {"label": "fa fa-bar-chart","link": "1"},
+        {"label": "fa fa-plus","link": "2"},
+        {"label": "fa fa-heart","link": "3"},
+        {"label": "fa fa-envelope","link": "4"},
+        {"label": "fa fa-cog","link": "5"},
+        {"label": "fa fa-ellipsis-h","link": "6"}
+      ],
+      "iframe": "yes", // (facultatif) gestion de la navigation par frame
+      "frameWidth": "1024px", // (facultatif) largeur de la frame
+      "frameHeight": "580px", // (facultatif) hauteur de la frame
+      "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+  }
+
+	  function loadFrame() {
+	    if ((typeof json_theme_menu_gooey["iframe"] !== undefined) && (json_theme_menu_gooey["iframe"] === "yes")) {
+	      gotoPlan(homeLink);
+	    }
+	  }
+
+	  $(document).ready(function () {
+	    // gestion par frame : affichage du premier lien au chargement
+	    if (waitForLoadingFrame != 0) {
+	      setTimeout(loadFrame, waitForLoadingFrame);
+	    }
+	  });
+
+	  // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+	  var homeLink = "";
+
+	  function getUrlDestination(urlParam) {
+	    if (isNaN(urlParam)) {
+	      return urlParam;
+	    } else {
+	      return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+	    }
+	  }
+
+	  // Affichage du plan idPlan
+	  function gotoPlan(idPlan) {
+	    let frame_destination = document.getElementById('iframe_a');
+	    let urlDestination = getUrlDestination(idPlan);
+
+	    if (isNaN(idPlan)) {
+	      // url externe
+	      window.open(urlDestination, '_blank');
+	    } else {
+	      if (frame_destination === null) {
+	        // pas de frame
+	        if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+	          window.location.href = urlDestination;
+	        }
+	      } else {
+	        // gestion de la navigation par frame
+	        if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+	          frame_destination.src = urlDestination;
+	        }
+	      }
+	    }
+	  }
+
+    function createThemeMenuGooey() {
+	    // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+	    if ((typeof json_theme_menu_gooey["timeout"] !== undefined) && !isNaN(json_theme_menu_gooey["timeout"])) {
+	      waitForLoadingFrame = json_theme_menu_gooey["timeout"];
+	    }
+
+	    // creation de la frame
+	    let frame_id = document.getElementById('i_frame');
+
+	    if ((typeof json_theme_menu_gooey["iframe"] !== undefined) && (json_theme_menu_gooey["iframe"] === "yes")) {
+	      // iframe pour afficher la page courante
+	      let menu_f = document.createElement("div");
+	      menu_f.className = "menuf";
+	      let menu_iframe = document.createElement("iframe");
+	      menu_iframe.id = "iframe_a";
+	      let frameWidth = defaultIframeWidth;
+	      if (typeof (json_theme_menu_gooey["frameWidth"]) !== "undefined") {
+	        menu_iframe.width = json_theme_menu_gooey["frameWidth"];
+	      }
+	      let frameHeight = defaultIframHeight;
+	      if (typeof (json_theme_menu_gooey["frameHeight"]) !== "undefined") {
+	        menu_iframe.height = json_theme_menu_gooey["frameHeight"];
+	      }
+	      menu_iframe.frameBorder = "0";
+	      menu_iframe.scrolling = "no";
+	      menu_iframe.src = "";
+
+	      menu_f.appendChild(menu_iframe);
+	      frame_id.appendChild(menu_f);
+	    }
+
+      let menu_id = document.getElementById('menu');
+
+      let menu_input = document.createElement("input");
+      menu_input.type = "checkbox";
+      menu_input.href = "#";
+      menu_input.className = "menu-open";
+      menu_input.name = "menu-open";
+      menu_input.id = "menu-open";
+
+      menu_id.appendChild(menu_input);
+
+      let menu_label = document.createElement("label");
+      menu_label.className = "menu-open-button";
+      menu_label.setAttribute("for", "menu-open");
+      for (let i = 0; i < 3; i++) {
+        let label_span = document.createElement("span");
+        label_span.className = "hamburger hamburger-" + (i + 1);
+        menu_label.appendChild(label_span);
+      }
+      menu_id.appendChild(menu_label);
+
+      // 6 items max autorisés
+      for (let i = 0; i < Math.min(6, json_theme_menu_gooey["page"].length); i++) {
+        let menu_item = document.createElement("a");
+	      let link = json_theme_menu_gooey["page"][i]["link"];
+	      if (homeLink === "") {
+	        homeLink = link;
+	      }
+	      menu_item.setAttribute("onclick", "gotoPlan(" + link + ")");
+        menu_item.className = "menu-item";
+
+        let menu_i = document.createElement("i");
+        menu_i.className = json_theme_menu_gooey["page"][i]["label"];
+        menu_item.appendChild(menu_i);
+
+        menu_id.appendChild(menu_item);
+      }
+    };
+
+  // creation dynamique du menu Mobile Fullscreen 
+  createThemeMenuGooey();
+</script>

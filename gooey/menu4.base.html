@@ -166,7 +166,28 @@ h1 {
 
 </style>
 
-<nav class="menu" id="menu">
+<script language="javascript">
+ 
+    // Affichage du plan idPlan
+    function gotoPlan(idPlan) {
+        planHeader_id = idPlan;
+        displayPlan();
+    }
+</script>
+
+<nav class="menu">
+  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+  <label class="menu-open-button" for="menu-open">
+    <span class="hamburger hamburger-1"></span>
+    <span class="hamburger hamburger-2"></span>
+    <span class="hamburger hamburger-3"></span>
+  </label>
+  
+  <a onclick="gotoPlan(1);" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
+  <a onclick="gotoPlan(2);" class="menu-item"> <i class="fa fa-plus"></i> </a>
+  <a onclick="gotoPlan(3);" class="menu-item"> <i class="fa fa-heart"></i> </a>
+  <a onclick="gotoPlan(4);" class="menu-item"> <i class="fa fa-envelope"></i> </a>
+  
   
 </nav>
 
@@ -191,61 +212,3 @@ h1 {
       </filter>
     </defs>
 </svg>
-
-<script language="javascript">
-  // ATTENTION : 4 lignes max autorisées
-  var json_theme_menu_gooey = {
-    "page": [
-      {"label": "fa fa-bar-chart","link": "1"},
-      {"label": "fa fa-plus","link": "2"},
-      {"label": "fa fa-heart","link": "3"},
-      {"label": "fa fa-envelope","link": "4"}
-    ]
-  }
-
-  // Affichage du plan idPlan
-  function gotoPlan(idPlan) {
-    planHeader_id = idPlan;
-    displayPlan();
-  }
-
-  function createThemeMenuGooey() {
-
-    let menu_id = document.getElementById('menu');
-
-    let menu_input = document.createElement("input");
-    menu_input.type = "checkbox";
-    menu_input.href = "#";
-    menu_input.className = "menu-open";
-    menu_input.name = "menu-open";
-    menu_input.id = "menu-open";
-
-    menu_id.appendChild(menu_input);
-
-    let menu_label = document.createElement("label");
-    menu_label.className = "menu-open-button";
-    menu_label.setAttribute("for", "menu-open");
-    // 4 items max autorisés
-    for (let i = 0; i < Math.min(3, json_theme_menu_gooey["page"].length); i++) {
-      let label_span = document.createElement("span");
-      label_span.className = "hamburger hamburger-" + (i+1);
-      menu_label.appendChild(label_span);
-    }
-    menu_id.appendChild(menu_label);
-
-    for (let i = 0; i < Math.min(4, json_theme_menu_gooey["page"].length); i++) {
-      let menu_item = document.createElement("a");
-      menu_item.setAttribute("onclick", "gotoPlan(" + json_theme_menu_gooey["page"][i]["link"] + ")");
-      menu_item.className = "menu-item";
- 
-      let menu_i = document.createElement("i");
-      menu_i.className = json_theme_menu_gooey["page"][i]["label"];
-      menu_item.appendChild(menu_i);
-
-      menu_id.appendChild(menu_item);
-    }
-  };
-
-  // creation dynamique du menu Mobile Fullscreen 
-  createThemeMenuGooey();
-</script>

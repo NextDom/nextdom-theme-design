@@ -194,7 +194,7 @@
 		// Pour la largeur del'équipement text/html du menu, mettre la même largeur que la frame
 
 		// *** PREMIERE UTILISATION ***
-		// - Recopier sous /data/custom le dossier /themes/menuDockMac 
+		// - Recopier le dossier /themes sous /data/custom
 		//     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design/tree/master/menuDockMac)
 		// - (Si non déjà présent) Recopier sous /data/custom le dossier /packIcons 
 		//     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design)
@@ -351,7 +351,7 @@
 				waitForLoadingFrame = json_theme_menu_dock_mac["timeout"];
 			}
 
-			// récupération du paramètre pour savoir si on vérifie l'existence des images pour les icônes ou non ("oui" / "non")
+			// récupération du paramètre pour savoir si on vérifie l'existence des images pour les icônes ou non ("yes" / "no")
 			if (typeof json_theme_menu_dock_mac["checkIcon"] !== undefined) {
 				checkIcon = json_theme_menu_dock_mac["checkIcon"];
 			}
@@ -449,35 +449,28 @@
 								extension;
 						} else {
 							// récuperation de l'icône du pack
-							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor +
-								".png";
+							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
 						}
 
 						// vérification existence de l'icône
 						if (!checkImage(defaultIcon)) {
 							// icône du pack demandé avec la couleur par défaut
-							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" +
-								defaultPackIconsColor + ".png";
+							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
 							if (!checkImage(defaultIcon)) {
 								// icône du pack par défaut avec la couleur demandée
-								defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" +
-									packIconsColor + ".png";
+								defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
 								if (!checkImage(defaultIcon)) {
 									// icône du pack par défaut avec la couleur par défaut
-									defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" +
-										defaultPackIconsColor + ".png";
+									defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
 									if (!checkImage(defaultIcon)) {
 										// icône vierge du pack et couleur demandés
-										defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor +
-											".png";
+										defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
 										if (!checkImage(defaultIcon)) {
 											// icône vierge du pack par défaut avec la couleur demandée
-											defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
-												packIconsColor + ".png";
+											defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
 											if (!checkImage(defaultIcon)) {
 												// icône vierge du pack et couleur par défaut
-												defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" +
-													defaultPackIconsColor + ".png";
+												defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
 											}
 										}
 									}

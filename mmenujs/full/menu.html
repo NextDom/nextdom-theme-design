@@ -39,6 +39,13 @@
 			}
         </style>
         <script language="Javascript">
+            // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+            // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
+            // *** NE PAS MODIFIER ***
+            var defaultIframeWidth = 1080;
+            var defaultIframHeight = 580;
+            var waitForLoadingFrame = 1; // ms
+
             // chaque ligne correspond à un item du menu
             // iframe=oui : utilisation d'une iframe pour la navigation / iframe=non : pas d'utilisation d'une iframe pour la navigation
             // si iframe=oui, il faut préciser la largeur et la hauteur de l'iframe (correspondant à la taille du text/html ajouté pour ce menu)
@@ -83,10 +90,26 @@
                     {"label":"Jeedom","link":"https://www.jeedom.com/site/fr/"},
                     {"label":"Forum Jeedom","link":"https://community.jeedom.com/"}
                 ],
-                "iframe": "oui",
-                "largeur": "412px",
-                "hauteur": "726px"
+                "iframe": "yes",
+                "frameWidth": "1024px", // (facultatif) largeur de la frame
+                "frameHeight": "580px", // (facultatif) hauteur de la frame
+                "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
             }
+
+            // *** FIN DES MODIFICATIONS ***
+
+            function loadFrame() {
+                if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "yes")) {
+                    gotoPlan(homeLink);
+                }
+            }
+
+            $(document).ready(function () {
+                // gestion par frame : affichage du premier lien au chargement
+                if (waitForLoadingFrame != 0) {
+                    setTimeout(loadFrame, waitForLoadingFrame);
+                }
+            });
 
             // url de page d'accueil (premier lien du menu récupéré dynamiquement)
             var homeLink = "";
@@ -212,16 +235,16 @@
                     // construction d'un item du menu sans sous-menu
                     function createItem(ul_div_main, itemData) {
                         let item = document.createElement("li");
-                        let link = document.createElement("a");
-                        link.setAttribute("onclick", "gotoPlan('" + itemData["link"] + "')");
-                        link.text = itemData["label"]
-                        item.append(link);
+                        let item_a = document.createElement("a");
+                        let link = itemData["link"];
+                        if (homeLink === "") {
+                            homeLink = link;
+                        }
+                        item_a.setAttribute("onclick", "gotoPlan('" + itemData["link"] + "')");
+                        item_a.text = itemData["label"]
+                        item.append(item_a);
 
                         ul_div_main.appendChild(item);
-
-                        if (homeLink === "") {
-                            homeLink = itemData["link"];
-                        }
                     }
 
                     function createThemeMenuMmenujs(){
@@ -229,14 +252,14 @@
                         // creation de la frame
                         let menu_id = document.getElementById('i_frame');
 
-                        if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "oui")) {
+                        if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "yes")) {
                             // iframe pour afficher la page courante
                             let menu_f = document.createElement("div");
                             menu_f.className = "menuf";
                             let menu_iframe = document.createElement("iframe");
                             menu_iframe.id = "iframe_a";
-                            menu_iframe.width = json_theme_mmenu["largeur"];
-                            menu_iframe.height = json_theme_mmenu["hauteur"];
+                            menu_iframe.width = json_theme_mmenu["frameWidth"];
+                            menu_iframe.height = json_theme_mmenu["frameHeight"];
                             menu_iframe.frameBorder = "0";
                             menu_iframe.scrolling = "no";
                             menu_iframe.src = "";
@@ -299,10 +322,6 @@
                         }
 
                         div_main3.appendChild(ul_div_main3);
-
-                        if ((typeof json_theme_mmenu["iframe"] !== undefined) && (json_theme_mmenu["iframe"] === "oui")) {
-                            gotoPlan(homeLink);
-                        }
                     };
 
                     // creation dynamique du menu mmenujs

@@ -12,43 +12,242 @@
 <html>
 <head>
 	<script language="Javascript">
+		function loadFrame() {
+			if ((typeof json_theme_menu_sw["iframe"] !== undefined) && (json_theme_menu_sw["iframe"] === "yes")) {
+				gotoPlan(homeLink);
+			}
+		}
+
+		$(document).ready(function () {
+			// gestion par frame : affichage du premier lien au chargement
+			if (waitForLoadingFrame != 0) {
+				setTimeout(loadFrame, waitForLoadingFrame);
+			}
+		});
+
+		// url de page d'accueil (premier lien du menu récupéré dynamiquement)
+		var homeLink = "";
+
+		function getUrlDestination(urlParam) {
+			if (isNaN(urlParam)) {
+				return urlParam;
+			} else {
+				return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+			}
+		}
+
 		// Affichage du plan idPlan
 		function gotoPlan(idPlan) {
-			planHeader_id=idPlan;
-			displayPlan();
+			let frame_destination = document.getElementById('iframe_a');
+			let urlDestination = getUrlDestination(idPlan);
+
+			if (isNaN(idPlan)) {
+				// url externe
+				window.open(urlDestination, '_blank');
+			} else {
+				if (frame_destination === null) {
+					// pas de frame
+					if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+						window.location.href = urlDestination;
+					}
+				} else {
+					// gestion de la navigation par frame
+					if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+						frame_destination.src = urlDestination;
+					}
+				}
+			}
 		}
 	</script>
 </head>
 <body>
-<div id="container">
-  <div id="burger">
-          <div class="bun top"></div>
-          <div class="filling"></div>
-          <div class="bun bottom"></div>
+  <div id="container">
+    <div id="burger">
+            <div class="bun top"></div>
+            <div class="filling"></div>
+            <div class="bun bottom"></div>
+    </div>
   </div>
-</div>
 
-<nav>
-  <ul>
-    <li>
-      <a onClick="gotoPlan(22);" target="_blank">Accueil</a>
-    </li>
-    <li class="green">
-      <a onClick="gotoPlan(22);" target="_blank">RDC</a>
-    </li>
-    <li class="red">
-      <a onClick="gotoPlan(22);" target="_blank">Etage</a>
-    </li>
-    <li class="yellow">
-      <a onClick="gotoPlan(29);" target="_blank">Ouvertures</a>
-    </li>
-    <li class="purple">
-      <a onClick="gotoPlan(32);" target="_blank">Temp&eacute;ratures</a>
-    </li>
-  </ul>
-</nav>
-	<link rel="stylesheet" href="data/custom/themes/menusw/css/style.css">
+  <div class="content" style="padding:0px">
+    <div id="i_frame">
+      <!-- Div pour inclure les écrans de design dans une iframe -->
+    </div>
+  </div>
+
+  <nav id="nav">
+    <!-- Génération dynamique du menu depuis le json de configuration -->
+  </nav>
+
+  <script language="javascript">
+	  // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+	  // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
+	  // *** NE PAS MODIFIER ***
+	  var defaultIframeWidth = 1080;
+	  var defaultIframHeight = 580;
+	  var waitForLoadingFrame = 1; // ms
+
+	  // pour chaque item du menu renseigner les différents champs :
+	  // - label : libellé du champ à afficher dans le menu
+	  // - link : identifiant du design destinataire du lien du menu
+	  //
+	  // Gestion des liens dans une iframe : mettre iframe à yes et définir sa largeur et sa hauteur
+	  // - "iframe": "yes"
+	  // - "frameWidth": "1024px"
+	  // - "frameHeight": "580px"
+	  //
+	  // *** PREMIERE UTILISATION ***
+	  // - Recopier sous /data/custom le dossier /themes 
+	  //     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design/tree/master/menuSw)
+	  // - Copier le contenu de ce fichier dans une page de design (clic droit, sélectionner "Edition", puis clic droit, sélectionner "Ajout texte/html")
+	  //
+	  // JSON de configuration à modifier pour personnaliser son menu :
+	  // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+	  var json_theme_menu_sw = {
+	    "page": [{
+	        "label": "Accueil",
+	        "link": "1",
+          "color": ""
+	      },
+	      {
+	        "label": "Eclairage",
+	        "link": "2",
+          "color": "green"
+	      },
+	      {
+	        "label": "Données",
+	        "link": "3",
+          "color": "red"
+	      },
+	      {
+	        "label": "Energie",
+	        "link": "4",
+          "color": "yellow"
+	      },
+	      {
+	        "label": "Monitoring",
+	        "link": "5",
+          "color": "purple"
+	      }
+	    ],
+	    "iframe": "yes", // (facultatif) gestion de la navigation par frame
+	    "frameWidth": "1024px", // (facultatif) largeur de la frame
+	    "frameHeight": "580px", // (facultatif) hauteur de la frame
+	    "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+	  }
+
+	  // *** FIN DES MODIFICATIONS ***
+
+	  function loadFrame() {
+	    if ((typeof json_theme_menu_sw["iframe"] !== undefined) && (json_theme_menu_sw["iframe"] === "yes")) {
+	      gotoPlan(homeLink);
+	    }
+	  }
+
+	  $(document).ready(function () {
+	    // gestion par frame : affichage du premier lien au chargement
+	    if (waitForLoadingFrame != 0) {
+	      setTimeout(loadFrame, waitForLoadingFrame);
+	    }
+	  });
+
+	  // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+	  var homeLink = "";
+
+	  function getUrlDestination(urlParam) {
+	    if (isNaN(urlParam)) {
+	      return urlParam;
+	    } else {
+	      return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+	    }
+	  }
+
+	  // Affichage du plan idPlan
+	  function gotoPlan(idPlan) {
+	    let frame_destination = document.getElementById('iframe_a');
+	    let urlDestination = getUrlDestination(idPlan);
+
+	    if (isNaN(idPlan)) {
+	      // url externe
+	      window.open(urlDestination, '_blank');
+	    } else {
+	      if (frame_destination === null) {
+	        // pas de frame
+	        if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+	          window.location.href = urlDestination;
+	        }
+	      } else {
+	        // gestion de la navigation par frame
+	        if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+	          frame_destination.src = urlDestination;
+	        }
+	      }
+	    }
+	  }
+
+	  function createThemeMenuSw() {
+
+	    // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+	    if ((typeof json_theme_menu_sw["timeout"] !== undefined) && !isNaN(json_theme_menu_sw["timeout"])) {
+	      waitForLoadingFrame = json_theme_menu_sw["timeout"];
+	    }
+
+	    // creation de la frame
+	    let menu_id = document.getElementById('i_frame');
+
+	    if ((typeof json_theme_menu_sw["iframe"] !== undefined) && (json_theme_menu_sw["iframe"] === "yes")) {
+	      // iframe pour afficher la page courante
+	      let menu_f = document.createElement("div");
+	      menu_f.className = "menuf";
+	      let menu_iframe = document.createElement("iframe");
+	      menu_iframe.id = "iframe_a";
+	      let frameWidth = defaultIframeWidth;
+	      if (typeof (json_theme_menu_sw["frameWidth"]) !== "undefined") {
+	        menu_iframe.width = json_theme_menu_sw["frameWidth"];
+	      }
+	      let frameHeight = defaultIframHeight;
+	      if (typeof (json_theme_menu_sw["frameHeight"]) !== "undefined") {
+	        menu_iframe.height = json_theme_menu_sw["frameHeight"];
+	      }
+	      menu_iframe.frameBorder = "0";
+	      menu_iframe.scrolling = "no";
+	      menu_iframe.src = "";
+
+	      menu_f.appendChild(menu_iframe);
+	      menu_id.appendChild(menu_f);
+	    }
+
+	    let menu_nav = document.getElementById("nav");
+	    let menu_dock_ul = document.createElement("ul");
+
+	    for (let i = 0; i < json_theme_menu_sw["page"].length; i++) {
+	      let menu_item = document.createElement("li");
+	      menu_item.className = json_theme_menu_sw["page"][i]["color"];
+
+	      let menu_item_a = document.createElement("a");
+
+	      let link = json_theme_menu_sw["page"][i]["link"];
+	      if (homeLink === "") {
+	        homeLink = link;
+	      }
+
+	      menu_item_a.setAttribute("onclick", "gotoPlan(" + link + ")");
+	      menu_item_a.innerHTML = json_theme_menu_sw["page"][i]["label"];
+
+	      menu_item.appendChild(menu_item_a);
+
+	      menu_dock_ul.appendChild(menu_item);
+	    }
+
+      menu_nav.appendChild(menu_dock_ul);
+	  };
+
+	  // création dynamique du menu Star Wars 
+	  createThemeMenuSw();
+  </script>
+  
+  <link rel="stylesheet" href="data/custom/themes/menuSw/css/style.css">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script language="javascript" src="data/custom/themes/menusw/js/script.js"></script>
+	<script language="javascript" src="data/custom/themes/menuSw/js/script.js"></script>
 </body>
 <html>
