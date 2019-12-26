@@ -18,7 +18,7 @@ BODY {
 }
 
 [class^="icon-design-"],
-[class*=" icon-design-"] {
+[class*="icon-design-"] {
   display: inline;
   position: relative;
   vertical-align: top;
@@ -29,7 +29,7 @@ BODY {
   width: 32px; height: 32px;
 }
 
-/* Définition des icones perso. */
+/* Dï¿½finition des icones perso. */
 .icon-design-jeedom {
   background-image: url("images/icon_mini_jeedom.png");
 }
