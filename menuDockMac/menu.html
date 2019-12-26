@@ -156,7 +156,7 @@
 		// *** NE PAS MODIFIER ***
 		var defaultIconWidth = 48; // largeur d'affichage de l'icône
 		var defaultIconHeight = 48;
-		var defaultIframeWidth = 1080;
+		var defaultFrameWidth = 1080;
 		var defaultIframHeight = 580;
 		var defaultPackIconsName = "pack1";
 		var defaultPackIconsColor = "default";
@@ -365,7 +365,7 @@
 				menu_f.className = "menuf";
 				let menu_iframe = document.createElement("iframe");
 				menu_iframe.id = "iframe_a";
-				let frameWidth = defaultIframeWidth;
+				let frameWidth = defaultFrameWidth;
 				if (typeof (json_theme_menu_dock_mac["frameWidth"]) !== "undefined") {
 					menu_iframe.width = json_theme_menu_dock_mac["frameWidth"];
 				}

@@ -220,7 +220,7 @@
 	  // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
 	  // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
 	  // *** NE PAS MODIFIER ***
-	  var defaultIframeWidth = 1080;
+	  var defaultFrameWidth = 1080;
 	  var defaultIframHeight = 580;
 	  var waitForLoadingFrame = 1; // ms
 
@@ -315,7 +315,7 @@
 	      menu_f.className = "menuf";
 	      let menu_iframe = document.createElement("iframe");
 	      menu_iframe.id = "iframe_a";
-	      let frameWidth = defaultIframeWidth;
+	      let frameWidth = defaultFrameWidth;
 	      if (typeof (json_theme_menu_gooey["frameWidth"]) !== "undefined") {
 	        menu_iframe.width = json_theme_menu_gooey["frameWidth"];
 	      }

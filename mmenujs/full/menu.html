@@ -42,13 +42,13 @@
             // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
             // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
             // *** NE PAS MODIFIER ***
-            var defaultIframeWidth = 1080;
+            var defaultFrameWidth = 1080;
             var defaultIframHeight = 580;
             var waitForLoadingFrame = 1; // ms
 
             // chaque ligne correspond à un item du menu
-            // iframe=oui : utilisation d'une iframe pour la navigation / iframe=non : pas d'utilisation d'une iframe pour la navigation
-            // si iframe=oui, il faut préciser la largeur et la hauteur de l'iframe (correspondant à la taille du text/html ajouté pour ce menu)
+            // iframe=yes : utilisation d'une iframe pour la navigation / iframe=no : pas d'utilisation d'une iframe pour la navigation
+            // si iframe=yes, il faut préciser la largeur et la hauteur de l'iframe (correspondant à la taille du text/html ajouté pour ce menu)
             // Contenu du menu mmenu :
             // Pour chaque item du menu, il faut définir : {"label":"texte de l'item à afficher dans le menu", "link" : "idDesignDeDestination"}
             // - label : texte de l'item du menu
@@ -248,6 +248,10 @@
                     }
 
                     function createThemeMenuMmenujs(){
+			            // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+                        if ((typeof json_theme_flyout["timeout"] !== undefined) && !isNaN(json_theme_flyout["timeout"])) {
+                            waitForLoadingFrame = json_theme_flyout["timeout"];
+                        }
 
                         // creation de la frame
                         let menu_id = document.getElementById('i_frame');
