@@ -185,6 +185,7 @@
 	}
 
 	.menu__hamburger::before {
+		/* Increase of click button area   */
 
 		content: "";
 		width: 100%;
@@ -255,14 +256,14 @@
 	}
 
 	:root {
-		--colorWhite: #fff;
+		--colorText: #fff;
 		--colorMain: #4557bb;
 		--rLinkTextColor: var(--colorMain);
 		--menuCircleSize: 100px;
 		--menuCircleBgColor: var(--colorMain);
 		--menuHamburgerWidth: 28px;
 		--menuHamburgerHeight: 20px;
-		--menuHamburgerBgColor: var(--colorWhite);
+		--menuHamburgerBgColor: var(--colorText);
 	}
 
 	@media (min-width: 768px) {
@@ -307,7 +308,7 @@
 	}
 
 	.menu__group {
-		--rLinkTextColor: var(--colorWhite);
+		--rLinkTextColor: var(--colorText);
 
 		padding: .5rem 3rem;
 		font-size: 3.2rem;
@@ -318,47 +319,186 @@
 </style>
 
 <div class="page">
-
+	<div class="content" style="padding:0px">
+		<div id="i_frame">
+			<!-- Div pour inclure les écrans de design dans une iframe -->
+		</div>
+	</div>
 </div>
+
 <div class="menu">
-    <nav class="menu__nav">
-        <ul class="r-list menu__list">
-            <li class="menu__group">
-                <a onClick="gotoPlan(55)" class="r-link menu__link">Accueil</a>
-            </li>
-            <li class="menu__group">
-                <a onClick="gotoPlan(56)" class="r-link menu__link">Cuisine</a>
-            </li>
-            <li class="menu__group">
-                <a onClick="gotoPlan(57)" class="r-link menu__link">Salon</a>
-            </li>
-            <li class="menu__group">
-                <a onClick="gotoPlan(4)" class="r-link menu__link">Séjour</a>
-            </li>
-            <li class="menu__group">
-                <a onClick="gotoPlan(5)" class="r-link menu__link">Chambre</a>
-            </li>
-            <li class="menu__group">
-                <a onClick="gotoPlan(6)" class="r-link menu__link">Garage</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="menu__toggle">
-        <button class="r-button menu__hamburger">
-            <span class="m-hamburger">
-                <span class="m-hamburger__label">Open menu</span>
-            </span>
-        </button>
-    </div>
+	<nav class="menu__nav">
+		<ul class="r-list menu__list" id="menu_items">
+		</ul>
+	</nav>
+	<div class="menu__toggle">
+		<button class="r-button menu__hamburger">
+			<span class="m-hamburger">
+				<span class="m-hamburger__label">Open menu</span>
+			</span>
+		</button>
+	</div>
 </div>
 
 <script language="javascript">
+	// Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+	// A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
+	// *** NE PAS MODIFIER ***
+	var defaultFrameWidth = 1080;
+	var defaultIframHeight = 580;
+	var waitForLoadingFrame = 1; // ms
+	var menuBackgroundColor = "";
+	var menuTextColor = "";
 
-    // Affichage du plan idPlan
-    function gotoPlan(idPlan) {
-        planHeader_id = idPlan;
-        displayPlan();
-    }
+	// pour chaque item du menu renseigner les différents champs :
+	// - label : libellé du champ à afficher dans le menu
+	// - link : identifiant du design destinataire du lien du menu
+	//
+	// Gestion des liens dans une iframe : mettre iframe à yes et définir sa largeur et sa hauteur
+	// - "iframe": "yes"
+	// - "frameWidth": "1024px"
+	// - "frameHeight": "580px"
+	//
+	// *** PREMIERE UTILISATION ***
+	// - Recopier sous /data/custom le dossier /themes
+	// (à récupérer ici : https://github.com/NextDom/nextdom-theme-design/tree/master/menuMobileFS)
+	// - Copier le contenu de ce fichier dans une page de design (clic droit, sélectionner "Edition", puis clic droit, sélectionner "Ajout texte/html")
+	//
+	// JSON de configuration à modifier pour personnaliser son menu :
+	// *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+	var json_theme_mobile_fs = {
+		"page":[
+			{"label":"Accueil","link":"1"},
+			{"label":"Cuisine","link":"2"},
+			{"label":"Salon","link":"3"},
+			{"label":"Séjour","link":"4"},
+			{"label":"Chambre","link":"5"},
+			{"label":"Garage","link":"6"}
+		],
+	    "iframe": "yes", // (facultatif) gestion de la navigation par frame
+	    "frameWidth": "1024px", // (facultatif) largeur de la frame
+	    "frameHeight": "580px", // (facultatif) hauteur de la frame
+	    "timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+		"menuBackgroundColor": "#4557bb", // (facultatif) détermine la couleur de fond du menu
+		"menuTextColor": "#ffffff" // (facultatif) détermine la couleur du texte du menu
+	}
+
+	// *** FIN DES MODIFICATIONS ***
+	
+	function initMenuColors() {
+		// TODO : vérifier le format de la couleur (#XXXXXX)
+		if (typeof json_theme_mobile_fs["menuBackgroundColor"] !== undefined) {
+			document.documentElement.style.setProperty('--colorMain', json_theme_mobile_fs["menuBackgroundColor"]);
+		}
+		if (typeof json_theme_mobile_fs["menuTextColor"] !== undefined) {
+			document.documentElement.style.setProperty('--colorText', json_theme_mobile_fs["menuTextColor"]);
+		}
+	}
+
+	function loadFrame() {
+		if ((typeof json_theme_mobile_fs["iframe"] !== undefined) && (json_theme_mobile_fs["iframe"] === "yes")) {
+			gotoPlan(homeLink);
+		}
+	}
+
+	$(document).ready(function () {
+		// gestion par frame : affichage du premier lien au chargement
+		if (waitForLoadingFrame != 0) {
+			setTimeout(loadFrame, waitForLoadingFrame);
+		}
+	});
+
+	// url de page d'accueil (premier lien du menu récupéré dynamiquement)
+	var homeLink = "";
+
+	function getUrlDestination(urlParam) {
+		if (isNaN(urlParam)) {
+			return urlParam;
+		} else {
+			return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+		}
+	}
+
+	// Affichage du plan idPlan
+	function gotoPlan(idPlan) {
+
+		let frame_destination = document.getElementById('iframe_a');
+		let urlDestination = getUrlDestination(idPlan);
+		document.querySelector('.menu').className="menu";
+
+		if (isNaN(idPlan)) {
+			// url externe
+			window.open(urlDestination, '_blank');
+		} else {
+			if (frame_destination === null) {
+				// pas de frame
+				if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+					window.location.href = urlDestination;
+				}
+			} else {
+				// gestion de la navigation par frame
+				if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+					frame_destination.src = urlDestination;
+				}
+			}
+		}
+	}
+
+	function createThemeMenuMobileFS() {
+
+		// Modification des couleurs du menu à partir du json
+		initMenuColors();
+
+	    // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+	    if ((typeof json_theme_mobile_fs["timeout"] !== undefined) && !isNaN(json_theme_mobile_fs["timeout"])) {
+	      waitForLoadingFrame = json_theme_mobile_fs["timeout"];
+	    }
+
+	    // creation de la frame
+	    let menu_id = document.getElementById('i_frame');
+
+	    if ((typeof json_theme_mobile_fs["iframe"] !== undefined) && (json_theme_mobile_fs["iframe"] === "yes")) {
+	      // iframe pour afficher la page courante
+	      let menu_f = document.createElement("div");
+	      menu_f.className = "menuf";
+	      let menu_iframe = document.createElement("iframe");
+	      menu_iframe.id = "iframe_a";
+	      let frameWidth = defaultFrameWidth;
+	      if (typeof (json_theme_mobile_fs["frameWidth"]) !== "undefined") {
+	        menu_iframe.width = json_theme_mobile_fs["frameWidth"];
+	      }
+	      let frameHeight = defaultIframHeight;
+	      if (typeof (json_theme_mobile_fs["frameHeight"]) !== "undefined") {
+	        menu_iframe.height = json_theme_mobile_fs["frameHeight"];
+	      }
+	      menu_iframe.frameBorder = "0";
+	      menu_iframe.scrolling = "no";
+	      menu_iframe.src = "";
+
+	      menu_f.appendChild(menu_iframe);
+	      menu_id.appendChild(menu_f);
+	    }
+		
+		let menu_items = document.getElementById('menu_items');
+
+		for (let i = 0; i < json_theme_mobile_fs["page"].length; i++) {
+			let item = document.createElement("li");
+			item.className="menu__group";
+			let item_link = document.createElement("a");
+			let link = json_theme_mobile_fs["page"][i]["link"];
+			if (homeLink === "") {
+				homeLink = link;
+			}
+			item_link.setAttribute("onclick", "gotoPlan(" + link + ")");
+			item_link.className = "r-link menu__link";
+			item_link.text = json_theme_mobile_fs["page"][i]["label"]
+			item.append(item_link);
+			menu_items.append(item);
+		} 
+	};
+
+	// creation dynamique du menu Mobile Fullscreen
+	createThemeMenuMobileFS();
 
 	(function () {
 		'use strict';
@@ -377,14 +517,15 @@
 		}
 
 		const jsMenuNode = document.querySelector('.menu');
-		const demoMenu = new Menu({
+		const fsMenu = new Menu({
 			menuNode: jsMenuNode
 		});
 
 		function callMenuToggle(event) {
-			demoMenu.toggleMenuState('menu_activated');
+			fsMenu.toggleMenuState('menu_activated');
 		}
 
 		jsMenuNode.querySelector('.menu__hamburger').addEventListener('click', callMenuToggle);
 	})();
+
 </script>

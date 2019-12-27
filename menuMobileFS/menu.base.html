@@ -185,7 +185,6 @@
 	}
 
 	.menu__hamburger::before {
-		/* Increase of click button area   */
 
 		content: "";
 		width: 100%;
@@ -322,27 +321,44 @@
 
 </div>
 <div class="menu">
-	<nav class="menu__nav">
-		<ul class="r-list menu__list" id="menu_items">
-		</ul>
-	</nav>
-	<div class="menu__toggle">
-		<button class="r-button menu__hamburger">
-			<span class="m-hamburger">
-				<span class="m-hamburger__label">Open menu</span>
-			</span>
-		</button>
-	</div>
+    <nav class="menu__nav">
+        <ul class="r-list menu__list">
+            <li class="menu__group">
+                <a onClick="gotoPlan(55)" class="r-link menu__link">Accueil</a>
+            </li>
+            <li class="menu__group">
+                <a onClick="gotoPlan(56)" class="r-link menu__link">Cuisine</a>
+            </li>
+            <li class="menu__group">
+                <a onClick="gotoPlan(57)" class="r-link menu__link">Salon</a>
+            </li>
+            <li class="menu__group">
+                <a onClick="gotoPlan(4)" class="r-link menu__link">Séjour</a>
+            </li>
+            <li class="menu__group">
+                <a onClick="gotoPlan(5)" class="r-link menu__link">Chambre</a>
+            </li>
+            <li class="menu__group">
+                <a onClick="gotoPlan(6)" class="r-link menu__link">Garage</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="menu__toggle">
+        <button class="r-button menu__hamburger">
+            <span class="m-hamburger">
+                <span class="m-hamburger__label">Open menu</span>
+            </span>
+        </button>
+    </div>
 </div>
 
 <script language="javascript">
 
     // Affichage du plan idPlan
     function gotoPlan(idPlan) {
-		planHeader_id = idPlan;
-		displayPlan();
+        planHeader_id = idPlan;
+        displayPlan();
     }
-
 
 	(function () {
 		'use strict';
@@ -371,35 +387,4 @@
 
 		jsMenuNode.querySelector('.menu__hamburger').addEventListener('click', callMenuToggle);
 	})();
-
-	var json_theme_mobile_fs = {
-		"page":[
-			{"label":"Accueil","link":"1"},
-			{"label":"Cuisine","link":"2"},
-			{"label":"Salon","link":"3"},
-			{"label":"Séjour","link":"4"},
-			{"label":"Chambre","link":"5"},
-			{"label":"Garage","link":"6"}
-		]
-	}
-
-	function createThemeMenuMobileFS() {
-
-		let menu_items = document.getElementById('menu_items');
-
-		for (let i = 0; i < json_theme_mobile_fs["page"].length; i++) {
-			let item = document.createElement("li");
-			item.className="menu__group";
-			let link = document.createElement("a");
-			link.setAttribute("onclick", "gotoPlan(" + json_theme_mobile_fs["page"][i]["link"] + ")");
-			link.className = "r-link menu__link";
-			link.text = json_theme_mobile_fs["page"][i]["label"]
-			item.append(link);
-			menu_items.append(item);
-		} 
-	};
-
-	// creation dynamique du menu Mobile Fullscreen
-	createThemeMenuMobileFS();
-
 </script>

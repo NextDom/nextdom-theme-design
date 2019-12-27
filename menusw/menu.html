@@ -11,54 +11,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script language="Javascript">
-		function loadFrame() {
-			if ((typeof json_theme_menu_sw["iframe"] !== undefined) && (json_theme_menu_sw["iframe"] === "yes")) {
-				gotoPlan(homeLink);
-			}
-		}
-
-		$(document).ready(function () {
-			// gestion par frame : affichage du premier lien au chargement
-			if (waitForLoadingFrame != 0) {
-				setTimeout(loadFrame, waitForLoadingFrame);
-			}
-		});
-
-		// url de page d'accueil (premier lien du menu récupéré dynamiquement)
-		var homeLink = "";
-
-		function getUrlDestination(urlParam) {
-			if (isNaN(urlParam)) {
-				return urlParam;
-			} else {
-				return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
-			}
-		}
-
-		// Affichage du plan idPlan
-		function gotoPlan(idPlan) {
-			let frame_destination = document.getElementById('iframe_a');
-			let urlDestination = getUrlDestination(idPlan);
-
-			if (isNaN(idPlan)) {
-				// url externe
-				window.open(urlDestination, '_blank');
-			} else {
-				if (frame_destination === null) {
-					// pas de frame
-					if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
-						window.location.href = urlDestination;
-					}
-				} else {
-					// gestion de la navigation par frame
-					if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
-						frame_destination.src = urlDestination;
-					}
-				}
-			}
-		}
-	</script>
 </head>
 <body>
   <div id="container">
@@ -239,7 +191,7 @@
 	      menu_dock_ul.appendChild(menu_item);
 	    }
 
-      menu_nav.appendChild(menu_dock_ul);
+      	menu_nav.appendChild(menu_dock_ul);
 	  };
 
 	  // création dynamique du menu Star Wars 
