@@ -1,237 +1,361 @@
-<style>
-/* reset */
-* {
-  margin: 0;
-  padding: 0;
-}
+<html>
+    <head>
+        <style>
+            /* reset */
+            * {
+                margin: 0;
+                padding: 0;
+            }
 
-#wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+            #wrapper {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
 
-label {
-  cursor: pointer;
-}
-label:focus {
-  outline: none;
-}
+            label {
+                cursor: pointer;
+            }
 
-.menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #fff;
-  width: 240px;
-  height: 100%;
-  transform: translate3d(-240px, 0, 0);
-  transition: transform 0.35s;
-}
-.menu label.menu-toggle {
-  position: absolute;
-  right: -60px;
-  width: 60px;
-  height: 60px;
-  line-height: 0px;
-  display: block;
-  padding: 0;
-  text-indent: -9999px;
-  background: #fff url(/data/custom/themes/menuMultiLevels/images/hamburger.png) 50% 50%/25px 25px no-repeat;
-}
-.menu ul li > label {
-  background: url(/data/custom/themes/menuMultiLevels/images/icon-arrow-right.png) 95% 50%/16px 16px no-repeat;
-}
-.menu ul li a, .menu ul li label {
-  display: block;
-  text-align: center;
-  padding: 0 20px;
-  line-height: 60px;
-  text-decoration: none;
-  color: #000;
-}
-.menu ul li a:hover, .menu ul li label:hover {
-  color: #666;
-}
+            label:focus {
+                outline: none;
+            }
 
-/* hide inputs */
-.menu-checkbox {
-  display: none;
-}
+            .menu {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #fff;
+                width: 240px;
+                height: 100%;
+                transform: translate3d(-240px, 0, 0);
+                transition: transform 0.35s;
+            }
 
-/* hide navigation icon for sublabels */
-.menu .menu label.menu-toggle {
-  background: none;
-}
+            .menu label.menu-toggle {
+                position: absolute;
+                right: -60px;
+                width: 60px;
+                height: 60px;
+                line-height: 0px;
+                display: block;
+                padding: 0;
+                text-indent: -9999px;
+                background: #fff url(/data/custom/themes/menuMultiLevels/images/hamburger.png) 50% 50%/25px 25px
+                no-repeat;
+            }
 
-/* fade in checked menu */
-.menu-checkbox:checked + .menu {
-  transform: translate3d(0, 0, 0);
-}
+            .menu ul li>label {
+                background: url(/data/custom/themes/menuMultiLevels/images/icon-arrow-right.png) 95% 50%/16px 16px
+                no-repeat;
+            }
 
-/* for show */
-html {
-  height: 100%;
-}
+            .menu ul li a,
+            .menu ul li label {
+                display: block;
+                text-align: center;
+                padding: 0 20px;
+                line-height: 60px;
+                text-decoration: none;
+                color: #000;
+            }
 
-p {
-  margin-bottom: 15px;
-}
+            .menu ul li a:hover,
+            .menu ul li label:hover {
+                color: #666;
+            }
 
-#info {
-  display: table;
-  background: rgba(0, 0, 0, 0.4);
-  height: 100%;
-  width: 100%;
-}
-#info #info-content {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  font-size: 12px;
-}
-#info #info-content h1 {
-  color: #fff;
-  border: 3px solid #fff;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.1);
-  font-size: 22px;
-  font-weight: normal;
-  padding: 20px;
-  margin: 10px;
-  display: inline-block;
-}
-#info #info-content h1 strong {
-  display: block;
-  font-size: 26px;
-}
-</style>
+            /* hide inputs */
+            .menu-checkbox {
+                display: none;
+            }
 
-<script language="Javascript">
-  // Affichage du plan idPlan
-  function gotoPlan(idPlan) {
-    planHeader_id=idPlan;
-    displayPlan();
-  }
-</script>
+            /* hide navigation icon for sublabels */
+            .menu .menu label.menu-toggle {
+                background: none;
+            }
 
-<div id="wrapper">
+            /* fade in checked menu */
+            .menu-checkbox:checked+.menu {
+                transform: translate3d(0, 0, 0);
+            }
 
-  <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
-  <div class="menu">
-    <label class="menu-toggle" for="menu"><span>Toggle</span></label>
-    <ul>
-      <li>
-        <a onClick="gotoPlan(42);">Accueil</a>
-      </li>
-      <li>
-        <a onClick="gotoPlan(42);">Résumé</a>
-      </li>
-      <li>      
-        <label for="menu-3">RDC</label>
-        <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
-        <div class="menu">
-          <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
-          <ul>
-            <li>
-              <a onClick="gotoPlan(42);">Cuisine</a>
-            </li>
-            <li>
-              <label for="menu-3-2">Salon</label>
-              <input type="checkbox" id="menu-3-2" name="menu-3-2" class="menu-checkbox">
-              <div class="menu">
-                <label class="menu-toggle" for="menu-3-2"><span>Toggle</span></label>
-                <ul>
-                  <li>
-                    <a onClick="gotoPlan(42);">Menu-3-2-1</a>
-                  </li>
-                  <li>
-                    <a onClick="gotoPlan(42);">Menu-3-2-2</a>
-                  </li>
-                  <li>
-                    <label for="menu-3-2-3">Menu-3-2-3</label>
-                    <input type="checkbox" id="menu-3-2-3" name="menu-3-2-3" class="menu-checkbox">
-                    <div class="menu">
-                      <label class="menu-toggle" for="menu-3-2-3"><span>Toggle</span></label>
-                      <ul>
-                        <li>
-                          <a onClick="gotoPlan(42);">Menu-3-2-3-1</a>
-                        </li>
-                        <li>
-                          <a onClick="gotoPlan(42);">Menu-3-2-3-2</a>
-                        </li>
-                        <li>
-                          <a onClick="gotoPlan(42);">Menu-3-2-3-3</a>
-                        </li>
-                        <li>
-                          <a onClick="gotoPlan(42);">Menu-3-2-3-4</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li>
-                    <a onClick="gotoPlan(42);">Menu-3-2-4</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Séjour</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Chambre</a>
-            </li>
-          </ul>
+            /* for show */
+            html {
+                height: 100%;
+            }
+
+            p {
+                margin-bottom: 15px;
+            }
+
+            #info {
+                display: table;
+                background: rgba(0, 0, 0, 0.4);
+                height: 100%;
+                width: 100%;
+            }
+
+            #info #info-content {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                text-transform: uppercase;
+                color: #fff;
+                font-size: 12px;
+            }
+
+            #info #info-content h1 {
+                color: #fff;
+                border: 3px solid #fff;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.1);
+                font-size: 22px;
+                font-weight: normal;
+                padding: 20px;
+                margin: 10px;
+                display: inline-block;
+            }
+
+            #info #info-content h1 strong {
+                display: block;
+                font-size: 26px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content" style="padding:0px">
+            <div id="i_frame">
+                <!-- Div pour inclure les écrans de design dans une iframe -->
+            </div>
         </div>
-      </li>
-      <li>
-        <label for="menu-4">Etage</label>
-        <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
-        <div class="menu">
-          <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
-          <ul>
-            <li>
-              <a onClick="gotoPlan(42);">Chambre 1</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Chambre 2</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Salle de bain</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Bureau</a>
-            </li>
-          </ul>
+
+        <!-- Div de construction dynamique du menu -->
+        <div id="wrapper">
         </div>
-      </li>      
-      <li>
-        <label for="menu-5">Extérieur</label>
-        <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
-        <div class="menu">
-          <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
-          <ul>
-            <li>
-              <a onClick="gotoPlan(42);">Menu-5-1</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Menu-5-2</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Menu-5-3</a>
-            </li>
-            <li>
-              <a onClick="gotoPlan(42);">Menu-5-4</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <a onClick="gotoPlan(42);">Garage</a>
-      </li>
-    </ul>
-  </div>
-</div><!-- #wrapper -->
+
+        <script>
+            // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+            // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json ci-dessous
+            // *** NE PAS MODIFIER ***
+            var defaultFrameWidth = 1080;
+            var defaultIframHeight = 580;
+            var waitForLoadingFrame = 1; // ms
+
+            // Contenu du menu multi levels :
+            // Pour chaque item du menu, il faut définir : {"id:"idItem","label":"texte de l'item à afficher dans le menu", "link" : "idDesignDeDestination"}
+            // - id : identifiant de l'item du menu
+            // - label : texte de l'item du menu
+            // - link : id du design de destination de l'item du menu (inutile si item a des sous-menus)
+            // - page : liste des sous-menus de l'item
+            //
+            // JSON de configuration à modifier pour personnaliser son menu :
+            // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+            var json_theme_multi_levels = {
+                "page":[
+                    {"id":"accueil","label":"Accueil","link":"1"},
+                    {"id":"rdc","label":"RDC",
+                        "page":[
+                            {"id":"cuisine", "label":"Cuisine", "link":"9"},
+                            {"id":"salon","label":"Salon","link":"10"},
+                            {"id":"sejour","label":"Séjour","link":"11"},
+                            {"id":"chambre_rdc","label":"Chambre","link":"12"}
+                        ]
+                    },
+                    {"id":"etage","label":"Etage",
+                        "page":[
+                            {"id":"chambre1_etage", "label":"Chambre 1", "link":"13"},
+                            {"id":"chambre2_etage","label":"Chambre 2","link":"14"},
+                            {"id":"bureau_etage","label":"Bureau","link":"15"},
+                            {"id":"sdb_etage","label":"Salle de bain","link":"16"}
+                        ]
+                    },
+                    {"id":"Garage","label":"Sécurité","link":"4"},
+                    {"id":"Piscine","label":"Lumières","link":"5"},
+                    {"id":"informations","label":"Informations","link":"6"},
+                    {"id":"autres","label":"Autres","link":"7"}
+                ],
+                "iframe": "yes", // (facultatif) gestion de la navigation par frame
+                "frameWidth": "1024px", // (facultatif) largeur de la frame
+                "frameHeight": "580px", // (facultatif) hauteur de la frame
+                "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+            }
+
+	        // *** FIN DES MODIFICATIONS ***
+
+            function loadFrame() {
+                if ((typeof json_theme_multi_levels["iframe"] !== undefined) && (json_theme_multi_levels["iframe"] === "yes")) {
+                    gotoPlan(homeLink);
+                }
+            }
+
+            $(document).ready(function () {
+                // gestion par frame : affichage du premier lien au chargement
+                if (waitForLoadingFrame != 0) {
+                    setTimeout(loadFrame, waitForLoadingFrame);
+                }
+            });
+
+            // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+            var homeLink = "";
+
+            function getUrlDestination(urlParam) {
+                if (isNaN(urlParam)) {
+                    return urlParam;
+                } else {
+                    return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+                }
+            }
+
+            // Affichage du plan idPlan
+            function gotoPlan(idPlan) {
+                let frame_destination = document.getElementById('iframe_a');
+                let urlDestination = getUrlDestination(idPlan);
+
+                if (isNaN(idPlan)) {
+                    // url externe
+                    window.open(urlDestination, '_blank');
+                } else {
+                    if (frame_destination === null) {
+                        // pas de frame
+                        if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+                            window.location.href = urlDestination;
+                        }
+                    } else {
+                        // gestion de la navigation par frame
+                        if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+                            frame_destination.src = urlDestination;
+                        }
+                    }
+                }
+            }
+
+            // construction d'un item du menu avec sous-menu
+            function createPage(ul_div_main, pageData) {
+                let li_menu = document.createElement("li");
+                let label = document.createElement("label");
+                label.setAttribute("for", "menu-" + pageData["id"]);
+                label.innerText = pageData["label"];
+                let input = document.createElement("input");
+                input.type='checkbox';
+                input.id = "menu-" + pageData["id"];
+                input.name = "menu-" + pageData["id"];
+                input.className = "menu-checkbox";
+                let div_menu = document.createElement("div");
+                div_menu.className = "menu";
+                let label_menu = document.createElement("label");
+                label_menu.className = "menu-toggle";
+                label_menu.setAttribute("for", "menu-" + pageData["id"]);
+                label_menu.innerHTML = "<span>Toggle</span>";
+                let fils_menu = document.createElement("ul");
+
+                for (let i = 0; i < pageData["page"].length; i++) {
+                    if (typeof(pageData["page"][i]["page"]) === "undefined") {
+                        // menu sans sous-menu
+                        createItem(fils_menu,pageData["page"][i]);
+                    }
+                    else {
+                        // menu avec sous-menu
+                        createPage(fils_menu,pageData["page"][i]);
+                    }
+            }
+
+                div_menu.appendChild(label_menu);
+                div_menu.appendChild(fils_menu);
+
+                li_menu.appendChild(label);
+                li_menu.appendChild(input);
+                li_menu.appendChild(div_menu);
+
+                ul_div_main.appendChild(li_menu);
+            }
+
+            // construction d'un item du menu sans sous-menu
+            function createItem(ul_div_main, itemData) {
+                let item = document.createElement("li");
+                let item_link = document.createElement("a");
+                let link = itemData["link"];
+                if (homeLink === "") {
+                    homeLink = link;
+                }
+                item_link.setAttribute("onclick", "gotoPlan(\"" + link + "\")");
+                item_link.text = itemData["label"]
+                item.append(item_link);
+
+                ul_div_main.appendChild(item);
+            }
+
+            function createThemeMenuMultiLevels(){
+                // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+                if ((typeof json_theme_multi_levels["timeout"] !== undefined) && !isNaN(json_theme_multi_levels["timeout"])) {
+                    waitForLoadingFrame = json_theme_multi_levels["timeout"];
+                }
+
+                // creation de la frame
+                let menu_id = document.getElementById('i_frame');
+
+                if ((typeof json_theme_multi_levels["iframe"] !== undefined) && (json_theme_multi_levels["iframe"] === "yes")) {
+                // iframe pour afficher la page courante
+                let menu_f = document.createElement("div");
+                menu_f.className = "menuf";
+                let menu_iframe = document.createElement("iframe");
+                menu_iframe.id = "iframe_a";
+                let frameWidth = defaultFrameWidth;
+                if (typeof (json_theme_multi_levels["frameWidth"]) !== "undefined") {
+                    menu_iframe.width = json_theme_multi_levels["frameWidth"];
+                }
+                let frameHeight = defaultIframHeight;
+                if (typeof (json_theme_multi_levels["frameHeight"]) !== "undefined") {
+                    menu_iframe.height = json_theme_multi_levels["frameHeight"];
+                }
+                menu_iframe.frameBorder = "0";
+                menu_iframe.scrolling = "no";
+                menu_iframe.src = "";
+
+                menu_f.appendChild(menu_iframe);
+                menu_id.appendChild(menu_f);
+                }
+
+                let divMain = document.getElementById('wrapper');
+
+                let input_main = document.createElement("input");
+                input_main.type = "checkbox";
+                input_main.id = "menu";
+                input_main.name = "menu";
+                input_main.className="menu-checkbox";
+
+                let div_main = document.createElement("div");
+                div_main.className = "menu";
+                
+                let label_div_main = document.createElement("label");
+                label_div_main.className = "menu-toggle";
+                label_div_main.setAttribute("for", "menu");
+                label_div_main.innerHTML = "<span>Toggle</span>";
+
+                let ul_div_main = document.createElement("ul");
+
+                for (let i = 0; i < json_theme_multi_levels["page"].length; i++) {
+                    if (typeof(json_theme_multi_levels["page"][i]["page"]) === "undefined") {
+                        // menu sans sous-menu
+                        createItem(ul_div_main,json_theme_multi_levels["page"][i]);
+                    }
+                    else {
+                        // menu avec sous-menu
+                        createPage(ul_div_main,json_theme_multi_levels["page"][i]);
+                    }
+                }
+            
+                divMain.appendChild(input_main);
+
+                div_main.appendChild(label_div_main);
+                div_main.appendChild(ul_div_main);
+                divMain.appendChild(div_main);
+            };
+
+            // creation dynamique du menu multi levels
+            createThemeMenuMultiLevels();
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,237 @@
+<style>
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+label {
+  cursor: pointer;
+}
+label:focus {
+  outline: none;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  width: 240px;
+  height: 100%;
+  transform: translate3d(-240px, 0, 0);
+  transition: transform 0.35s;
+}
+.menu label.menu-toggle {
+  position: absolute;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  line-height: 0px;
+  display: block;
+  padding: 0;
+  text-indent: -9999px;
+  background: #fff url(/data/custom/themes/menuMultiLevels/images/hamburger.png) 50% 50%/25px 25px no-repeat;
+}
+.menu ul li > label {
+  background: url(/data/custom/themes/menuMultiLevels/images/icon-arrow-right.png) 95% 50%/16px 16px no-repeat;
+}
+.menu ul li a, .menu ul li label {
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 60px;
+  text-decoration: none;
+  color: #000;
+}
+.menu ul li a:hover, .menu ul li label:hover {
+  color: #666;
+}
+
+/* hide inputs */
+.menu-checkbox {
+  display: none;
+}
+
+/* hide navigation icon for sublabels */
+.menu .menu label.menu-toggle {
+  background: none;
+}
+
+/* fade in checked menu */
+.menu-checkbox:checked + .menu {
+  transform: translate3d(0, 0, 0);
+}
+
+/* for show */
+html {
+  height: 100%;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+#info {
+  display: table;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+}
+#info #info-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 12px;
+}
+#info #info-content h1 {
+  color: #fff;
+  border: 3px solid #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 22px;
+  font-weight: normal;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+}
+#info #info-content h1 strong {
+  display: block;
+  font-size: 26px;
+}
+</style>
+
+<script language="Javascript">
+  // Affichage du plan idPlan
+  function gotoPlan(idPlan) {
+    planHeader_id=idPlan;
+    displayPlan();
+  }
+</script>
+
+<div id="wrapper">
+
+  <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
+  <div class="menu">
+    <label class="menu-toggle" for="menu"><span>Toggle</span></label>
+    <ul>
+      <li>
+        <a onClick="gotoPlan(42);">Accueil</a>
+      </li>
+      <li>
+        <a onClick="gotoPlan(42);">Résumé</a>
+      </li>
+      <li>      
+        <label for="menu-3">RDC</label>
+        <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
+        <div class="menu">
+          <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
+          <ul>
+            <li>
+              <a onClick="gotoPlan(42);">Cuisine</a>
+            </li>
+            <li>
+              <label for="menu-3-2">Salon</label>
+              <input type="checkbox" id="menu-3-2" name="menu-3-2" class="menu-checkbox">
+              <div class="menu">
+                <label class="menu-toggle" for="menu-3-2"><span>Toggle</span></label>
+                <ul>
+                  <li>
+                    <a onClick="gotoPlan(42);">Menu-3-2-1</a>
+                  </li>
+                  <li>
+                    <a onClick="gotoPlan(42);">Menu-3-2-2</a>
+                  </li>
+                  <li>
+                    <label for="menu-3-2-3">Menu-3-2-3</label>
+                    <input type="checkbox" id="menu-3-2-3" name="menu-3-2-3" class="menu-checkbox">
+                    <div class="menu">
+                      <label class="menu-toggle" for="menu-3-2-3"><span>Toggle</span></label>
+                      <ul>
+                        <li>
+                          <a onClick="gotoPlan(42);">Menu-3-2-3-1</a>
+                        </li>
+                        <li>
+                          <a onClick="gotoPlan(42);">Menu-3-2-3-2</a>
+                        </li>
+                        <li>
+                          <a onClick="gotoPlan(42);">Menu-3-2-3-3</a>
+                        </li>
+                        <li>
+                          <a onClick="gotoPlan(42);">Menu-3-2-3-4</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>
+                    <a onClick="gotoPlan(42);">Menu-3-2-4</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Séjour</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Chambre</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <label for="menu-4">Etage</label>
+        <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
+        <div class="menu">
+          <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
+          <ul>
+            <li>
+              <a onClick="gotoPlan(42);">Chambre 1</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Chambre 2</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Salle de bain</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Bureau</a>
+            </li>
+          </ul>
+        </div>
+      </li>      
+      <li>
+        <label for="menu-5">Extérieur</label>
+        <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
+        <div class="menu">
+          <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
+          <ul>
+            <li>
+              <a onClick="gotoPlan(42);">Menu-5-1</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Menu-5-2</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Menu-5-3</a>
+            </li>
+            <li>
+              <a onClick="gotoPlan(42);">Menu-5-4</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a onClick="gotoPlan(42);">Garage</a>
+      </li>
+    </ul>
+  </div>
+</div><!-- #wrapper -->
