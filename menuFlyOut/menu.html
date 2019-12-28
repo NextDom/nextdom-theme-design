@@ -20,47 +20,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Design Fly Out Menu</title>
+    <title>Design Fly Out Menu</title>
 
-<!-- Utile seulement si on utilise les icônes de fontawesome -->
-<!-- A supprimer (page plus légère) si utilisation seulement d'icones ajoutés dans le répertoire /data/custom/themes/menuFlyOut/images -->
-<!-- link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" /-->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link href="data/custom/themes/menuFlyOut/css/menu.css" rel="stylesheet" type="text/css">
-
-<script language="Javascript">
-  // Affichage du plan idPlan
-  function gotoPlan(idPlan) {
-    planHeader_id=idPlan;
-    displayPlan();
-  }
-</script>
+    <!-- Utile seulement si on utilise les icônes de fontawesome -->
+    <!-- A supprimer (page plus légère) si utilisation seulement d'icones ajoutés dans le répertoire /data/custom/themes/menuFlyOut/images -->
+    <!-- link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" /-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="data/custom/themes/menuFlyOut/css/menu.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-	<div class="content" style="padding:0px">
-	  <div id="i_frame">
-	    <!-- Div pour inclure les écrans de design dans une iframe -->
-	  </div>
-	</div>
+<div class="content" style="padding:0px">
+    <div id="i_frame">
+        <!-- Div pour inclure les écrans de design dans une iframe -->
+    </div>
+</div>
 
-  <ul class="drawer" id="drawer">
-  </ul>
-
-  <script language="Javascript">
-		// Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
-		// A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json
-		// *** NE PAS MODIFIER ***
-		var defaultIconWidth = 48; // largeur d'affichage de l'icône
-		var defaultIconHeight = 48;
-		var defaultFrameWidth = 1080;
-		var defaultIframHeight = 580;
-		var defaultPackIconsName = "pack1";
-		var defaultPackIconsColor = "default";
-		var waitForLoadingFrame = 1; // ms
-		var checkIcon = false;
-    
-     // chaque ligne correspond à un item du menu
+<script language="Javascript">
+    // chaque ligne correspond à un item du menu
     // iframe=yes : utilisation d'une iframe pour la navigation / iframe=no : pas d'utilisation d'une iframe pour la navigation
     // si iframe=yes, il faut préciser la largeur et la hauteur de l'iframe (correspondant à la taille du text/html ajouté pour ce menu)
     // Contenu du menu flyOut :
@@ -70,182 +48,196 @@
     //       il est possible de remplacer l'id du design par une url d'un site : il sera ouvert dans un onglet différent
     // - page : liste des sous-menus de l'item (contiendra une liste d'items pour le sous-menu)
     var json_theme_flyout = {
-      "onglet1": [{
-          "label": "Accueil",
-          "link": "22",
-          "icon": "nextdom",
-          "customIcon": "yes"
+        "onglet1": [{
+            "label": "Accueil",
+            "link": "22",
+            "icon": "nextdom",
+            "customIcon": "yes"
         },
-        {
-          "label": "Maison",
-          "icon": "home",
-          "page": [{
-              "label": "RDC",
-              "link": "23",
-              "icon": "icon_home",
-              "customIcon": "yes"
+            {
+                "label": "Maison",
+                "icon": "home",
+                "page": [{
+                    "label": "RDC",
+                    "link": "23",
+                    "icon": "icon_home",
+                    "customIcon": "yes"
+                },
+                    {
+                        "label": "Etage",
+                        "link": "24",
+                        "icon": "icon_etage",
+                        "customIcon": "yes"
+                    },
+                    {
+                        "label": "Extérieur",
+                        "link": "25",
+                        "icon": "fas fa-car"
+                    },
+                    {
+                        "label": "Sécurité",
+                        "link": "26",
+                        "icon": "icon_cam",
+                        "customIcon": "yes"
+                    },
+                    {
+                        "label": "Météo",
+                        "link": "27",
+                        "icon": "fas fa-cloud-sun"
+                    }
+                ]
             },
             {
-              "label": "Etage",
-              "link": "24",
-              "icon": "icon_etage",
-              "customIcon": "yes"
+                "label": "Résumés",
+                "icon": "fas fa-clipboard-list",
+                "link": "5",
+                "page": [{
+                    "label": "Ouvertures",
+                    "link": "29",
+                    "icon": "icon_volets",
+                    "customIcon": "yes"
+                },
+                    {
+                        "label": "Lumières",
+                        "link": "30",
+                        "icon": "icon_light",
+                        "customIcon": "yes"
+                    },
+                    {
+                        "label": "Chauffage",
+                        "link": "32",
+                        "icon": "icon_chauffage",
+                        "customIcon": "yes"
+                    },
+                    {
+                        "label": "Supervision",
+                        "link": "33",
+                        "icon": "icon_reseau",
+                        "customIcon": "yes"
+                    }
+                ]
             },
             {
-              "label": "Extérieur",
-              "link": "25",
-              "icon": "fas fa-car"
+                "label": "Multimédia",
+                "icon": "fa fa-file-video",
+                "link": "5",
+                "page": [{
+                    "label": "Salon",
+                    "link": "34",
+                    "icon": "fas fa-couch"
+                },
+                    {
+                        "label": "Chambre",
+                        "link": "35",
+                        "icon": "fa fa-bed"
+                    }
+                ]
             },
             {
-              "label": "Sécurité",
-              "link": "26",
-              "icon": "icon_cam",
-              "customIcon": "yes"
+                "label": "Paramètres",
+                "icon": "fa fa-cogs",
+                "link": "5",
+                "page": [{
+                    "label": "Alarmes",
+                    "link": "36",
+                    "icon": "fas fa-bullhorn"
+                },
+                    {
+                        "label": "Automatismes",
+                        "link": "37",
+                        "icon": "fa fa-keyboard"
+                    },
+                    {
+                        "label": "Divers",
+                        "link": "38",
+                        "icon": "fa fa-project-diagram"
+                    }
+                ]
             },
             {
-              "label": "Météo",
-              "link": "27",
-              "icon": "fas fa-cloud-sun"
+                "label": "Nextdom",
+                "link": "https://www.nextdom.org/",
+                "icon": "icon_mini_adsl",
+                "customIcon": "yes"
             }
-          ]
-        },
-        {
-          "label": "Résumés",
-          "icon": "fas fa-clipboard-list",
-          "link": "5",
-          "page": [{
-              "label": "Ouvertures",
-              "link": "29",
-              "icon": "icon_volets",
-              "customIcon": "yes"
-            },
-            {
-              "label": "Lumières",
-              "link": "30",
-              "icon": "icon_light",
-              "customIcon": "yes"
-            },
-            {
-              "label": "Chauffage",
-              "link": "32",
-              "icon": "icon_chauffage",
-              "customIcon": "yes"
-            },
-            {
-              "label": "Supervision",
-              "link": "33",
-              "icon": "icon_reseau",
-              "customIcon": "yes"
-            }
-          ]
-        },
-        {
-          "label": "Multimédia",
-          "icon": "fa fa-file-video",
-          "link": "5",
-          "page": [{
-              "label": "Salon",
-              "link": "34",
-              "icon": "fas fa-couch"
-            },
-            {
-              "label": "Chambre",
-              "link": "35",
-              "icon": "fa fa-bed"
-            }
-          ]
-        },
-        {
-          "label": "Paramètres",
-          "icon": "fa fa-cogs",
-          "link": "5",
-          "page": [{
-              "label": "Alarmes",
-              "link": "36",
-              "icon": "fas fa-bullhorn"
-            },
-            {
-              "label": "Automatismes",
-              "link": "37",
-              "icon": "fa fa-keyboard"
-            },
-            {
-              "label": "Divers",
-              "link": "38",
-              "icon": "fa fa-project-diagram"
-            }
-          ]
-        },
-        {
-          "label": "Nextdom",
-          "link": "https://www.nextdom.org/",
-          "icon": "icon_mini_adsl",
-          "customIcon": "yes"
-        }
-      ],
-			"packIconsName": "pack2", // (facultatif) nom du pack d'icônes
-			"packIconsColor": "red", // (facultatif) valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
-      "iframe": "yes",
-      "frameWidth": "970px", // (facultatif) largeur de la frame
-      "frameHeight": "1430px", // (facultatif) hauteur de la frame
-      "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+        ],
+        "packIconsName": "pack2", // (facultatif) nom du pack d'icônes
+        "packIconsColor": "red", // (facultatif) valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
+        "iframe": "yes",
+        "frameWidth": "970px", // (facultatif) largeur de la frame
+        "frameHeight": "1430px", // (facultatif) hauteur de la frame
+        "timeout": "1" // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
     }
 
     // *** FIN DES MODIFICATIONS ***
 
-    function loadFrame() {
-      if ((typeof json_theme_flyout["iframe"] !== undefined) && (json_theme_flyout["iframe"] === "yes")) {
-        gotoPlan(homeLink);
-      }
-    }
 
-    $(document).ready(function () {
-      // gestion par frame : affichage du premier lien au chargement
-      if (waitForLoadingFrame != 0) {
-        setTimeout(loadFrame, waitForLoadingFrame);
-      }
-    });
-
-		function checkImage(urlImage) {
-			var xhr = new XMLHttpRequest();
-			xhr.open('HEAD', urlImage, false);
-			xhr.send();
-
-			return (xhr.status != "404");
-		}
-
+    // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+    // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json
+    // *** NE PAS MODIFIER ***
+    var defaultIconWidth = 48; // largeur d'affichage de l'icône
+    var defaultIconHeight = 48;
+    var defaultFrameWidth = 1080;
+    var defaultIframHeight = 580;
+    var defaultPackIconsName = "pack1";
+    var defaultPackIconsColor = "default";
+    var waitForLoadingFrame = 1; // ms
+    var checkIcon = false;
     // url de page d'accueil (premier lien du menu récupéré dynamiquement)
     var homeLink = "";
 
+
+
+    function loadFrame() {
+        if ((typeof json_theme_flyout["iframe"] !== undefined) && (json_theme_flyout["iframe"] === "yes")) {
+            gotoPlan(homeLink);
+        }
+    }
+
+    $(document).ready(function () {
+        // gestion par frame : affichage du premier lien au chargement
+        if (waitForLoadingFrame != 0) {
+            setTimeout(loadFrame, waitForLoadingFrame);
+        }
+    });
+
+    function checkImage(urlImage) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', urlImage, false);
+        xhr.send();
+
+        return (xhr.status != "404");
+    }
+
     function getUrlDestination(urlParam) {
-      if (isNaN(urlParam)) {
-        return urlParam;
-      } else {
-        return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
-      }
+        if (isNaN(urlParam)) {
+            return urlParam;
+        } else {
+            return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+        }
     }
 
     // Affichage du plan idPlan ou d'une url externe
     function gotoPlan(idPlan) {
-      let frame_destination = document.getElementById('iframe_a');
-      let urlDestination = getUrlDestination(idPlan);
+        let frame_destination = document.getElementById('iframe_a');
+        let urlDestination = getUrlDestination(idPlan);
 
-      if (isNaN(idPlan)) {
-        // url externe
-        window.open(urlDestination, '_blank');
-      } else {
-        if (frame_destination === null) {
-          // pas de frame
-          if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
-            window.location.href = urlDestination;
-          }
+        if (isNaN(idPlan)) {
+            // url externe
+            window.open(urlDestination, '_blank');
         } else {
-          // gestion de la navigation par frame
-          if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
-            frame_destination.src = urlDestination;
-          }
+            if (frame_destination === null) {
+                // pas de frame
+                if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+                    window.location.href = urlDestination;
+                }
+            } else {
+                // gestion de la navigation par frame
+                if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+                    frame_destination.src = urlDestination;
+                }
+            }
         }
-      }
     }
 
     // construction d'un item du menu avec sous-menu
@@ -254,7 +246,7 @@
             // menu parent
             createItem(ul_div_main, pageData["page"][i], false);
 
-            if (typeof(pageData["page"][i]["page"]) !== "undefined") {
+            if (typeof (pageData["page"][i]["page"]) !== "undefined") {
                 // sous-menu
                 createPage(ul_div_main, pageData["page"][i]);
             }
@@ -269,173 +261,171 @@
 
         // nom du pack
         if (typeof (json_theme_flyout["packIconsName"]) !== "undefined") {
-          packIconsName = json_theme_flyout["packIconsName"];
+            packIconsName = json_theme_flyout["packIconsName"];
         }
 
         // couleur du pack (ex : "default, "red", "blue", "yel", "green", "dark")
         if (typeof (json_theme_flyout["packIconsColor"]) !== "undefined") {
-          packIconsColor = json_theme_flyout["packIconsColor"];
+            packIconsColor = json_theme_flyout["packIconsColor"];
         }
 
         // largeur et hauteur des icônes
         let iconWidth = defaultIconWidth; // largeur d'un icône par défaut
         if (typeof (json_theme_flyout["iconWidth"]) !== "undefined") {
-          iconWidth = parseInt(json_theme_flyout["iconWidth"]);
+            iconWidth = parseInt(json_theme_flyout["iconWidth"]);
         }
         let iconHeight = defaultIconHeight; // hauteur d'un icône par défaut
         if (typeof (json_theme_flyout["iconHeight"]) !== "undefined") {
-          iconHeight = parseInt(json_theme_flyout["iconHeight"]);
+            iconHeight = parseInt(json_theme_flyout["iconHeight"]);
         }
 
-				let menu_item = document.createElement("li");
-				let menu_item_a = document.createElement("a");
+        let menu_item = document.createElement("li");
+        let menu_item_a = document.createElement("a");
 
-				let link = itemData["link"];
-				if (homeLink === "") {
-					homeLink = link;
-				}
-
-				if (isParent) {
-          menu_item_a.href = "javascript:void(0)";
+        let link = itemData["link"];
+        if (homeLink === "") {
+            homeLink = link;
         }
-        else {
-          menu_item_a.setAttribute("onclick", "gotoPlan(\"" + link + "\")");
-        }
-        
-        menu_item_a.title = itemData["label"];
-				let menu_item_a_img = document.createElement("img");
-				let menu_item_fa = document.createElement("i");
-				let icon = itemData["icon"];
-				if (icon.startsWith("fa ") || icon.startsWith("fab ") || icon.startsWith("fas ")) {
-					// récupération de l'icône au format fontawesome
-					menu_item_fa.className = icon;
-					menu_item_a.appendChild(menu_item_fa);
-          
-          let menu_item_span = document.createElement("span");
-          menu_item_span.innerHTML = itemData["label"];
-          menu_item_a.appendChild(menu_item_span);
-				} 
-        else {
-					let defaultIcon = icon;
-					if (!icon.startsWith("http")) { // récupération de l'icône pas sous forme sous forme d'url
-						if ((typeof (itemData["customIcon"]) !== "undefined") && (itemData["customIcon"] === "yes")) {
-							// récupération de l'icône personnalisé (customIcon=yes)
-							let slash = (icon.startsWith("/")) ? "" : "/";
-							let extension = (icon.toLowerCase().endsWith(".png")) ? "" : ".png";
-							defaultIcon = "data/custom/packIcons/customIcons" + slash + icon + extension;
-						} else {
-							// récuperation de l'icône du pack
-							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
-						}
 
-						// vérification existence de l'icône
-						if (!checkImage(defaultIcon)) {
-							// icône du pack demandé avec la couleur par défaut
-							defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
-							if (!checkImage(defaultIcon)) {
-								// icône du pack par défaut avec la couleur demandée
-								defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
-								if (!checkImage(defaultIcon)) {
-									// icône du pack par défaut avec la couleur par défaut
-									defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
-									if (!checkImage(defaultIcon)) {
-										// icône vierge du pack et couleur demandés
-										defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
-										if (!checkImage(defaultIcon)) {
-											// icône vierge du pack par défaut avec la couleur demandée
-											defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
-											if (!checkImage(defaultIcon)) {
-												// icône vierge du pack et couleur par défaut
-												defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-
-					// ajout de l'icône
-          menu_item_fa.className = "icon-design-menu";
-          menu_item_fa.style.backgroundImage = "url(\"" + defaultIcon + "\")";
-          menu_item_a.appendChild(menu_item_fa);
-
-          let menu_item_span = document.createElement("span");
-          menu_item_span.innerHTML = itemData["label"];
-          menu_item_a.appendChild(menu_item_span);
-				}
-				
         if (isParent) {
-          ul_div_main.appendChild(menu_item_a);
+            menu_item_a.href = "javascript:void(0)";
+        } else {
+            menu_item_a.setAttribute("onclick", "gotoPlan(\"" + link + "\")");
         }
-        else {
-          menu_item.appendChild(menu_item_a);
-				  ul_div_main.appendChild(menu_item);
+
+        menu_item_a.title = itemData["label"];
+        let menu_item_a_img = document.createElement("img");
+        let menu_item_fa = document.createElement("i");
+        let icon = itemData["icon"];
+        if (icon.startsWith("fa ") || icon.startsWith("fab ") || icon.startsWith("fas ")) {
+            // récupération de l'icône au format fontawesome
+            menu_item_fa.className = icon;
+            menu_item_a.appendChild(menu_item_fa);
+
+            let menu_item_span = document.createElement("span");
+            menu_item_span.innerHTML = itemData["label"];
+            menu_item_a.appendChild(menu_item_span);
+        } else {
+            let defaultIcon = icon;
+            if (!icon.startsWith("http")) { // récupération de l'icône pas sous forme sous forme d'url
+                if ((typeof (itemData["customIcon"]) !== "undefined") && (itemData["customIcon"] === "yes")) {
+                    // récupération de l'icône personnalisé (customIcon=yes)
+                    let slash = (icon.startsWith("/")) ? "" : "/";
+                    let extension = (icon.toLowerCase().endsWith(".png")) ? "" : ".png";
+                    defaultIcon = "data/custom/packIcons/customIcons" + slash + icon + extension;
+                } else {
+                    // récuperation de l'icône du pack
+                    defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
+                }
+
+                // vérification existence de l'icône
+                if (!checkImage(defaultIcon)) {
+                    // icône du pack demandé avec la couleur par défaut
+                    defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+                    if (!checkImage(defaultIcon)) {
+                        // icône du pack par défaut avec la couleur demandée
+                        defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
+                        if (!checkImage(defaultIcon)) {
+                            // icône du pack par défaut avec la couleur par défaut
+                            defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+                            if (!checkImage(defaultIcon)) {
+                                // icône vierge du pack et couleur demandés
+                                defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
+                                if (!checkImage(defaultIcon)) {
+                                    // icône vierge du pack par défaut avec la couleur demandée
+                                    defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
+                                    if (!checkImage(defaultIcon)) {
+                                        // icône vierge du pack et couleur par défaut
+                                        defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // ajout de l'icône
+            menu_item_fa.className = "icon-design-menu";
+            menu_item_fa.style.backgroundImage = "url(\"" + defaultIcon + "\")";
+            menu_item_a.appendChild(menu_item_fa);
+
+            let menu_item_span = document.createElement("span");
+            menu_item_span.innerHTML = itemData["label"];
+            menu_item_a.appendChild(menu_item_span);
+        }
+
+        if (isParent) {
+            ul_div_main.appendChild(menu_item_a);
+        } else {
+            menu_item.appendChild(menu_item_a);
+            ul_div_main.appendChild(menu_item);
         }
     }
 
-		function createThemeMenuFlyout() {
-			// récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
-			if ((typeof json_theme_flyout["timeout"] !== undefined) && !isNaN(json_theme_flyout["timeout"])) {
-				waitForLoadingFrame = json_theme_flyout["timeout"];
-			}
-
-			// récupération du paramètre pour savoir si on vérifie l'existence des images pour les icônes ou non ("yes" / "no")
-			if (typeof json_theme_flyout["checkIcon"] !== undefined) {
-				checkIcon = json_theme_flyout["checkIcon"];
-			}
-
-			// creation de la frame
-			let menu_id = document.getElementById('i_frame');
-
-			if ((typeof json_theme_flyout["iframe"] !== undefined) && (json_theme_flyout["iframe"] === "yes")) {
-				// iframe pour afficher la page courante
-				let menu_f = document.createElement("div");
-				menu_f.className = "menuf";
-				let menu_iframe = document.createElement("iframe");
-				menu_iframe.id = "iframe_a";
-				let frameWidth = defaultFrameWidth;
-				if (typeof (json_theme_flyout["frameWidth"]) !== "undefined") {
-					menu_iframe.width = json_theme_flyout["frameWidth"];
-				}
-				let frameHeight = defaultIframHeight;
-				if (typeof (json_theme_flyout["frameHeight"]) !== "undefined") {
-					menu_iframe.height = json_theme_flyout["frameHeight"];
-				}
-				menu_iframe.frameBorder = "0";
-				menu_iframe.scrolling = "no";
-				menu_iframe.src = "";
-
-				menu_f.appendChild(menu_iframe);
-				menu_id.appendChild(menu_f);
-			}
-
-			let menu_ul = document.getElementById("drawer");
-
-			for (let i = 0; i < json_theme_flyout["onglet1"].length; i++) {
-        let li_menu = document.createElement("li");
-
-        if (typeof(json_theme_flyout["onglet1"][i]["page"]) === "undefined") {
-            // parent
-            createItem(li_menu,json_theme_flyout["onglet1"][i], false);
-        }
-        else {
-            // sous-menu
-            createItem(li_menu, json_theme_flyout["onglet1"][i], true);
-            let fils_menu = document.createElement("ul");
-            createPage(fils_menu,json_theme_flyout["onglet1"][i]);
-            li_menu.appendChild(fils_menu);
+    function createThemeMenuFlyout() {
+        // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+        if ((typeof json_theme_flyout["timeout"] !== undefined) && !isNaN(json_theme_flyout["timeout"])) {
+            waitForLoadingFrame = json_theme_flyout["timeout"];
         }
 
-        menu_ul.appendChild(li_menu);
-			}
-		};
+        // récupération du paramètre pour savoir si on vérifie l'existence des images pour les icônes ou non ("yes" / "no")
+        if (typeof json_theme_flyout["checkIcon"] !== undefined) {
+            checkIcon = json_theme_flyout["checkIcon"];
+        }
 
-		// création dynamique du menu Dock Mac 
-		createThemeMenuFlyout();
-  </script>
+        // creation de la frame
+        let menu_id = document.getElementById('i_frame');
 
-  <!-- Inspiration : Ian Lunn https://codepen.io/IanLunn/ / https://codepen.io/IanLunn/pen/NPapxy -->
+        if ((typeof json_theme_flyout["iframe"] !== undefined) && (json_theme_flyout["iframe"] === "yes")) {
+            // iframe pour afficher la page courante
+            let menu_f = document.createElement("div");
+            menu_f.className = "menuf";
+            let menu_iframe = document.createElement("iframe");
+            menu_iframe.id = "iframe_a";
+            let frameWidth = defaultFrameWidth;
+            if (typeof (json_theme_flyout["frameWidth"]) !== "undefined") {
+                menu_iframe.width = json_theme_flyout["frameWidth"];
+            }
+            let frameHeight = defaultIframHeight;
+            if (typeof (json_theme_flyout["frameHeight"]) !== "undefined") {
+                menu_iframe.height = json_theme_flyout["frameHeight"];
+            }
+            menu_iframe.frameBorder = "0";
+            menu_iframe.scrolling = "no";
+            menu_iframe.src = "";
+
+            menu_f.appendChild(menu_iframe);
+            menu_id.appendChild(menu_f);
+        }
+
+        let menu_ul = document.createElement("ul");
+        menu_ul.id = "drawer";
+        menu_ul.className = "drawer";
+
+        for (let i = 0; i < json_theme_flyout["onglet1"].length; i++) {
+            let li_menu = document.createElement("li");
+
+            if (typeof (json_theme_flyout["onglet1"][i]["page"]) === "undefined") {
+                // parent
+                createItem(li_menu, json_theme_flyout["onglet1"][i], false);
+            } else {
+                // sous-menu
+                createItem(li_menu, json_theme_flyout["onglet1"][i], true);
+                let sub_menu = document.createElement("ul");
+                createPage(sub_menu, json_theme_flyout["onglet1"][i]);
+                li_menu.appendChild(sub_menu);
+            }
+
+            menu_ul.appendChild(li_menu);
+        }
+    };
+
+    // création dynamique du menu Dock Mac
+    createThemeMenuFlyout();
+</script>
+
+<!-- Inspiration : Ian Lunn https://codepen.io/IanLunn/ / https://codepen.io/IanLunn/pen/NPapxy -->
 
 </body>
 </html>
