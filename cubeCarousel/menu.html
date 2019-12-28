@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery Flipbox: 3D Cube Carousel</title>
+        <link href="data/custom/themes/cubeCarousel/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patua+One">
+        <link rel="stylesheet" href="data/custom/themes/cubeCarousel/css/flipbox.css">
+        <style>
+            body {text-align: center; font-family: 'Roboto', sans-serif; background-color: #fafafa;}
+            p {margin: 0; font-size: 16px;}
+            .item {display: inline-block; margin: 30px 40px; text-align: center; vertical-align: top; font-size: 0;}
+            .box {width: 1280px; height: 768px; margin: 30px 0; font-size: initial;}
+            .box .side {line-height: 280px; font-size: 80px; font-weight: 700; color: #fff; text-align: center; user-select: none;}
+            .box .side.side1 {background: #3366CC;}
+            .box .side.side2 {background: #DC3912;}
+            .box .side.side3 {background: #FF9900;}
+            .box .side.side4 {background: #109618;}
+            .box .side.side5 {background: #990099;}
+            .box .side.side6 {background: #3B3EAC;}
+            .box .side.side7 {background: #0099C6;}
+            .box .side.side8 {background: #DD4477;}
+            .grid {width: 420px; height: 280px; margin: 30px 0;}
+            .grid .box {float: left; width: 60px; height: 60px; margin: 5px;}
+            .grid .box .side {width: 60px; height: 60px;}
+        </style>
+    </head>
+    <body>
+        <!-- automatic -->
+        <div class="item">
+            <div class="box" id="box4">
+                <div class="side side1">
+                    <iframe id="iframe_a1" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=91&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side2">
+                    <iframe id="iframe_a2" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=92&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side3">
+                    <iframe id="iframe_a3" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=93&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side4">
+                    <iframe id="iframe_a4" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=94&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side5">
+                    <iframe id="iframe_a5" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=95&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side6">
+                    <iframe id="iframe_a6" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=96&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side7">
+                    <iframe id="iframe_a7" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=97&fullscreen=1">
+                    </iframe>
+                </div>
+                <div class="side side8">
+                    <iframe id="iframe_a8" width="1280px" height="768px" frameBorder="0" scrolling="no"
+                        src="index.php?v=d&p=plan&plan_id=98&fullscreen=1">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="data/custom/themes/cubeCarousel/js/flipbox.js"></script>
+
+        <script>
+            // Autoplay
+            $('#box4').flipbox({
+                vertical: false,
+                autoplay: true,
+                autoplayReverse: false,
+                autoplayWaitDuration: 5000,
+                autoplayPauseOnHover: true
+            });
+        </script>
+    </body>
+</html>
