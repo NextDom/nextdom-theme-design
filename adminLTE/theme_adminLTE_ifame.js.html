@@ -17,7 +17,7 @@
             return urlParam;
         } else {
             let location = window.location;
-            return location.protocol + '/index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+            return location.protocol + '//' + location.host + '/index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
         }
     }
 
@@ -76,6 +76,8 @@
     function createPage(divMain) {
         let page = document.createElement("div");
         let screenHeight =  screen.height;
+        page.style.display = "flex";
+        page.style.flexDirection = "column";
         page.style.height =  screenHeight + "px";
         page.style.width = "100%";
 
@@ -89,15 +91,14 @@
         page.appendChild(menu);
 
 
-        let frameset = document.createElement("frameset");
-        let iframe = document.createElement("frame");
+        let iframe = document.createElement("iframe");
         iframe.id = "mainIframe";
+        iframe.style.flex = "1";
         iframe.style.width = "100%";
-        iframe.style.marginTop = "40px";
+        iframe.style.marginTop = "10px";
         iframe.name  ="mainIframe";
         iframe.src = gotoPlan(json_theme_adminLTE["page"][0]["planId"]);
-        frameset.appendChild(iframe);
-        page.appendChild(frameset);
+        page.appendChild(iframe);
         divMain.appendChild(page);
     }
 
