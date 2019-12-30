@@ -1,0 +1,106 @@
+<script>
+
+    var json_theme_adminLTE_content = {
+        "page": [
+            {"id":"informations","label": "Informations","color":"teal","icon":"fa-info","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"chauffage","label": "Chauffage","color":"blue","icon":"fa-fire","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"energie","label": "Énergie","color":"green","icon":"fa-leaf","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"securite","label": "Sécurité","color":"red","icon":"fa-shield","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"lumieres","label": "Lumières","color":"orange","icon":"fa-lightbulb-o","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"automatisme","label": "Automatisme","color":"maroon","icon":"fa-magic","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"monitoring","label": "Monitoring","color":"purple","icon":"fa-television","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"autre","label": "Autre","color":"grey","barStyle":"bg-black","icon":"fa-hashtag","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"}
+        ]
+    };
+
+    function createPage(divMain, pageData) {
+        let page = document.createElement("div");
+        page.id = pageData["id"];
+        let screenHeight =  screen.height;
+        page.style.height =  screenHeight + "px";
+        page.style.width = "100%";
+
+        let content = document.createElement("div");
+        content.style.display = "flex";
+        content.style.width = "100%";
+        content.style.marginTop = "20px";
+
+        let info_box = document.createElement("div");
+        info_box.className = "info-box bg-" + pageData["color"];
+        info_box.style.minHeight = "27px";
+        info_box.style.width = "15%";
+        info_box.style.marginBottom = "0px";
+
+        let info_box_icon = document.createElement("span");
+        info_box_icon.className = "info-box-icon";
+        info_box_icon.style.height = "27px";
+
+        let i = document.createElement("i");
+        i.className = "fa " + pageData["icon"];
+        i.style.fontSize = "16px";
+        i.style.top = "6px";
+        i.style.display = "block";
+        i.style.position = "relative";
+
+        let info_box_title = document.createTextNode( pageData["label"]);
+        info_box_icon.appendChild(i);
+
+        let info_box_content = document.createElement("div");
+        info_box_content.className = "info-box-content";
+
+        info_box_content.appendChild(info_box_title);
+        info_box.appendChild(info_box_icon);
+        info_box.appendChild(info_box_content);
+
+        let panel = document.createElement("div");
+        panel.className = "panel panel-info";
+        panel.style.height = "100%";
+        panel.style.width = "85%";
+
+        let panel_body = document.createElement("div");
+        panel_body.className = "panel-body";
+        panel_body.style.backgroundColor = pageData["panelColor"];
+        panel_body.style.height = "100%";
+        panel_body.style.width = "100%";
+
+        let i_panel = document.createElement("i");
+        let iconSize = pageData["iconSize"];
+        i_panel.className = "fa " + pageData["icon"];
+        i_panel.style.fontSize = iconSize +"px";
+        i_panel.style.height = "100%";
+        i_panel.style.width = "100%";
+        i_panel.style.textAlign = "center";
+        i_panel.style.opacity = "0.5";
+        i_panel.style.lineHeight = Math.floor(screenHeight/iconSize);
+        if(pageData["iconColor"]){
+            i_panel.style.color = pageData["iconColor"];
+        }
+
+        panel_body.appendChild(i_panel);
+        panel.appendChild(panel_body);
+
+        content.style.height = (screen.height - 60 - 27 - 6*10 -6*1) + "px";
+        content.appendChild(info_box);
+        content.appendChild(panel);
+        page.appendChild(content);
+        divMain.appendChild(page);
+    }
+
+    function createThemeAdminLTE(){
+
+        let divMain = document.getElementById('json_theme_adminLTE_content');
+        divMain.style.height = "100%";
+        divMain.style.width = "100%";
+        divMain.style.display = "contents";
+        divMain.style.overflow = "hidden";
+
+        createPage(divMain,json_theme_adminLTE_content["page"][0]);
+    };
+
+    createThemeAdminLTE();
+
+
+</script>
+
+<div id="json_theme_adminLTE_content">
+</div>

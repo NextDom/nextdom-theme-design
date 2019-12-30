@@ -2,14 +2,14 @@
 
     var json_theme_adminLTE = {
         "page": [
-            {"id":"informations","label": "Informations","planId":"1","color":"teal","icon":"fa-info","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"chauffage","label": "Chauffage","planId":"1","color":"blue","icon":"fa-fire","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"energie","label": "Énergie","planId":"1","color":"green","icon":"fa-leaf","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"securite","label": "Sécurité","planId":"1","color":"red","icon":"fa-shield","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"lumieres","label": "Lumières","planId":"1","color":"orange","icon":"fa-lightbulb-o","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"automatisme","label": "Automatisme","planId":"1","color":"maroon","icon":"fa-magic","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"monitoring","label": "Monitoring","planId":"1","color":"purple","icon":"fa-television","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            {"id":"autre","label": "Autre","planId":"1","color":"grey","barStyle":"bg-black","icon":"fa-hashtag","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"}
+            {"id":"informations","label": "Informations","planId":"11","color":"teal","icon":"fa-info","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"chauffage","label": "Chauffage","planId":"12","color":"blue","icon":"fa-fire","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"energie","label": "Énergie","planId":"13","color":"green","icon":"fa-leaf","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"securite","label": "Sécurité","planId":"14","color":"red","icon":"fa-shield","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"lumieres","label": "Lumières","planId":"15","color":"orange","icon":"fa-lightbulb-o","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"automatisme","label": "Automatisme","planId":"16","color":"maroon","icon":"fa-magic","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"monitoring","label": "Monitoring","planId":"17","color":"purple","icon":"fa-television","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"autre","label": "Autre","planId":"18","color":"grey","barStyle":"bg-black","icon":"fa-hashtag","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"}
         ]
     };
     function getUrlDestination(urlParam) {
@@ -95,6 +95,7 @@
         iframe.style.width = "100%";
         iframe.style.marginTop = "40px";
         iframe.name  ="mainIframe";
+        iframe.src = gotoPlan(json_theme_adminLTE["page"][0]["planId"]);
         frameset.appendChild(iframe);
         page.appendChild(frameset);
         divMain.appendChild(page);
