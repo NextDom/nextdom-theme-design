@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-wrap: warp;
+            background: #010615;
+        }
+
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #060c21;
+            margin: 40px;
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #fff;
+            z-index: -1;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #fff;
+            z-index: -2;
+            filter: blur(40px);
+        }
+
+        .color1::before,
+        .color1::after {
+            background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+        }
+
+        .color2::before,
+        .color2::after {
+            background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
+        }
+
+        .color3::before,
+        .color3::after {
+            background: linear-gradient(235deg, #772aff, #010615, #2196f3);
+        }
+
+        .box .glass {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            display: block;
+            background: rgba(255, 255, 255, .1);
+            pointer-events: none;
+        }
+
+        .box .content {
+            padding: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box color3">
+        <div class="glass"></div>
+        <div class="content">
+        </div>
+    </div>
+</body>
+
+</html>
