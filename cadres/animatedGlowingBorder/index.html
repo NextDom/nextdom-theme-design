@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #000;
+}
+
+.block {
+	position: relative;
+	margin: 10px 10px 0;
+	width: 300px;
+	height: 300px;
+	background: linear-gradient(0deg, #000, #272727);
+}
+
+.block:before, .block:after {
+	content: '';
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ffff00, #ff0000);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+	animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.block:after {
+	filter: blur(50px);
+}
+  
+.block .glass {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	display: block;
+	background: rgba(255, 255, 255, .1);
+	pointer-events: none;
+}
+
+.block .content {
+	padding: 20px;
+	color: #fff;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="block"></block>
+        <div class="glass"></div>
+        <div class="content">
+            <!-- Supprimer les 2 lignes ci-dessous pour ne pas mettre de texte dans le cadre -->
+            <h2>Animated glowing Border</h2>
+            <p>Exemple de cadre animé</p>
+        </div>
+</body>
+
+</html>
