@@ -1,0 +1,178 @@
+<style>
+.block {
+	position: relative;
+	margin: 10px 10px 0;
+	width: 300px;
+	height: 300px;
+	background: linear-gradient(0deg, #000, #272727);
+}
+
+.block:before, .block:after {
+	content: '';
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ffff00, #ff0000);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+	animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.block:after {
+	filter: blur(50px);
+}
+  
+.block .glass {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	display: block;
+	background: rgba(255, 255, 255, .1);
+	pointer-events: none;
+}
+
+.block .content {
+	padding: 20px;
+	color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-wrap: warp;
+    background: #010615;
+}
+
+.box {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    background: #060c21;
+    margin: 40px;
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -1;
+}
+
+.box::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter: blur(40px);
+}
+
+.color1::before,
+.color1::after {
+    background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+}
+
+.color2::before,
+.color2::after {
+    background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
+}
+
+.color3::before,
+.color3::after {
+    background: linear-gradient(235deg, #772aff, #010615, #2196f3);
+}
+
+.box .glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: block;
+    background: rgba(255, 255, 255, .1);
+    pointer-events: none;
+}
+
+.box .content {
+    padding: 20px;
+    color: #fff;
+}
+</style>
+
+<div style="padding:0px;width:auto;height:auto;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#">  
+
+    <div id="dynBox#uid#" class="box color1">
+        <div class="glass"></div>
+        <div class="content">
+            <!-- Supprimer les 2 lignes ci-dessous pour ne pas mettre de texte dans le cadre -->
+            <h2>Glowing Border</h2>
+            <p>Exemple de border dynamique</p>
+        </div>
+    </div>
+
+    <script language="JavaScript">
+
+        jeedom.cmd.update['#id#'] = function(_options){
+
+            // récupération des paramètres
+            var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#'):300;
+            var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#'):300;
+            var valueC = ('#couleur#' !='#'+'couleur#') ? "#couleur#":'color1';
+
+            document.getElementById("dynBox#uid#").style.width = valueL + 'px';
+            document.getElementById("dynBox#uid#").style.height = valueH + 'px';
+            
+            // mise à jour du style du widget
+            if (parseInt(_options.display_value) == 0) {
+                    document.getElementById("dynBox#uid#").classList.remove("block");
+                    document.getElementById("dynBox#uid#").classList.add("box");
+                    document.getElementById("dynBox#uid#").classList.add(valueC);
+            }
+            else {
+                    document.getElementById("dynBox#uid#").classList.remove("box");
+                    document.getElementById("dynBox#uid#").classList.remove("color1");
+                    document.getElementById("dynBox#uid#").classList.remove("color2");
+                    document.getElementById("dynBox#uid#").classList.remove("color3");
+                    document.getElementById("dynBox#uid#").classList.add("block");
+            }
+        }
+        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+
+    </script>
+</div>
