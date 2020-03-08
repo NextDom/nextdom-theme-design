@@ -43,6 +43,7 @@ header a, a:visited {
   margin: 0;
   padding: 0;
   position: relative;
+  background-color:#eee;
 }
 #menu ul:after {
   clear: both;

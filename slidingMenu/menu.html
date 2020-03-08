@@ -1,19 +1,27 @@
 <!--
-  Menu StarWars pour Design Nextdom (@noodom)
+  Menu Sliding Menu pour Design Nextdom (@noodom)
 
-  - Dans le code HTML ci-dessous :
-    - Modifier le contenu du Json pour adapter le contenu à ses besoins
-  - Copier le répertoire /themes dans /data/custom
-    - Dans le mode Design, créer un design pour le menu, passer en mode Edition, puis ajouter "Texte/html" puis copier/coller ce code HTML
--->
+  - Copier le contenu du répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/slidingMenu/themes sous /var/www/html/data/custom/themes pour Nextdom ou /var/www/html/montheme/themes pour Jeedom
+  - Copier le répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/packIcons sous /var/www/html/data/custom/themes pour Nextdom ou /var/www/html/montheme/themes pour Jeedom
+  - Dans le mode Design, créer un design pour le menu
+  - Passer en mode Edition dans le design, puis ajouter "Texte/html" et copier/coller ce code HTML
+  - Modifier les paramètres d'affichage du Text/html : Position X=0, Position Y=0, Largeur=1000, Hauteur=500
+  - Dans le code HTML ci-dessous, faire les modifications suivantes après la ligne // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR *** :
+    - Modifier la plateforme : var plateforme="nextdom" ou "jeedom"
+    - Modifier le contenu du Json pour adapter le contenu à ses besoins (variable json_theme_sliding, voir détail du contenu ci-dessous)
+  -->
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>Sliding menu (inspiré par http://www.script-tutorials.com/sliding-single-level-menu/)</title>
+  <!--
   <link href="data/custom/themes/slidingMenu/css/style.css" rel="stylesheet">
+  -->
 </head>
+
 <body>
 
   <nav id="menu">
@@ -38,6 +46,8 @@
     var defaultPackIconsColor = "default";
     var waitForLoadingFrame = 1; // ms
     var checkIcon = false;
+    var pathData = "data/custom";
+
 
     // pour chaque item du menu renseigner les différents champs :
     // - label : libellé du champ à afficher dans le menu
@@ -66,15 +76,11 @@
     // - "frameWidth": "1024px"
     // - "frameHeight": "580px"
     //
-    // *** PREMIERE UTILISATION ***
-    // - Recopier le dossier /themes sous /data/custom
-    //     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design/tree/master/slidingMenu)
-    // - (Si non déjà présent) Recopier sous /data/custom le dossier /packIcons 
-    //     (à récupérer ici : https://github.com/NextDom/nextdom-theme-design)
-    // - Copier le contenu de ce fichier dans une page de design (clic droit, sélectionner "Edition", puis clic droit, sélectionner "Ajout texte/html")
-    //
     // JSON de configuration à modifier pour personnaliser son menu :
+    // *************************************************
     // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+    // *************************************************
+    var plateforme = "nextdom"; // remplacer par "jeedom" pour une utilisation du theme sous Jeedom
     var json_theme_sliding = {
       "page": [{
           "label": "Accueil",
@@ -134,7 +140,18 @@
       "checkIcon": "yes" // (facultatif) vérification de l'existence des icônes (avec remplacement par icônes du pack par défaut si absent)
     }
 
-    // *** FIN DES MODIFICATIONS ***
+    // ***********************************************
+    // *** FIN DES MODIFICATIONS par l'utilisateur ***
+    // ***********************************************
+    if (plateforme == "jeedom") {
+      pathData = "montheme";
+    }
+
+    var link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css');
+    document.getElementsByTagName('head')[0].appendChild(link);
 
     function loadFrame() {
       if ((typeof json_theme_sliding["iframe"] !== undefined) && (json_theme_sliding["iframe"] === "yes")) {
@@ -278,31 +295,31 @@
             // récupération de l'icône personnalisé (customIcon=yes)
             let slash = (icon.startsWith("/")) ? "" : "/";
             let extension = (icon.toLowerCase().endsWith(".png")) ? "" : ".png";
-            defaultIcon = "data/custom/packIcons/customIcons" + slash + icon + extension;
+            defaultIcon = pathData + "/packIcons/customIcons" + slash + icon + extension;
           } else {
             // récuperation de l'icône du pack
-            defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
+            defaultIcon = pathData + "/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
           }
 
           // vérification existence de l'icône
           if (!checkImage(defaultIcon)) {
             // icône du pack demandé avec la couleur par défaut
-            defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+            defaultIcon = pathData + "/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
             if (!checkImage(defaultIcon)) {
               // icône du pack par défaut avec la couleur demandée
-              defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
+              defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
               if (!checkImage(defaultIcon)) {
                 // icône du pack par défaut avec la couleur par défaut
-                defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+                defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
                 if (!checkImage(defaultIcon)) {
                   // icône vierge du pack et couleur demandés
-                  defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
+                  defaultIcon = pathData + "/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
                   if (!checkImage(defaultIcon)) {
                     // icône vierge du pack par défaut avec la couleur demandée
-                    defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
+                    defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
                     if (!checkImage(defaultIcon)) {
                       // icône vierge du pack et couleur par défaut
-                      defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
+                      defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
                     }
                   }
                 }
@@ -339,4 +356,5 @@
     createThemeSlidingMenu();
   </script>
 </body>
+
 </html>
