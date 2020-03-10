@@ -6,50 +6,59 @@ Copyright (c) Script Tutorials. All rights reserved.
 This stylesheet and the associated (x)html may be modified in any way to fit your requirements.
 ================================================================================================= */
 body {
-  background-color:#eee;
+  background-color: #eee;
   margin: 0;
   padding: 0;
 }
+
 header {
-  background-color:rgba(33, 33, 33, 0.9);
-  color:#fff;
-  display:block;
-  font: 14px/1.3 Arial,sans-serif;
-  position:relative;
+  background-color: rgba(33, 33, 33, 0.9);
+  color: #fff;
+  display: block;
+  font: 14px/1.3 Arial, sans-serif;
+  position: relative;
   margin: 0 0 10px;
   padding: 0;
 }
-header h2{
+
+header h2 {
   font-size: 22px;
   margin: 0px auto;
   padding: 10px 0;
   width: 80%;
   text-align: center;
 }
-header a, a:visited {
-  text-decoration:none;
-  color:#fcfcfc;
+
+header a,
+a:visited {
+  text-decoration: none;
+  color: #fcfcfc;
 }
 
 #menu {
   display: inline-block;
   height: 128px;
-  margin: 100px 5% 0;
+  margin: 16px 0 0;
   text-align: center;
   white-space: nowrap;
-  width: 90%;
+  width: 100%;
+  background-color:#eee;
 }
+
 #menu ul {
   margin: 0;
   padding: 0;
   position: relative;
-  background-color:#eee;
+  background-color: #eee;
+  z-index: 14;
 }
+
 #menu ul:after {
   clear: both;
   content: "";
   display: block;
 }
+
 #menu li {
   background-position: 50% center;
   display: block;
@@ -62,8 +71,9 @@ header a, a:visited {
   position: relative;
   white-space: nowrap;
   width: 13%;
-  z-index: 2;
+  z-index: 20;
 }
+
 #menu li:after {
   background: url("../images/bg.png") repeat scroll 0 0;
   content: "";
@@ -73,6 +83,7 @@ header a, a:visited {
   top: 0;
   width: 10%;
 }
+
 #menu li:nth-child(1):before {
   background: url("../images/bg.png") repeat scroll 0 0;
   content: "";
@@ -82,6 +93,7 @@ header a, a:visited {
   top: 0;
   width: 10%;
 }
+
 #menu li:nth-child(1) {
   margin-left: 1%;
 }
@@ -92,7 +104,8 @@ header a, a:visited {
   height: 100%;
   text-decoration: none;
 }
-.current{
+
+.current {
   height: 158px;
   left: 7.5%;
   margin-left: -50px;
@@ -106,6 +119,7 @@ header a, a:visited {
   -ms-transition: all 400ms cubic-bezier(0, 1.1, 0.5, 1.1);
   transition: all 400ms cubic-bezier(0, 1.1, 0.5, 1.1);
 }
+
 .cback {
   background-color: #aadd33;
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
@@ -114,6 +128,7 @@ header a, a:visited {
   position: absolute;
   width: 100%;
 }
+
 .ctoparr {
   height: 12px;
   left: 0;
@@ -121,8 +136,9 @@ header a, a:visited {
   position: absolute;
   top: 13px;
   width: 100%;
-  z-index: 2;
+  z-index: 20;
 }
+
 .ctoparr:before {
   border-radius: 20%;
   box-shadow: 0 0 15px #000;
@@ -133,7 +149,8 @@ header a, a:visited {
   top: -10px;
   width: 90%;
 }
-.ctoparr:after{
+
+.ctoparr:after {
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-top: 12px solid #aadd33;
@@ -145,6 +162,7 @@ header a, a:visited {
   top: 0;
   width: 0;
 }
+
 .cbotarr {
   bottom: 17px;
   height: 12px;
@@ -152,8 +170,9 @@ header a, a:visited {
   overflow: hidden;
   position: absolute;
   width: 100%;
-  z-index: 2;
+  z-index: 20;
 }
+
 .cbotarr:before {
   border-radius: 20%;
   bottom: -10px;
@@ -164,6 +183,7 @@ header a, a:visited {
   position: absolute;
   width: 90%;
 }
+
 .cbotarr:after {
   border-bottom: 12px solid #aadd33;
   border-left: 8px solid transparent;
@@ -176,45 +196,59 @@ header a, a:visited {
   position: absolute;
   width: 0;
 }
-#menu li.selected:nth-child(1) ~ .current {
+
+#menu li.selected:nth-child(1)~.current {
   left: 7.5%;
 }
-#menu li.selected:nth-child(2) ~ .current {
+
+#menu li.selected:nth-child(2)~.current {
   left: 21.5%;
 }
-#menu li.selected:nth-child(3) ~ .current {
+
+#menu li.selected:nth-child(3)~.current {
   left: 35.5%;
 }
-#menu li.selected:nth-child(4) ~ .current {  
+
+#menu li.selected:nth-child(4)~.current {
   left: 49.5%;
 }
-#menu li.selected:nth-child(5) ~ .current {
+
+#menu li.selected:nth-child(5)~.current {
   left: 63.5%;
 }
-#menu li.selected:nth-child(6) ~ .current {
-  left: 77.5%; 
+
+#menu li.selected:nth-child(6)~.current {
+  left: 77.5%;
 }
-#menu li.selected:nth-child(7) ~ .current {
-  left: 91.5%; 
+
+#menu li.selected:nth-child(7)~.current {
+  left: 91.5%;
 }
-#menu li:nth-child(1):hover ~ .current {
+
+#menu li:nth-child(1):hover~.current {
   left: 7.5%;
 }
-#menu li:nth-child(2):hover ~ .current {
+
+#menu li:nth-child(2):hover~.current {
   left: 21.5%;
 }
-#menu li:nth-child(3):hover ~ .current {
+
+#menu li:nth-child(3):hover~.current {
   left: 35.5%;
 }
-#menu li:nth-child(4):hover ~ .current {  
+
+#menu li:nth-child(4):hover~.current {
   left: 49.5%;
 }
-#menu li:nth-child(5):hover ~ .current {
+
+#menu li:nth-child(5):hover~.current {
   left: 63.5%;
 }
-#menu li:nth-child(6):hover ~ .current {
-  left: 77.5%; 
+
+#menu li:nth-child(6):hover~.current {
+  left: 77.5%;
 }
-#menu li:nth-child(7):hover ~ .current {
-  left: 91.5%; 
+
+#menu li:nth-child(7):hover~.current {
+  left: 91.5%;
 }

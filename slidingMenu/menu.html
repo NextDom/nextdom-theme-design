@@ -28,7 +28,7 @@
     <!-- Génération dynamique du menu depuis le json de configuration -->
   </nav>
 
-  <div class="content" style="padding:0px">
+  <div id="content" class="content" style="padding: 0px">
     <div id="i_frame">
       <!-- Div pour inclure les écrans de design dans une iframe -->
     </div>
@@ -40,8 +40,9 @@
     // *** NE PAS MODIFIER ***
     var defaultIconWidth = 48; // largeur d'affichage de l'icône
     var defaultIconHeight = 48;
+    var defaultFrameTop = "0px";
     var defaultFrameWidth = "1280px";
-    var defaultIframHeight = "768px";
+    var defaultFrameHeight = "768px";
     var defaultPackIconsName = "pack1";
     var defaultPackIconsColor = "default";
     var waitForLoadingFrame = 1; // ms
@@ -71,8 +72,9 @@
     // - packIconsName : nom du pack d'icônes pour le menu
     // - packIconsColor : couleur de fond des icônes
     //
-    // Gestion des liens dans une iframe : mettre iframe à yes et définir sa largeur et sa hauteur
+    // Gestion des liens dans une iframe : mettre iframe à yes et définir ses position (Top), largeur et hauteur
     // - "iframe": "yes"
+    // - "frameTop": "0px"
     // - "frameWidth": "1024px"
     // - "frameHeight": "580px"
     //
@@ -132,6 +134,7 @@
       "packIconsName": "pack8", // (facultatif) nom du pack d'icônes
       "packIconsColor": "default", // (facultatif) valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
       "iframe": "yes", // (facultatif) gestion de la navigation par frame
+      "frameTop": "0px", // (facultatif) position top de la frame
       "frameWidth": "1280px", // (facultatif) largeur de la frame
       "frameHeight": "768px", // (facultatif) hauteur de la frame
       "iconWidth": "284", // (facultatif) largeur des icônes
@@ -150,6 +153,7 @@
     var link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('type', 'text/css');
+    //link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css?v=@DateTime.UtcNow.ToString()');
     link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css');
     document.getElementsByTagName('head')[0].appendChild(link);
 
@@ -224,19 +228,33 @@
       let menu_id = document.getElementById('i_frame');
 
       if ((typeof json_theme_sliding["iframe"] !== undefined) && (json_theme_sliding["iframe"] === "yes")) {
+        // position de l'iframe
+        let menu_content_style = "padding: 15px 0px 0px; z-index: 10; position: absolute;";
+        let frameTop = defaultFrameTop;
+        if (typeof (json_theme_sliding["frameTop"]) !== "undefined") {
+          frameTop = json_theme_sliding["frameTop"]
+        }
+        let menu_content = document.getElementById('content');
+        menu_content.style = "padding: 15px 0px 0px; z-index: 10; position: absolute; top: " + frameTop;
+
         // iframe pour afficher la page courante
         let menu_f = document.createElement("div");
         menu_f.className = "menuf";
         let menu_iframe = document.createElement("iframe");
         menu_iframe.id = "iframe_a";
+
         let frameWidth = defaultFrameWidth;
         if (typeof (json_theme_sliding["frameWidth"]) !== "undefined") {
-          menu_iframe.width = json_theme_sliding["frameWidth"];
+          frameWidth = json_theme_sliding["frameWidth"];
         }
-        let frameHeight = defaultIframHeight;
+        menu_iframe.width = frameWidth;
+        
+        let frameHeight = defaultFrameHeight;
         if (typeof (json_theme_sliding["frameHeight"]) !== "undefined") {
-          menu_iframe.height = json_theme_sliding["frameHeight"];
+          frameHeight = json_theme_sliding["frameHeight"];
         }
+        menu_iframe.height = frameHeight;
+
         menu_iframe.frameBorder = "0";
         menu_iframe.scrolling = "no";
         menu_iframe.src = "";
