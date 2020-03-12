@@ -121,7 +121,7 @@ a:visited {
 }
 
 .cback {
-  background-color: #aadd33;
+  background-color: #33b8cc;
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   height: 100%;
@@ -153,7 +153,7 @@ a:visited {
 .ctoparr:after {
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 12px solid #aadd33;
+  border-top: 12px solid #33b8cc;
   content: "";
   height: 0;
   left: 50%;
@@ -185,7 +185,7 @@ a:visited {
 }
 
 .cbotarr:after {
-  border-bottom: 12px solid #aadd33;
+  border-bottom: 12px solid #33b8cc;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   bottom: 0;
