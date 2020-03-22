@@ -1,25 +1,22 @@
 <!--
-  Menu Sliding Menu pour Design Nextdom (@noodom)
+  Menu Sliding Menu pour Design Nextdom et Jeedom (@noodom)
 
   - Copier le contenu du répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/slidingMenu/themes sous /var/www/html/data/custom/themes pour Nextdom ou /var/www/html/montheme/themes pour Jeedom
   - Copier le répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/packIcons sous /var/www/html/data/custom/ pour Nextdom ou /var/www/html/montheme/ pour Jeedom
   - Dans le mode Design, créer un design pour le menu
   - Passer en mode Edition dans le design, puis ajouter "Texte/html" et copier/coller ce code HTML
-  - Modifier les paramètres d'affichage du Text/html : Position X=0, Position Y=0, Largeur=1000, Hauteur=500
+  - Modifier les paramètres d'affichage du Text/html : Position X=0, Position Y=0, Largeur=largeur de vos pages Design, Hauteur=500
   - Dans le code HTML ci-dessous, faire les modifications suivantes après la ligne // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR *** :
-    - Modifier la plateforme : var plateforme="nextdom" ou "jeedom"
     - Modifier le contenu du Json pour adapter le contenu à ses besoins (variable json_theme_sliding, voir détail du contenu ci-dessous)
-  -->
+      Penser à mettre à jour pathData si nécessaire : "data/custom" par défaut", "montheme" pour Jeedom par exemple : vérifier les droits d'accès
+-->
 
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
-  <title>Sliding menu (inspiré par http://www.script-tutorials.com/sliding-single-level-menu/)</title>
-  <!--
-  <link href="data/custom/themes/slidingMenu/css/style.css" rel="stylesheet">
-  -->
+  <title>Sliding menu</title>
 </head>
 
 <body>
@@ -47,7 +44,8 @@
     var defaultPackIconsColor = "default";
     var waitForLoadingFrame = 1; // ms
     var checkIcon = false;
-    var pathData = "data/custom";
+    var defaultCursorColor = "#33b8cc";
+    var defaultPathData = "data/custom";
 
 
     // pour chaque item du menu renseigner les différents champs :
@@ -82,7 +80,6 @@
     // *************************************************
     // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
     // *************************************************
-    var plateforme = "nextdom"; // remplacer par "jeedom" pour une utilisation du theme sous Jeedom
     var json_theme_sliding = {
       "page": [{
           "label": "Accueil",
@@ -133,6 +130,7 @@
       ],
       "packIconsName": "pack8", // (facultatif) nom du pack d'icônes
       "packIconsColor": "default", // (facultatif) valeurs possibles pour la couleur de fond des icônes : "default", "blue", "green", "red", "yel"
+      "cursorColor" : "#33b8cc", // (facultatif) "#33b8cc" pour Nextdom (par défaut), "#aadd33" pour Jeedom
       "iframe": "yes", // (facultatif) gestion de la navigation par frame
       "frameTop": "0px", // (facultatif) position top de la frame
       "frameWidth": "1280px", // (facultatif) largeur de la frame
@@ -140,22 +138,34 @@
       "iconWidth": "284", // (facultatif) largeur des icônes
       "iconHeight": "128", // (facultatif) hauteur des icônes
       "timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
-      "checkIcon": "yes" // (facultatif) vérification de l'existence des icônes (avec remplacement par icônes du pack par défaut si absent)
+      "checkIcon": "yes", // (facultatif) vérification de l'existence des icônes (avec remplacement par icônes du pack par défaut si absent)
+      "pathData" : "montheme" // (facultatif) définition du path pour la récupération des fichiers du menu et des icônes
     }
 
     // ***********************************************
     // *** FIN DES MODIFICATIONS par l'utilisateur ***
     // ***********************************************
-    if (plateforme == "jeedom") {
-      pathData = "montheme";
+
+    // récupération du path
+    var pathData = defaultPathData;
+
+    if (typeof (json_theme_sliding["pathData"]) !== "undefined") {
+      pathData = json_theme_sliding["pathData"];
     }
 
-    var link = document.createElement('link');
+    let link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('type', 'text/css');
-    //link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css?v=@DateTime.UtcNow.ToString()');
-    link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css');
+    link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css?v=' + (new Date()).getTime());
+    //link.setAttribute('href', pathData + '/themes/slidingMenu/css/style.css');
     document.getElementsByTagName('head')[0].appendChild(link);
+
+    // récupération de la couleur du curseur
+    var cursorColor = defaultCursorColor;
+
+    if (typeof (json_theme_sliding["cursorColor"]) !== "undefined") {
+      cursorColor = json_theme_sliding["cursorColor"];
+    }
 
     function loadFrame() {
       if ((typeof json_theme_sliding["iframe"] !== undefined) && (json_theme_sliding["iframe"] === "yes")) {
@@ -168,6 +178,9 @@
       if (waitForLoadingFrame != 0) {
         setTimeout(loadFrame, waitForLoadingFrame);
       }
+
+      // modification de la couleur du curseur
+      document.documentElement.style.setProperty('--cursor-color', cursorColor);
     });
 
     function checkImage(urlImage) {
@@ -262,7 +275,7 @@
         menu_f.appendChild(menu_iframe);
         menu_id.appendChild(menu_f);
       }
-
+      
       // récupération du pack d'icônes
       let packIconsName = defaultPackIconsName;
       let packIconsColor = defaultPackIconsColor;
