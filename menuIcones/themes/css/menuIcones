@@ -96,9 +96,15 @@ svg {
   text-decoration: none;
 }
 
-.navigation a:focus::after,
+.navigation a:focus::after { 
+ opacity: 1;
+background-color: rgba(102, 205, 170,0.2);
+}
+
 .navigation a:hover::after {
   opacity: 1;
+background-color: rgba(0, 0, 0,0.2);
+
 }
 
 .navigation a::after {
