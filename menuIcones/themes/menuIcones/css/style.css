@@ -1,1 +1,125 @@
-fff
+@use postcss-cssnext;
+/* helpers/accessibility.css */
+
+.invisible {
+  left: -999px;
+  overflow: hidden;
+  position: absolute;
+  top: -999px;
+}
+
+/* helpers/align.css */
+
+.align {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* layout/base.css */
+
+:root {
+  --body-background-color: #82a8ee;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--body-background-color);
+  margin: 0;
+  min-height: 100%;
+}
+
+/* modules/anchor.css */
+
+a {
+  outline: 0;
+}
+
+/* modules/icon.css */
+
+:root {
+  --icon-fill-color: #97adc6;
+}
+
+.icons {
+  display: none;
+}
+
+.icon {
+  display: inline-block;
+  fill: var(--icon-fill-color);
+  font-size: 2rem;
+  height: 2em;
+  vertical-align: middle;
+  width: 2em;
+}
+
+.icon--2x {
+  font-size: 2rem;
+}
+
+/* modules/image.css */
+
+svg {
+  max-width: 100%;
+}
+
+/* modules/navigation.css */
+
+:root {
+  --navigation-background-color: #f0f6ff;
+  --navigation-border-radius: 0.25rem;
+
+  --navigation-anchor-padding: 1.5rem;
+  --navigation-anchor-text-decoration: none;
+}
+
+.navigation {
+  background-color: #f0f6ff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation a {
+  display: block;
+  padding: 1.5rem;
+  position: relative;
+  text-decoration: none;
+}
+
+.navigation a:focus::after { 
+ opacity: 1;
+background-color: rgba(102, 205, 170,0.2);
+}
+
+.navigation a:hover::after {
+  opacity: 1;
+background-color: rgba(0, 0, 0,0.2);
+
+}
+
+.navigation a::after {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.3s;
+  width: 100%;
+}
+
+.navigation--inline ul {
+  display: flex;
+}
+
