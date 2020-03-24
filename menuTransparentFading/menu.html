@@ -1,0 +1,230 @@
+<!--
+  Menu menu Transparent Fading pour Design Nextdom et Jeedom (@noodom) 
+  proposé par @esso1 (https://codepen.io/pirrera/pen/zapbh/ , @MrPirrera)
+
+  - Copier le contenu du répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/menuTransparentFading/themes sous /var/www/html/data/custom/themes pour Nextdom ou /var/www/html/montheme/themes pour Jeedom
+  - Dans le mode Design, créer un design pour le menu (dans la configuration du design, positionner la largeur de vos pages Design)
+  - Passer en mode Edition dans le design, puis ajouter "Texte/html" et copier/coller ce code HTML
+  - Modifier les paramètres d'affichage du Text/html : Position X=0, Position Y=0, Largeur=largeur de vos pages Design, Hauteur=60
+  - Dans le code HTML ci-dessous, faire les modifications suivantes après la ligne // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR *** :
+    - Modifier le contenu du Json pour adapter le contenu à ses besoins (variable json_theme, voir détail du contenu ci-dessous)
+      Penser à mettre à jour pathData si nécessaire : "data/custom" par défaut", "montheme" pour Jeedom par exemple : vérifier les droits d'accès
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Transparent Fading Navigation Menu</title>
+</head>
+
+<body>
+    <nav id="menu">
+        <!-- Génération dynamique du menu depuis le json de configuration -->
+    </nav>
+
+    <div id="content" class="content" style="padding: 0px">
+        <div id="i_frame">
+            <!-- Div pour inclure les écrans de design dans une iframe -->
+        </div>
+    </div>
+
+    <script language="javascript">
+        // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration ci-dessous)
+        // A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json
+        // *** NE PAS MODIFIER ***
+        var defaultFrameTop = "60px";
+        var defaultFrameWidth = "1280px";
+        var defaultFrameHeight = "768px";
+        var waitForLoadingFrame = 1; // ms
+        var defaultPathData = "data/custom";
+        var menuName = "menuTransparentFading";
+
+        // pour chaque item du menu renseigner les différents champs :
+        // - label : libellé du champ à afficher dans le menu
+        // - link : identifiant du design destinataire du lien du menu
+        //
+        // Gestion des liens dans une iframe : mettre iframe à yes et définir ses position (Top), largeur et hauteur
+        // - "iframe": "yes"
+        // - "frameTop": "60px"
+        // - "frameWidth": "1024px"
+        // - "frameHeight": "580px"
+        //
+        // JSON de configuration à modifier pour personnaliser son menu :
+        // *************************************************
+        // *** DEBUT DES MODIFICATIONS PAR L'UTILISATEUR ***
+        // *************************************************
+        var json_theme = {
+            "page": [{
+                    "label": "Home",
+                    "link": "91",
+                },
+                {
+                    "label": "Energie",
+                    "link": "92",
+                },
+                {
+                    "label": "Chauffage",
+                    "link": "93",
+                },
+                {
+                    "label": "Monitoring",
+                    "link": "94",
+                },
+                {
+                    "label": "Camera",
+                    "link": "95",
+                }
+            ],
+            "iframe": "yes", // (facultatif) gestion de la navigation par frame
+            "frameTop": "60px", // (facultatif) position top de la frame
+            "frameWidth": "1280px", // (facultatif) largeur de la frame
+            "frameHeight": "768px", // (facultatif) hauteur de la frame
+            "timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+            "pathData": "data/custom" // (facultatif) définition du path pour la récupération des fichiers du menu et des icônes
+        }
+
+        // ***********************************************
+        // *** FIN DES MODIFICATIONS par l'utilisateur ***
+        // ***********************************************
+
+        // récupération du path
+        var pathData = defaultPathData;
+
+        if (typeof (json_theme["pathData"]) !== "undefined") {
+            pathData = json_theme["pathData"];
+        }
+
+        let link = document.createElement('link');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('type', 'text/css');
+        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+        //link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css?v=' + (new Date()).getTime());
+        link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css');
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        function loadFrame() {
+            if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {
+                gotoPlan(homeLink);
+            }
+        }
+
+        $(document).ready(function () {
+            // gestion par frame : affichage du premier lien au chargement
+            if (waitForLoadingFrame != 0) {
+                setTimeout(loadFrame, waitForLoadingFrame);
+            }
+        });
+
+        // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+        var homeLink = "";
+
+        function getUrlDestination(urlParam) {
+            if (isNaN(urlParam)) {
+                return urlParam;
+            } else {
+                return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+            }
+        }
+
+        // Affichage du plan idPlan
+        function gotoPlan(idPlan) {
+            let frame_destination = document.getElementById('iframe_a');
+            let urlDestination = getUrlDestination(idPlan);
+
+            if (isNaN(idPlan)) {
+                // url externe
+                window.open(urlDestination, '_blank');
+            } else {
+                if (frame_destination === null) {
+                    // pas de frame
+                    if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+                        window.location.href = urlDestination;
+                    }
+                } else {
+                    // gestion de la navigation par frame
+                    if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+                        frame_destination.src = urlDestination;
+                    }
+                }
+            }
+        }
+
+        function createTheme() {
+            // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+            if ((typeof json_theme["timeout"] !== undefined) && !isNaN(json_theme["timeout"])) {
+                waitForLoadingFrame = json_theme["timeout"];
+            }
+
+            // creation de la frame
+            let menu_id = document.getElementById('i_frame');
+            if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {
+                // position de l'iframe
+                let frameTop = defaultFrameTop;
+
+                if (typeof (json_theme["frameTop"]) !== "undefined") {
+                    frameTop = json_theme["frameTop"]
+                }
+
+                let menu_content = document.getElementById('content');
+                menu_content.style = "padding: 0px; position: absolute; top: " + frameTop;
+
+                // iframe pour afficher la page courante
+                let menu_f = document.createElement("div");
+                menu_f.className = "menuf";
+
+                let menu_iframe = document.createElement("iframe");
+                menu_iframe.id = "iframe_a";
+
+                let frameWidth = defaultFrameWidth;
+                if (typeof (json_theme["frameWidth"]) !== "undefined") {
+                    frameWidth = json_theme["frameWidth"];
+                }
+                menu_iframe.width = frameWidth;
+
+                let frameHeight = defaultFrameHeight;
+                if (typeof (json_theme["frameHeight"]) !== "undefined") {
+                    frameHeight = json_theme["frameHeight"];
+                }
+                menu_iframe.height = frameHeight;
+
+                menu_iframe.frameBorder = "0";
+                menu_iframe.scrolling = "no";
+                menu_iframe.src = "";
+
+                menu_f.appendChild(menu_iframe);
+                menu_id.appendChild(menu_f);
+            }
+
+            // construction du menu
+            let menu = document.getElementById("menu");
+            let menu_ul = document.createElement("ul");
+            menu.appendChild(menu_ul);
+
+            for (let i = 0; i < json_theme["page"].length; i++) {
+                let menu_item = document.createElement("li");
+                let menu_item_a = document.createElement("a");
+
+                let link = json_theme["page"][i]["link"];
+                if (homeLink === "") {
+                    homeLink = link;
+                }
+
+                menu_item_a.setAttribute("href", "#");
+                menu_item_a.setAttribute("onclick", "gotoPlan(" + link + ")");
+                menu_item_a.innerHTML = json_theme["page"][i]["label"];
+
+                menu_item.appendChild(menu_item_a);
+                menu_ul.appendChild(menu_item);
+            }
+
+            menu.appendChild(menu_ul);
+        }
+
+        // création dynamique du menu
+        createTheme();
+    </script>
+</body>
+
+</html>
