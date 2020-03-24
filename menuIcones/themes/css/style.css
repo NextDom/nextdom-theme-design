@@ -90,13 +90,15 @@ svg {
   text-decoration: none;
 }
 
-.navigation a:focus::after,
+.navigation a:focus::after {
+  background-color:rgba(0, 0, 211, .2);
+}
 .navigation a:hover::after {
   opacity: 1;
+  background-color:rgba(0, 0, 0, .2);
 }
 
 .navigation a::after {
-  background-color:rgba(0, 0, 0, .2);
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .3);
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .3);
   content: '';
