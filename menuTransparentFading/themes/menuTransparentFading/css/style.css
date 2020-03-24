@@ -33,7 +33,7 @@
     color: rgba(0, 35, 122, 0.7);
 }
 
-#menu nav a:focus {
+#menu a:focus {
     background-color: rgba (0, 0, 0, 0.2);
 
     opacity: 1;
