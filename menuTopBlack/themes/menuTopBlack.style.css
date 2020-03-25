@@ -1,0 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+#menu {
+
+     background: #444;
+   
+}
+
+#menu ul {
+     background: linear-gradient( #555, #2C2C2C);
+  text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
+box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
+                 0 -1px 0 rgba( 255, 255, 255, 0.4);}
+
+#menu ul li {
+    display: inline-block;
+ border-radius: 8px;
+ box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
+                 0 -1px 0 rgba( 255, 255, 255, 0.4);
+}
+
+#menu ul li a {
+    padding: 18px;
+    font-family: "Open Sans";
+    text-transform: uppercase;
+    color: #000 ;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+
+#menu ul li a:hover {
+   color: #222;
+     background: #555;
+     background: linear-gradient( #777, #333);
+}
+
+#menu a:focus {
+      color: #000;
+     background:  #239b56;
+     background: linear-gradient( #d1f2eb, #2C2C2C);
+     box-shadow: 1px 1px 10px black inset, 
+                 0 1px 0 rgba( 255, 255, 255, 0.4);
+}
