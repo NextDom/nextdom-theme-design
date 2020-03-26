@@ -2,16 +2,35 @@
 
     var json_theme_adminLTE_content = {
         "page": [
-            {"id":"informations","label": "Informations","color":"teal","icon":"fa-info","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            // {"id":"informations","label": "Informations","color":"teal","icon":"fa-info","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"chauffage","label": "Chauffage","color":"blue","icon":"fa-fire","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"energie","label": "Énergie","color":"green","icon":"fa-leaf","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"securite","label": "Sécurité","color":"red","icon":"fa-shield","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"lumieres","label": "Lumières","color":"orange","icon":"fa-lightbulb-o","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
-            // {"id":"automatisme","label": "Automatisme","color":"maroon","icon":"fa-magic","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
+            {"id":"automatisme","label": "Automatisme","color":"maroon","icon":"fa-magic","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"monitoring","label": "Monitoring","color":"purple","icon":"fa-television","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"},
             // {"id":"autre","label": "Autre","color":"grey","barStyle":"bg-black","icon":"fa-hashtag","iconColor":"whitesmoke","iconSize":"300","panelColor":"#6C8192"}
+        ],
+        "level": [
+            {"planId":"19","label": "RDC","icon":"fa-chevron-down"},
+            {"planId":"20","label": "Étage","icon":"fa-chevron-up"}
         ]
     };
+    function getUrlDestination(urlParam) {
+        if (isNaN(urlParam)) {
+            return urlParam;
+        } else {
+            let location = window.location;
+            return location.protocol + '//' + location.host + '/index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+        }
+    }
+
+    // Affichage du plan idPlan ou d'une url externe
+    function gotoPlan(idPlan) {
+        let urlDestination = getUrlDestination(idPlan);
+
+        return urlDestination;
+    }
 
     function createPage(divMain, pageData) {
         let page = document.createElement("div");
@@ -62,6 +81,7 @@
         panel_body.style.backgroundColor = pageData["panelColor"];
         panel_body.style.height = "100%";
         panel_body.style.width = "100%";
+        panel_body.style.padding = "0px 0px 0px 0px";
 
         let i_panel = document.createElement("i");
         let iconSize = pageData["iconSize"];
@@ -75,15 +95,69 @@
         if(pageData["iconColor"]){
             i_panel.style.color = pageData["iconColor"];
         }
-
-        panel_body.appendChild(i_panel);
         panel.appendChild(panel_body);
 
         content.style.height = (screen.height - 60 - 27 - 6*10 -6*1) + "px";
         content.appendChild(info_box);
+
+        if(json_theme_adminLTE_content["level"] && json_theme_adminLTE_content["level"].length > 0){
+
+            for (let i = 0; i < json_theme_adminLTE_content["level"].length; i++) {
+                createButtonLevel(panel_body,json_theme_adminLTE_content["level"][i],i);
+            }
+
+            let iframe = document.createElement("iframe");
+            iframe.id = "levelIframe";
+            iframe.style.flex = "1";
+            iframe.style.height = "100%";
+            iframe.style.width = "100%";
+            iframe.style.borderWidth = "0px";
+            iframe.name  ="levelIframe";
+            iframe.src = gotoPlan(json_theme_adminLTE_content["level"][0]["planId"]);
+            panel_body.appendChild(iframe);
+
+        } else {
+            panel_body.appendChild(i_panel);
+        }
         content.appendChild(panel);
+
         page.appendChild(content);
         divMain.appendChild(page);
+    }
+
+    function createButtonLevel(panel_body, levelData,number){
+        let info_box = document.createElement("div");
+        info_box.style.top = "50px";
+        info_box.style.right = (50 + number*30) +"px";
+        info_box.style.position = "absolute";
+        info_box.style.textAlign = "right";
+
+        let info_box_icon = document.createElement("span");
+
+        let link = document.createElement("a");
+        // link.href = gotoPlan(levelData["planId"]);
+        link.setAttribute("href", gotoPlan(levelData["planId"]));
+        link.target ="levelIframe";
+        // link.style.top = "50px";
+        // link.style.right = (50 + number*30) +"px";
+        // link.style.position = "absolute";
+        // link.style.textAlign = "right";
+
+        let i = document.createElement("i");
+        // let iconSize_previous = levelData["iconSize"];
+        i.className = "fa " + levelData["icon"];
+        i.style.fontSize = "30px";
+        // i.style.top = "50px";
+        // i.style.right = (50 + number*30) +"px";
+        // i.style.position = "absolute";
+        // i.style.textAlign = "right";
+        i.style.opacity = "1";
+        i.style.color = "aqua";
+        link.appendChild(info_box_icon);
+        info_box_icon.appendChild(i);
+        info_box.appendChild(link);
+        panel_body.appendChild(info_box);
+
     }
 
     function createThemeAdminLTE(){
