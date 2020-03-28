@@ -1,0 +1,64 @@
+<!-- 
+    Renseigner la couleur de clignotement, la couleur du bord, l'épaisseur du bord, la largeur et la hauteur du cadre dans les modifications utilisateurs
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        :root {
+            --blinking-border-color: #33b8cc;
+            --border-color: #33b8cc;
+            --border-color-width:"300px";
+            --border-color-height:"300px";
+            --border-color-depth:2;
+        }
+
+        @-webkit-keyframes glow {
+            to {
+                box-shadow: 0 0 35px var(--blinking-border-color);
+            }
+        }
+
+        #myGlower {
+            width: var(--border-color-width);
+            height: var(--border-color-height);
+            margin: 50px;
+            border: var(--border-color-depth) solid var(--border-color);
+            border-radius: 10px 10px 10px 10px;
+            animation: glow 0.5s infinite alternate;
+        }
+
+        #myGlower:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myGlower"></div>
+    <script language="javascript">
+        // MODIFICATIONS UTILISATEUR
+        // choix de la couleur du cadre clignotant
+        let blinkingBorderColor = "#33b8cc"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la couleur du cadre
+        let borderColor = "#33b8cc"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la largeur du cadre (en pixels)
+        let borderWidth = "300px";
+        // choix de la hauteur du cadre (en pixels)
+        let borderHeight = "300px";
+        // choix de l'épaisseur du cadre (en pixels)
+        let borderDepth = "2px"; // mettre 0 pour ne pas ajouter cadre
+        // FIN MODIFICATIONS UTILISATEUR
+
+        document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
+        document.documentElement.style.setProperty('--border-color', borderColor);
+        document.documentElement.style.setProperty('--border-color-width', borderWidth);
+        document.documentElement.style.setProperty('--border-color-height', borderHeight);
+        document.documentElement.style.setProperty('--border-color-depth', borderDepth);
+    </script>
+</body>
+
+</html>
