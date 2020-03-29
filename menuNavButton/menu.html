@@ -265,14 +265,6 @@
 
             // construction du menu
             let menu = document.getElementById("menu");
-/**
-        <ul>
-            <li class="active"><a href="#" class="active-text"><i class="fa fa-codepen" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-coffee" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-rocket" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-        </ul>
-**/
             let menu_ul = document.createElement("ul");
             menu.appendChild(menu_ul);
 
@@ -281,6 +273,7 @@
                 let menu_item_a = document.createElement("a");
 
                 let link = json_theme["page"][i]["link"];
+                menu_item.setAttribute("onclick", "gotoPlan(" + link + ")");
                 if (homeLink === "") {
                     homeLink = link;
    
@@ -290,8 +283,6 @@
                 }
 
                 menu_item_a.setAttribute("href", "#");
-                menu_item_a.setAttribute("onclick", "gotoPlan(" + link + ")");
-                //menu_item_a.innerHTML = json_theme["page"][i]["label"];
                 let menu_item_a_i = document.createElement("i");
                 menu_item_a_i.className = json_theme["page"][i]["icon"];
                 menu_item_a_i.setAttribute("aria-hidden", "true");
