@@ -1,0 +1,179 @@
+<!-- 
+    - Cadre clignotant sur modification de la valeur d'une commande info Nextdom/Jeedom passée en paramètre (@noodom) 
+    - Renseigner 
+		la couleur de clignotement, la couleur du bord, 
+        la largeur et la hauteur du cadre, l'épaisseur du bord,
+        le titre, la couleur du titre, la couleur de fond du titre,
+        le path du logo, le path du fond
+    dans les modifications utilisateurs
+    - recopier les images de logo et de fond dans l'arborescence Nextdom/Jeedom
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        /* ! Ne pas modifier : voir modifications utilisateurs plus bas ! */
+        :root {
+            --blinking-border-color: #33b8cc;
+            --border-color: #33b8cc;
+            --border-alert-color: #ff0000;
+            --border-color-width: "300";
+            --border-color-height: "300";
+            --border-color-depth: "2";
+            --title: "Titre";
+            --title-color: "rgba(255,255,255,1.0)";
+            --title-alert-color: #ff0000;
+            --title-background-color: "rgba(241,7,7,0.2)";
+            --logo-path: "montheme/images/cadre/alarmLogo.png";
+            --background-path: "montheme/images/cadre/alarmBackground.png";
+        }
+
+        @-webkit-keyframes glow {
+            to {
+                box-shadow: 0 0 35px var(--blinking-border-color);
+            }
+        }
+
+        #myGlower {
+            width: var(--border-color-width);
+            height: var(--border-color-height);
+            margin: 0px;
+            border: var(--border-color-depth) solid var(--border-color);
+            border-radius: 10px 10px 10px 10px;
+            animation-play-state: paused;
+        }
+
+        /*
+        #myGlower:hover {
+            animation: glow 0.5s infinite alternate;
+        }
+        */
+
+        #title {
+            color: var(--title-color);
+            font-size: 24px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            background-color: var(--title-background-color);
+            padding-top: 5px;
+            font-family: Comic sans MS;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        #divLogo {
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            margin-top: 6px;
+            margin-left: 5px;
+            opacity: 1.0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #logo {
+            width: 30px;
+            height: 30px;
+        }
+
+        #bg {
+            opacity: 0.5;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="myGlower" class="cmd">
+            <!-- logo -->
+            <div id="divLogo">
+                <img id="logo" src="var(--logo-path)">
+            </div>
+            <!-- title -->
+            <div id="title">
+                Title
+            </div>
+            <!-- background -->
+            <div>
+                <img id="bg" src="var(--background-path)" />
+            </div>
+        </div>
+    </div>
+
+    <script language="javascript">
+        // MODIFICATIONS UTILISATEUR
+        // commande modifiant dynamiquement le comportement du cadre
+        var cmdId = 1777;
+        // choix de la couleur du cadre
+        let borderColor = "#ffffff"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la couleur du cadre sur événement déclenché
+        let borderAlertColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la couleur du cadre clignotant
+        let blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la largeur du cadre (en pixels)
+        let borderWidth = "300";
+        // choix de la hauteur du cadre (en pixels)
+        let borderHeight = "300";
+        // choix de l'épaisseur du cadre (en pixels)
+        let borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
+        // choix et couleurs du titre
+        let title = "Alarme";
+        // couleur si pas d'événement en cours
+        let titleColor = "rgba(255,255,255,1.0)";
+        // couleur sur événement déclenché
+        let titleAlertColor = "red";
+        let titleBackgroundColor = "rgba(241,7,7,0.2)";
+        // choix du logo (image d'exemple dans le répertoire /images)
+        let logoPath = "montheme/images/cadres/alarmLogo.png";
+        // choix de l'image de fond (image d'exemple dans le répertoire /images)
+        let backgroundPath = "montheme/images/cadres/alarmBackground.png";
+        // FIN MODIFICATIONS UTILISATEUR
+
+        document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
+        document.documentElement.style.setProperty('--border-color', borderColor);
+        document.documentElement.style.setProperty('--border-alert-color', borderAlertColor);
+        document.documentElement.style.setProperty('--border-color-width', borderWidth + 'px');
+        document.documentElement.style.setProperty('--border-color-height', borderHeight + 'px');
+        document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
+        document.getElementById("title").innerHTML = title;
+        document.documentElement.style.setProperty('--title-color', titleColor);
+        document.documentElement.style.setProperty('--title-alert-color', titleAlertColor);
+        document.documentElement.style.setProperty('--title-background-color', titleBackgroundColor);
+        document.getElementById("logo").setAttribute("src", logoPath);
+        document.getElementById("bg").setAttribute("src", backgroundPath);
+        document.getElementById("bg").setAttribute("width", (borderWidth - 2*borderDepth) + 'px');
+        document.getElementById("bg").setAttribute("height", (borderHeight - 2*borderDepth - 38) + 'px');
+
+        // Actions sur récupération de valeur de commande
+        $('#myGlower')[0].setAttribute('data-cmd_id', cmdId);
+
+        jeedom.cmd.update[cmdId] = function(_options){
+            jeedom.cmd.execute({ // Récupération de la valeur  
+                id: cmdId,
+                success:  function(currentValue) {
+                    if (currentValue == 0 ) {
+                        $('#title').css('color', titleColor);
+                        $('#myGlower').css('border', 'var(--border-color-depth) solid var(--border-color)');
+                        $('#myGlower').css('animation', 'none');
+                    } 
+                    else {
+                        $('#title').css('color', titleAlertColor);
+                        $('#myGlower').css('border', 'var(--border-color-depth) solid var(--border-alert-color)');
+                        $('#myGlower').css('animation', 'glow 0.5s infinite alternate');
+                    }
+                }
+            });   
+        };
+        
+        jeedom.cmd.update[cmdId]();
+
+    </script>
+</body>
+
+</html>
