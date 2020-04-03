@@ -1,5 +1,14 @@
 <!-- 
-    Renseigner la couleur de clignotement, la couleur du bord, l'épaisseur du bord, la largeur et la hauteur du cadre dans les modifications utilisateurs
+    - Cadre clignotant sur modification de la valeur d'une commande info Nextdom/Jeedom passée en paramètre (@noodom) 
+        merci à @salvialf pour avoir fourni la solution technique permettant de faire le lien entre une commande info et le cadre
+        https://forum.jeedom.com/viewtopic.php?f=25&t=35100&p=778253#p776654
+
+    - Renseigner 
+        l'identifiant de la commande info Nextdom/Jeedom (le plus important !) : var cmdId = 1234;
+		la couleur de clignotement, la couleur du bord, 
+        la largeur et la hauteur du cadre, l'épaisseur du bord,
+    dans les modifications utilisateurs (après la ligne // MODIFICATIONS UTILISATEUR)
+    - Dans un design, clic droit puis Ajouter text/html et copier ce code 
 -->
 
 <!DOCTYPE html>
@@ -8,12 +17,14 @@
 <head>
     <title></title>
     <style>
+        /* ! Ne pas modifier : voir modifications utilisateurs plus bas ! */
         :root {
             --blinking-border-color: #33b8cc;
             --border-color: #33b8cc;
-            --border-color-width:"300px";
-            --border-color-height:"300px";
-            --border-color-depth:2;
+            --border-alert-color: #ff0000;
+            --border-color-width: "300";
+            --border-color-height: "300";
+            --border-color-depth: "2";
         }
 
         @-webkit-keyframes glow {
@@ -28,36 +39,59 @@
             margin: 50px;
             border: var(--border-color-depth) solid var(--border-color);
             border-radius: 10px 10px 10px 10px;
-            animation: glow 0.5s infinite alternate;
-        }
-
-        #myGlower:hover {
             animation-play-state: paused;
         }
     </style>
 </head>
 
 <body>
-    <div id="myGlower"></div>
+    <div id="myGlower" class="cmd"></div>
     <script language="javascript">
         // MODIFICATIONS UTILISATEUR
-        // choix de la couleur du cadre clignotant
-        let blinkingBorderColor = "#33b8cc"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // commande modifiant dynamiquement le comportement du cadre
+        var cmdId = 1518;
         // choix de la couleur du cadre
-        let borderColor = "#33b8cc"; // #33b8cc Nextdom, #93cc01 Jeedom
+        let borderColor = "#ffffff"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la couleur du cadre sur événement déclenché
+        let borderAlertColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        // choix de la couleur du cadre clignotant
+        let blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la largeur du cadre (en pixels)
-        let borderWidth = "300px";
+        let borderWidth = "300";
         // choix de la hauteur du cadre (en pixels)
-        let borderHeight = "300px";
+        let borderHeight = "300";
         // choix de l'épaisseur du cadre (en pixels)
-        let borderDepth = "2px"; // mettre 0 pour ne pas ajouter cadre
+        let borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
         document.documentElement.style.setProperty('--border-color', borderColor);
-        document.documentElement.style.setProperty('--border-color-width', borderWidth);
-        document.documentElement.style.setProperty('--border-color-height', borderHeight);
-        document.documentElement.style.setProperty('--border-color-depth', borderDepth);
+        document.documentElement.style.setProperty('--border-alert-color', borderAlertColor);
+        document.documentElement.style.setProperty('--border-color-width', borderWidth + 'px');
+        document.documentElement.style.setProperty('--border-color-height', borderHeight + 'px');
+        document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
+
+        // Actions sur récupération de valeur de commande
+        $('#myGlower')[0].setAttribute('data-cmd_id', cmdId);
+
+        jeedom.cmd.update[cmdId] = function (_options) {
+            jeedom.cmd.execute({ // Récupération de la valeur  
+                id: cmdId,
+                success: function (currentValue) {
+                    if (currentValue == 0) {
+                        // cadre non clignotant
+                        $('#myGlower').css('border', 'var(--border-color-depth) solid var(--border-color)');
+                        $('#myGlower').css('animation', 'none');
+                    } else {
+                        // cadre clignotant
+                        $('#myGlower').css('border', 'var(--border-color-depth) solid var(--border-alert-color)');
+                        $('#myGlower').css('animation', 'glow 0.5s infinite alternate');
+                    }
+                }
+            });
+        };
+
+        jeedom.cmd.update[cmdId]();
     </script>
 </body>
 
