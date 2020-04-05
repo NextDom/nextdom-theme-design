@@ -9,15 +9,34 @@
         - Pour l'installation (V3) :
             - créer un virtuel avec une commande info de sous-type Info/Autre
             - mettre la commande (#[objet][commande][commande info]#) qui va déclencher le clignotement comme valeur de cette commande
-            - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels largeur, hauteur, couleur (color1, color2 ou color3), titre et message.
+            - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels :
+                largeur, hauteur, couleur, titre, message, valeurDeclenchement et sensDeclenchement.
 
             - créer un widget en version Dashboard, de type Info et de sous-titre Autre
             - copier le contenu du fichier /widgets/blinkingBorder.html
             - Appliquer le widget à la commande info du virtuel précédent
 
-            - dans une page de design, ajouter le virtuel
+            - dans une page de design, ajouter le virtuel et rafraichir la page
 
-        - Pour l'installation (V4) : à venir
+        - Pour l'installation (V4) :
+            - créer un virtuel avec une commande info de sous-type Info/Autre
+            - mettre la commande (#[objet][commande][commande info]#) qui va déclencher le clignotement comme valeur de cette commande
+            - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels :
+                largeur, hauteur, couleur, titre, message, valeurDeclenchement et sensDeclenchement.
+
+            - sélectionner le menu Outils/widget
+            - sélectionner le bouton Gestion/Code
+            - sélectionner le bouton Nouveau pour créer un nouveau widget
+                de version Dashboard de type Info et sous-type Autre,
+                puis donner un nom au widget
+                et sélectionner Créer
+            - depuis la zone d'édition, copier le code de cette page
+            - sélectionner le bouton Sauvegarder (retenir le nom du widget cmd.info.string.nomWidget.html)
+
+            - appliquer le widget (Customtemp/nomWidget) à la commande info du virtuel précédent (roue dentée, Affichage)
+
+            - dans une page de design, ajouter le virtuel et rafraichir la page
+
 
         - Paramètres :
             - renseigner la commande info (permettant de commande le clignotement) comme valeur de la commande info du virtuel
@@ -88,7 +107,7 @@
 
     .block .content {
         color: #fff;
-        padding:10px;
+        padding: 10px;
     }
 
     * {
@@ -170,12 +189,12 @@
 
     .box .content {
         color: #fff;
-        padding:10px;
+        padding: 10px;
     }
 </style>
 
 <div style="padding:0px;width:auto;height:auto;" class="cmd #history# tooltips cmd-widget container-fluid"
-    data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#"
+    data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#"
     title="#collectDate#">
 
     <div id="dynBox#uid#" class="box color1">
@@ -214,8 +233,8 @@
             let couleur = ('#couleur#' != '#' + 'couleur#') ? "#couleur#" : 'color1';
             let titre = ('#titre#' != '#' + 'titre#') ? "#titre#" : '';
             let message = ('#message#' != '#' + 'message#') ? "#message#" : '';
-            let valeurDeclenchement= ('#valeurDeclenchement#' != '#' + 'valeurDeclenchement#') ? "#valeurDeclenchement#" : '';
-            let sensDeclenchement= is_numeric('#sensDeclenchement#') ? parseFloat('#sensDeclenchement#') : 0;
+            let valeurDeclenchement = ('#valeurDeclenchement#' != '#' + 'valeurDeclenchement#') ? "#valeurDeclenchement#" : '';
+            let sensDeclenchement = is_numeric('#sensDeclenchement#') ? parseFloat('#sensDeclenchement#') : 0;
 
             // mise à jour du titre, du message et de la taille
             borderTitle.innerHTML = titre;
@@ -224,8 +243,8 @@
             dynBox.style.height = hauteur + 'px';
 
             // mise à jour du style du widget
-            let lanceClignotement = (updateCmd == valeurDeclenchement && sensDeclenchement == 1)
-                || (updateCmd != valeurDeclenchement && sensDeclenchement == 0);
+            let lanceClignotement = (updateCmd == valeurDeclenchement && sensDeclenchement == 1) ||
+                (updateCmd != valeurDeclenchement && sensDeclenchement == 0);
 
             if (lanceClignotement) {
                 // lancement clignotement
