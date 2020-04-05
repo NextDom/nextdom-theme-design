@@ -6,7 +6,7 @@
         ainsi que le passage par paramètre de plusieurs commandes (exemple repris du widget workandroid)
 
 
-        Pour l'installation :
+        - Pour l'installation (V3) :
             - créer un virtuel avec une commande info de sous-type Info/Autre
             - mettre la commande (#[objet][commande][commande info]#) qui va déclencher le clignotement comme valeur de cette commande
             - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels largeur, hauteur, couleur (color1, color2 ou color3), titre et message.
@@ -16,6 +16,21 @@
             - Appliquer le widget à la commande info du virtuel précédent
 
             - dans une page de design, ajouter le virtuel
+
+        - Pour l'installation (V4) : à venir
+
+        - Paramètres :
+            - renseigner la commande info (permettant de commande le clignotement) comme valeur de la commande info du virtuel
+            - Paramètres optionnels
+                - largeur : 300 par défaut (ne pas mettre px, juste la valeur numérique)
+                - hauteur : 300 par défaut (ne pas mettre px, juste la valeur numérique)
+                - couleur : color1 (valeur par défaut), color2 ou color3
+                - titre : titre à afficher dans le cadre
+                - message : message à afficher dans le cadre
+                - valeurDeclenchement : valeur de la commande info déclenchant (ou arrêtant) l'animation (0 par défaut)
+                - sensDeclenchement : 
+                    - 0 (par défaut) : arrête clignotement si valeurDeclenchement en cours, clignote pour toute autre valeur
+                    - 1 : clignote si valeurDeclenchement en cours, clignotement arrêté pour toute autre valeur
 -->
 
 <style>
@@ -187,36 +202,43 @@
                 // Mauvais paramétrage
             }
             */
-            var updateCmd = parseInt(cmdValue[0]);
+            let updateCmd = parseInt(cmdValue[0]);
 
-            var dynBox = document.getElementById("dynBox#uid#");
-            var borderTitle = document.getElementById("borderTitle#uid#");
-            var borderContent = document.getElementById("borderContent#uid#");
+            let dynBox = document.getElementById("dynBox#uid#");
+            let borderTitle = document.getElementById("borderTitle#uid#");
+            let borderContent = document.getElementById("borderContent#uid#");
 
             // récupération des paramètres
-            var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#') : 300;
-            var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#') : 300;
-            var valueC = ('#couleur#' != '#' + 'couleur#') ? "#couleur#" : 'color1';
-            var valueT = ('#titre#' != '#' + 'titre#') ? "#titre#" : '';
-            var valueM = ('#message#' != '#' + 'message#') ? "#message#" : '';
+            let largeur = is_numeric('#largeur#') ? parseFloat('#largeur#') : 300;
+            let hauteur = is_numeric('#hauteur#') ? parseFloat('#hauteur#') : 300;
+            let couleur = ('#couleur#' != '#' + 'couleur#') ? "#couleur#" : 'color1';
+            let titre = ('#titre#' != '#' + 'titre#') ? "#titre#" : '';
+            let message = ('#message#' != '#' + 'message#') ? "#message#" : '';
+            let valeurDeclenchement= ('#valeurDeclenchement#' != '#' + 'valeurDeclenchement#') ? "#valeurDeclenchement#" : '';
+            let sensDeclenchement= is_numeric('#sensDeclenchement#') ? parseFloat('#sensDeclenchement#') : 0;
 
             // mise à jour du titre, du message et de la taille
-            borderTitle.innerHTML = valueT;
-            borderContent.innerHTML = valueM;
-            dynBox.style.width = valueL + 'px';
-            dynBox.style.height = valueH + 'px';
+            borderTitle.innerHTML = titre;
+            borderContent.innerHTML = message;
+            dynBox.style.width = largeur + 'px';
+            dynBox.style.height = hauteur + 'px';
 
             // mise à jour du style du widget
-            if (updateCmd) {
+            let lanceClignotement = (updateCmd == valeurDeclenchement && sensDeclenchement == 1)
+                || (updateCmd != valeurDeclenchement && sensDeclenchement == 0);
+
+            if (lanceClignotement) {
+                // lancement clignotement
                 dynBox.classList.remove("box");
                 dynBox.classList.remove("color1");
                 dynBox.classList.remove("color2");
                 dynBox.classList.remove("color3");
                 dynBox.classList.add("block");
             } else {
+                // arrêt clignotement
                 dynBox.classList.remove("block");
                 dynBox.classList.add("box");
-                dynBox.classList.add(valueC);
+                dynBox.classList.add(couleur);
             }
         }
         jeedom.cmd.update['#id#']({
