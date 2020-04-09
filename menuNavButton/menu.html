@@ -41,8 +41,8 @@
         var waitForLoadingFrame = 1; // ms
         var defaultPathData = "data/custom";
 		var defaultCssFilename = "style.css";
-        var defaultInactiveBackgroundCssImage = "activeMetalBackground.png";
-		var defaultActiveBackgroundCssImage = "inactiveMetalBackground.png";
+        var defaultInactiveBackgroundCssImage = "inactiveMetalBackground.png";
+		var defaultActiveBackgroundCssImage = "activeMetalBackground.png";
         var menuName = "menuNavButton";
         var defaultCursorColor = "#33b8cc";
         var defaultCursorColorShadow = "rgba(51, 184, 204, 0.5)";
@@ -127,8 +127,8 @@
             "pathData": "data/custom", // (facultatif) définition du path pour la récupération des fichiers du menu et des icônes
 			// Gestion du CSS
 			"cssFilename": "style.css", // (facultatif) nom du fichier CSS à utiliser
-            "inactiveBackgroundCssImage": "activeMetalBackground.png", // (facultatif) image de fond du menu sans focus
-			"activeBackgroundCssImage": "inactiveMetalBackground.png", // (facultatif)  image de fond du manu avec focus
+            "inactiveBackgroundCssImage": "inactiveMetalBackground.png", // (facultatif) image de fond du menu sans focus
+			"activeBackgroundCssImage": "activeMetalBackground.png", // (facultatif)  image de fond du menu avec focus
 			
 			"cursorColor": "#33b8cc", // (facultatif) couleur du curseur sélectionné
             // "cursorColor": "#93cc01", //pour Jeedom
@@ -161,7 +161,7 @@
 		// récupération du nom de l'image de fond du menu sans focus
         var inactiveBackgroundCssImage = defaultInactiveBackgroundCssImage;
 
-        if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
+        if (typeof (json_theme["inactiveBackgroundCssImage"]) !== "undefined") {
             inactiveBackgroundCssImage = json_theme["inactiveBackgroundCssImage"];
         }
 		inactiveBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + inactiveBackgroundCssImage + ')';
