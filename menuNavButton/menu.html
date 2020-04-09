@@ -40,6 +40,9 @@
         var defaultFrameHeight = "768px";
         var waitForLoadingFrame = 1; // ms
         var defaultPathData = "data/custom";
+		var defaultCssFilename = "style.css";
+        var defaultInactiveBackgroundCssImage = "activeMetalBackground.png";
+		var defaultActiveBackgroundCssImage = "inactiveMetalBackground.png";
         var menuName = "menuNavButton";
         var defaultCursorColor = "#33b8cc";
         var defaultCursorColorShadow = "rgba(51, 184, 204, 0.5)";
@@ -122,7 +125,12 @@
             "frameHeight": "820px", // (facultatif) hauteur de la frame
             "timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
             "pathData": "data/custom", // (facultatif) définition du path pour la récupération des fichiers du menu et des icônes
-            "cursorColor": "#33b8cc", // (facultatif) couleur du curseur sélectionné
+			// Gestion du CSS
+			"cssFilename": "style-metal.css", // (facultatif) nom du fichier CSS à utiliser
+            "inactiveBackgroundCssImage": "activeMetalBackground.png", // (facultatif) image de fond du menu sans focus
+			"activeBackgroundCssImage": "inactiveMetalBackground.png", // (facultatif)  image de fond du manu avec focus
+			
+			"cursorColor": "#33b8cc", // (facultatif) couleur du curseur sélectionné
             // "cursorColor": "#93cc01", //pour Jeedom
             "cursorColorShadow": "rgba(51, 184, 204, 0.5)", // (facultatif) couleur de l'ombre autour du curseur sélectionné
             // "cursorColorShadow": "rgba(147, 204, 1, 0.5)"// pour Jeedom
@@ -143,15 +151,42 @@
             pathData = json_theme["pathData"];
         }
 
+		// récupération du nom de fichier CSS
+        var cssFilename = defaultCssFilename;
+
+        if (typeof (json_theme["cssFilename"]) !== "undefined") {
+            cssFilename = json_theme["cssFilename"];
+        }
+
+		// récupération du nom de l'image de fond du menu sans focus
+        var inactiveBackgroundCssImage = defaultInactiveBackgroundCssImage;
+
+        if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
+            inactiveBackgroundCssImage = json_theme["inactiveBackgroundCssImage"];
+        }
+		inactiveBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + inactiveBackgroundCssImage + ')';
+
+		// récupération du nom de l'image de fond du menu avec focus
+        var activeBackgroundCssImage = defaultActiveBackgroundCssImage;
+
+        if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
+            activeBackgroundCssImage = json_theme["activeBackgroundCssImage"];
+        }
+		activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + activeBackgroundCssImage + ')';
+		
         let link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
         link.setAttribute('type', 'text/css');
         // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-        link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css?v=' + (new Date()).getTime());
-        //link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css');
+        link.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename + '?v=' + (new Date()).getTime());
+        //link.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename);
         document.getElementsByTagName('head')[0].appendChild(link);
 
-        // récupération de la couleur du curseur
+		// mise à jour des images de fond du CSS
+		document.documentElement.style.setProperty('--image-path-inactive', inactiveBackgroundCssImage);
+		document.documentElement.style.setProperty('--image-path-active', activeBackgroundCssImage);
+        
+		// récupération de la couleur du curseur
         var cursorColor = defaultCursorColor;
         var cursorColorShadow = defaultCursorColorShadow;
         var cursorDefaultColor = defaultCursorDefaultColor;

@@ -7,6 +7,8 @@
     --border-menu: #151515;
     --background-active-link: #202020;
     --background-default-link: #151515;
+	--image-path-inactive: url(/../data/custom/themes/menuNavButton/img/inactiveMetalBackground.png);
+	--image-path-active: url(/../data/custom/themes/menuNavButton/img/activeMetalBackground.png);
 }
 
 * {
@@ -44,15 +46,15 @@
     margin: 0px;
     height: 90px;
     width: 95px;
-    border: 4px ridge rgba(80, 80, 80, 1);
+	border: 4px ridge rgba(80, 80, 80, 1);
     transition: all 0.5s;
-    box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
-    border-bottom: 1rem solid;
-    border-top: 0.2rem solid gray;
-    background-image: url(/../montheme/themes/menuNavButton/img/inactiveRustBackground.png);
-    -webkit-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
-    box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+	box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
+	border-bottom: 1rem solid;
+	border-top: 0.2rem solid gray;
+    background-image: var(--image-path-inactive) ;
+	-webkit-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+	box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
 }
 
 #menu li:nth-of-type(1) {
@@ -73,31 +75,29 @@
 
 #menu a {
     display: inline-block;
-    color: #CA6641;
-    background: #666666;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    text-shadow: 1px 1px white, -1px -1px #444;
+	color: gray;
+	background: #666666;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	text-shadow: 1px 1px white, -1px -1px #444;
     font-size: 40px;
     transition: all 0.5s;
 }
 
 #menu li.active {
     background: var(--background-active-link);
-    border: 4px ridge rgba(80, 80, 80, 1);
+	border: 4px ridge rgba(80, 80, 80, 1);  
     transition: all 0.5s;
-    box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
-    border-bottom: 2px solid black;
-    border-top: 0.2rem solid gray;
-    background-image: url(/../montheme/themes/menuNavButton/img/activeRustBackground.png);
+	box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
+	border-bottom: 2px solid black;
+	border-top: 0.2rem solid gray;
+	background-image: var(--image-path-active) ;
 }
-        
-                 
-
+           
 #menu .active-text {
-    margin-top:10px;
+	margin-top:10px;
     color:#00FF00;
-    text-shadow: 0 0 15px blue;
+    text-shadow: 0 0 15px green;
 }
 
