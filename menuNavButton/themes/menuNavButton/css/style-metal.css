@@ -69,7 +69,7 @@
 
 #menu li:hover {
     cursor: pointer;
-    color: #00FF00;
+   color:var(--cursor-color);
     text-shadow: 0 0 10px red;
 }
 
