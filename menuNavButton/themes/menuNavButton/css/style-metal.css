@@ -2,7 +2,7 @@
 
 :root {
     --cursor-color: #00FF00;
-    --cursor-color-shadow: rgba(51, 184, 204, 0.5);
+    --cursor-color-shadow: blue;
     --cursor-default-color: white;
     --border-menu: #151515;
     --background-active-link: #202020;
@@ -97,7 +97,7 @@
            
 #menu .active-text {
 	margin-top:10px;
-    color:#00FF00;
-    text-shadow: 0 0 15px green;
+    color:var(--cursor-color);
+    text-shadow: 0 0 15px var(--cursor-color-shadow);
 }
 
