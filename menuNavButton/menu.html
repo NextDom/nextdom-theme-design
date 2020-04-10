@@ -127,8 +127,8 @@
             "pathData": "data/custom", // (facultatif) définition du path pour la récupération des fichiers du menu et des icônes
             // Gestion du CSS
             "cssFilename": "style.css", // (facultatif) nom du fichier CSS à utiliser
-            "inactiveBackgroundCssImage": "inactiveMetalBackground.png", // (facultatif) image de fond du menu sans focus
-            "activeBackgroundCssImage": "activeMetalBackground.png", // (facultatif)  image de fond du menu avec focus
+            "inactiveBackgroundCssImage": "Metal", // (facultatif) type image de fond du menu sans focus
+            "activeBackgroundCssImage": "Metal", // (facultatif)  type image de fond du menu avec focus
 			
             "cursorColor": "#33b8cc", // (facultatif) couleur du curseur sélectionné
             // "cursorColor": "#93cc01", //pour Jeedom
@@ -164,7 +164,7 @@
         if (typeof (json_theme["inactiveBackgroundCssImage"]) !== "undefined") {
             inactiveBackgroundCssImage = json_theme["inactiveBackgroundCssImage"];
         }
-	inactiveBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + inactiveBackgroundCssImage + ')';
+	inactiveBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'inactive' + inactiveBackgroundCssImage + 'Background.png )';
 
         // récupération du nom de l'image de fond du menu avec focus
         var activeBackgroundCssImage = defaultActiveBackgroundCssImage;
@@ -172,7 +172,7 @@
         if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
             activeBackgroundCssImage = json_theme["activeBackgroundCssImage"];
         }
-        activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + activeBackgroundCssImage + ')';
+        activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'active' + activeBackgroundCssImage + 'Background.png )';
 		
         let link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
