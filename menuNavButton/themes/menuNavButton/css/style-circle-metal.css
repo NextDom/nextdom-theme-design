@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+:root {
+    --cursor-color: #33b8cc;
+    --cursor-color-shadow: blue;
+    --cursor-default-color: white;
+    --border-menu: #151515;
+    --background-active-link: #202020;
+    --background-default-link: #151515;
+	--image-path-inactive: url(/../data/custom/themes/menuNavButton/img/inactiveCircleMetalBackground.png);
+	--image-path-active: url(/../data/custom/themes/menuNavButton/img/activeCircleMetalBackground.png);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#menu {
+    position: absolute;
+    top: 2PX;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    border-radius: 45px;
+    z-index: 50;
+}
+
+#menu ul {
+    list-style: none;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#menu li {
+border-radius : 50% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    height: 90px;
+    width: 95px;
+	border: 4px ridge rgba(80, 80, 80, 1);
+    transition: all 0.5s;
+	box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
+	border-bottom: 1rem solid;
+	border-top: 0.2rem solid gray;
+    background-image: var(--image-path-inactive) ;
+	-webkit-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+	box-shadow: 4px 6px 9px 2px rgba(0,0,0,0.75);
+}
+
+
+#menu li:hover {
+    cursor: pointer;
+   color:var(--cursor-color);
+    text-shadow: 0 0 10px red;
+}
+
+#menu a {
+    display: inline-block;
+	color: gray;
+	background: #666666;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	text-shadow: 1px 1px white, -1px -1px #444;
+    font-size: 40px;
+    transition: all 0.5s;
+}
+
+#menu li.active {
+border-radius : 50% ;
+    background: var(--background-active-link);
+	border: 4px ridge rgba(80, 80, 80, 1);  
+    transition: all 0.5s;
+	box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
+	border-bottom: 2px solid black;
+	border-top: 0.2rem solid gray;
+	background-image: var(--image-path-active) ;
+}
+           
+#menu .active-text {
+	margin-top:5px;
+    color:var(--cursor-color);
+    text-shadow: 0 0 15px var(--cursor-color-shadow);
+}
+
