@@ -47,7 +47,7 @@ border-radius : 50% ;
     margin: 0px;
     height: 90px;
     width: 95px;
-	border: 4px ridge rgba(80, 80, 80, 1) ,3px solid black;
+	border: 4px ridge rgba(80, 80, 80, 1);
     transition: all 0.5s;
 	box-shadow:   0 1px 0 rgba( 255, 255, 255, 0.4);
 	border-bottom: 1rem solid;
