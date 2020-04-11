@@ -41,8 +41,8 @@
         var waitForLoadingFrame = 1; // ms
         var defaultPathData = "data/custom";
 	var defaultCssFilename = "style.css";
-        var defaultInactiveBackgroundCssImage = "metal";
-	var defaultActiveBackgroundCssImage = "metal";
+        var defaultInactiveBackgroundCssImage = "Metal";
+	var defaultActiveBackgroundCssImage = "Metal";
         var menuName = "menuNavButton";
         var defaultCursorColor = "#33b8cc";
         var defaultCursorColorShadow = "blue";
@@ -70,37 +70,37 @@
             "page": [{
                     "label": "Home",
                     "link": "3",
-                    "icon": "fas fa-home",
+                    "icon": "fas fa-home"
                 },
                 {
                     "label": "temperature",
                     "link": "5",
-                    "icon": " fas fa-thermometer-half",
+                    "icon": " fas fa-thermometer-half"
                 },
                      {
                     "label": "chaufage",
                     "link": "18",
-                    "icon": "fas fa-fire-alt",
+                    "icon": "fas fa-fire-alt"
                 },
                      {
                     "label": "CAM",
                     "link": "11",
-                    "icon": "fas fa-video",
+                    "icon": "fas fa-video"
                 },
                      {
                     "label": "REVEIL",
                     "link": "7",
-                    "icon": "fas fa-user-clock",
+                    "icon": "fas fa-user-clock"
                 },
                      {
                     "label": "BASSIN",
                     "link": "8",
-                    "icon": "fas fa-swimmer",
+                    "icon": "fas fa-swimmer"
                 },
                 {
                     "label": "Products",
                     "link": "9",
-                    "icon": "fas fa-cog",
+                    "icon": "fas fa-cog"
                 },
                       
                 {
@@ -111,12 +111,12 @@
                      {
                     "label": "3D",
                     "link": "10",
-                    "icon": "fas fa-cubes",
+                    "icon": "fas fa-cubes"
                 },
                 {
                     "label": "PLANTE",
                     "link": "22",
-                    "icon": "fas fa-leaf",
+                    "icon": "fas fa-leaf"
                 }
             ],
             "iframe": "yes", // (facultatif) gestion de la navigation par frame
@@ -172,7 +172,7 @@
         if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
             activeBackgroundCssImage = json_theme["activeBackgroundCssImage"];
         }
-        activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'active'+ activeBackgroundCssImage + 'Background.png)';
+        activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'active' + activeBackgroundCssImage + 'Background.png)';
 		
         let link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
