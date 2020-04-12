@@ -1,13 +1,17 @@
 <!-- 
     - Cadre clignotant sur modification de la valeur d'une commande info Nextdom/Jeedom passée en paramètre (@noodom) 
+        merci à @salvialf pour avoir fourni la solution technique permettant de faire le lien entre une commande info et le cadre
+        https://forum.jeedom.com/viewtopic.php?f=25&t=35100&p=778253#p776654
+
     - Renseigner 
-        l'identifiant de la commande info Nextdom/Jeedom (le plus important !)
+        l'identifiant de la commande info Nextdom/Jeedom (le plus important !) : var cmdId = 1234;
 		la couleur de clignotement, la couleur du bord, 
         la largeur et la hauteur du cadre, l'épaisseur du bord,
         le titre, la couleur du titre, la couleur de fond du titre,
         le path du logo, le path du fond
-    dans les modifications utilisateurs
-    - recopier les images de logo et de fond dans l'arborescence Nextdom/Jeedom
+    dans les modifications utilisateurs (après la ligne // MODIFICATIONS UTILISATEUR)
+    - recopier les images de logo et de fond dans l'arborescence Nextdom/Jeedom ("data/custom" pour Nextdom, "montheme" pour Jeedom)
+    - Dans un design, clic droit puis Ajouter text/html et copier ce code 
 -->
 
 <!DOCTYPE html>
@@ -106,28 +110,28 @@
         // commande modifiant dynamiquement le comportement du cadre
         var cmdId = 1777;
         // choix de la couleur du cadre
-        let borderColor = "#ffffff"; // #33b8cc Nextdom, #93cc01 Jeedom
+        var borderColor = "#ffffff"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la couleur du cadre sur événement déclenché
-        let borderAlertColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        var borderAlertColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la couleur du cadre clignotant
-        let blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        var blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la largeur du cadre (en pixels)
-        let borderWidth = "300";
+        var borderWidth = "300";
         // choix de la hauteur du cadre (en pixels)
-        let borderHeight = "300";
+        var borderHeight = "300";
         // choix de l'épaisseur du cadre (en pixels)
-        let borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
+        var borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
         // choix et couleurs du titre
-        let title = "Alarme";
+        var title = "Alarme";
         // couleur si pas d'événement en cours
-        let titleColor = "rgba(255,255,255,1.0)";
+        var titleColor = "rgba(255,255,255,1.0)";
         // couleur sur événement déclenché
-        let titleAlertColor = "red";
-        let titleBackgroundColor = "rgba(241,7,7,0.2)";
+        var titleAlertColor = "red";
+        var titleBackgroundColor = "rgba(241,7,7,0.2)";
         // choix du logo (image d'exemple dans le répertoire /images)
-        let logoPath = "montheme/images/cadres/alarmLogo.png";
+        var logoPath = "montheme/images/cadres/alarmLogo.png";
         // choix de l'image de fond (image d'exemple dans le répertoire /images)
-        let backgroundPath = "montheme/images/cadres/alarmBackground.png";
+        var backgroundPath = "montheme/images/cadres/alarmBackground.png";
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);

@@ -83,7 +83,7 @@
 </head>
 
 <body>
-    <Div>
+    <div>
         <div id="myGlower">
             <!-- logo -->
             <div id="divLogo">
@@ -99,28 +99,27 @@
             </div>
         </div>
     </div>
-    </div>
 
     <script language="javascript">
         // MODIFICATIONS UTILISATEUR
         // choix de la couleur du cadre clignotant
-        let blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        var blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la couleur du cadre
-        let borderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
+        var borderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la largeur du cadre (en pixels)
-        let borderWidth = "300";
+        var borderWidth = "300";
         // choix de la hauteur du cadre (en pixels)
-        let borderHeight = "300";
+        var borderHeight = "300";
         // choix de l'épaisseur du cadre (en pixels)
-        let borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
+        var borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
         // choix et couleurs du titre
-        let title = "Alarme";
-        let titleColor = "rgba(255,255,255,1.0)";
-        let titleBackgroundColor = "rgba(241,7,7,0.2)";
+        var title = "Alarme";
+        var titleColor = "rgba(255,255,255,1.0)";
+        var titleBackgroundColor = "rgba(241,7,7,0.2)";
         // choix du logo (image d'exemple dans le répertoire /images)
-        let logoPath = "montheme/images/cadres/alarmLogo.png";
+        var logoPath = "montheme/images/cadres/alarmLogo.png";
         // choix de l'image de fond (image d'exemple dans le répertoire /images)
-        let backgroundPath = "montheme/images/cadres/alarmBackground.png";
+        var backgroundPath = "montheme/images/cadres/alarmBackground.png";
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
