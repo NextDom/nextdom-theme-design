@@ -45,7 +45,7 @@
         // - label : libellé du champ à afficher dans le menu
         // - link : identifiant du design destinataire du lien du menu
         //
-        // Gestion des liens dans une iframe : mettre iframe à yes et définir ses position (Top), largeur et hauteur
+        // Gestion des liens dans une iframe : mettre iframe à yes et définir sa position (Top), largeur et hauteur
         // - "iframe": "yes"
         // - "frameTop": "60px"
         // - "frameWidth": "1024px"
@@ -96,13 +96,13 @@
             pathData = json_theme["pathData"];
         }
 
-        let link = document.createElement('link');
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
+        var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
         // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-        //link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css?v=' + (new Date()).getTime());
-        link.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css');
-        document.getElementsByTagName('head')[0].appendChild(link);
+        cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css?v=' + (new Date()).getTime());
+        //cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/style.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
 
         function loadFrame() {
             if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {

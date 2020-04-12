@@ -131,13 +131,13 @@
             pathData = json_theme["pathData"];
         }
         
-        let link = document.createElement('link');
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
+        var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
         // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-        //link.setAttribute('href', pathData + '/themes/menuIcones/css/style.css?v=' + (new Date()).getTime());
-        link.setAttribute('href', pathData + '/themes/menuIcones/css/style.css');
-        document.getElementsByTagName('head')[0].appendChild(link);
+        cssLink.setAttribute('href', pathData + '/themes/menuIcones/css/style.css?v=' + (new Date()).getTime());
+        //cssLink.setAttribute('href', pathData + '/themes/menuIcones/css/style.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
 
         function loadFrame() {
             if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {
@@ -244,7 +244,7 @@
                 let menu_item = document.createElement("li");
                 let menu_item_a = document.createElement("a");
 
-                var link = json_theme["page"][i]["link"];
+                let link = json_theme["page"][i]["link"];
                 if (homeLink === "") {
                     homeLink = link;
                 }

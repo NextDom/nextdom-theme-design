@@ -176,13 +176,13 @@
         }
         activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'active' + activeBackgroundCssImage + 'Background.png)';
 		
-        let link = document.createElement('link');
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
+        var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
         // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-        link.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename + '?v=' + (new Date()).getTime());
-        //link.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename);
-        document.getElementsByTagName('head')[0].appendChild(link);
+        cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename + '?v=' + (new Date()).getTime());
+        //cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename);
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
 
 	// mise à jour des images de fond du CSS
 	document.documentElement.style.setProperty('--image-path-inactive', inactiveBackgroundCssImage);
