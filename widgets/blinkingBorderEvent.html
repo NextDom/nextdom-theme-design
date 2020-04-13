@@ -1,0 +1,250 @@
+<!-- 
+    - Cadre clignotant sur modification de la valeur d'une commande info Nextdom/Jeedom passée en paramètre (@noodom)
+        sur modification de la valeur d'une commande info Nextdom/Jeedom passée en paramètre (@noodom) 
+        merci à @salvialf pour avoir fourni la solution technique permettant de faire le lien entre une commande info et le cadre
+        https://forum.jeedom.com/viewtopic.php?f=25&t=35100&p=778253#p776654
+        ainsi que le passage par paramètre de plusieurs commandes (exemple repris du widget workandroid)
+
+
+        - Pour l'installation (V3) :
+            - créer un virtuel avec une commande info de sous-type Info/Autre
+            - mettre la commande (#[objet][commande][commande info]#) qui va déclencher le clignotement comme valeur de cette commande
+            - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels :
+                - largeur, hauteur, epaisseur
+                - couleurBord, couleurBordAlerte, couleurBordClignotante
+                - titre, couleurTitre, CouleurTitreAlerte, couleurTitreFond
+                - urlLogo, urlImageFond
+
+            - créer un widget en version Dashboard, de type Info et de sous-titre Autre
+            - copier le contenu du fichier /widgets/blinkingBorderEvent.html
+            - Appliquer le widget à la commande info du virtuel précédent
+
+            - dans une page de design, ajouter le virtuel et rafraichir la page
+
+        - Pour l'installation (V4) :
+            - créer un virtuel avec une commande info de sous-type Info/Autre
+            - mettre la commande (#[objet][commande][commande info]#) qui va déclencher le clignotement comme valeur de cette commande
+            - depuis la configuration avancée de la commande info du virtuel (puis onglet Affichage), ajouter les paramètres optionnels :
+                - largeur, hauteur, epaisseur
+                - couleurBord, couleurBordAlerte, couleurBordClignotante
+                - titre, couleurTitre, CouleurTitreAlerte, couleurTitreFond
+                - urlLogo, urlImageFond
+
+            - sélectionner le menu Outils/widget
+            - sélectionner le bouton Gestion/Code
+            - sélectionner le bouton Nouveau pour créer un nouveau widget
+                de version Dashboard de type Info et sous-type Autre,
+                puis donner un nom au widget
+                et sélectionner Créer
+            - depuis la zone d'édition, copier le code de cette page
+            - sélectionner le bouton Sauvegarder (retenir le nom du widget cmd.info.string.nomWidget.html)
+
+            - appliquer le widget (Customtemp/nomWidget) à la commande info du virtuel précédent (roue dentée, Affichage)
+
+            - dans une page de design, ajouter le virtuel et rafraichir la page
+
+
+        - Paramètres :
+            - renseigner la commande info (permettant de commande le clignotement) comme valeur de la commande info du virtuel
+            - Paramètres optionnels
+                - largeur : largeur du cadre, 300 par défaut (ne pas mettre px, juste la valeur numérique)
+                - hauteur : hauteur du cadre, 300 par défaut (ne pas mettre px, juste la valeur numérique)
+                - epaisseur : épaisseur du cadre (en pixels)
+                - couleurBord : couleur du cadre
+                - couleurBordAlerte : couleur du cadre sur événement déclenché
+                - couleurBordClignotante : couleur du cadre clignotant
+                - titre : choix du titre
+                - couleurTitre : couleur du titre si pas d'événement en cours
+                - CouleurTitreAlerte : couleur du titre sur événement déclenché
+                - couleurTitreFond : couleur du fond du titre sur événement déclenché
+                - urlLogo : logo (si non précisé, pas de logo affiché)
+                - urlLogoAlerte : logo sur clignotement (si non précisé, urlLogo restera affiché même en clignotement / si urlLogo non précisé, pas de logo affiché)
+                - urlImageFond : image de fond
+
+-->
+
+<style>
+    :root {
+        --blinking-border-color#uid#: #ff0000;
+        --border-color#uid#: #33b8cc;
+        --border-alert-color#uid#: #ff0000;
+        --border-color-width#uid#: "300";
+        --border-color-height#uid#: "300";
+        --border-color-depth#uid#: "2";
+        --title#uid#: "Titre";
+        --title-color#uid#: "rgba(255,255,255,1.0)";
+        --title-alert-color#uid#: #ff0000;
+        --title-background-color#uid#: "rgba(241,7,7,0.2)";
+    }
+
+    @-webkit-keyframes glow {
+        to {
+            box-shadow: 0 0 35px var(--blinking-border-color#uid#);
+        }
+    }
+
+    #myGlower#uid# {
+        width: var(--border-color-width#uid#);
+        height: var(--border-color-height#uid#);
+        margin: 0px;
+        border: var(--border-color-depth#uid#) solid var(--border-color#uid#);
+        border-radius: 10px 10px 10px 10px;
+        animation-play-state: paused;
+    }
+
+    #title#uid# {
+        color: var(--title-color#uid#);
+        font-size: 24px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        background-color: var(--title-background-color#uid#);
+        padding-top: 5px;
+        font-family: Comic sans MS;
+        font-weight: normal;
+        text-align: center;
+        height: 26px;
+    }
+
+    #divLogo#uid# {
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        margin-top: 6px;
+        margin-left: 5px;
+        opacity: 1.0;
+        max-width: 100%;
+        height: auto;
+    }
+
+    #logo#uid# {
+        width: 30px;
+        height: 30px;
+    }
+
+    #bg#uid# {
+        opacity: 0.5;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+</style>
+
+<div style="padding:0px;width:auto;height:auto;" class="cmd #history# tooltips cmd-widget container-fluid"
+    data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#"
+    title="#collectDate#">
+
+    <div id="myGlower#uid#">
+        <!-- logo -->
+        <div id="divLogo#uid#">
+            <img id="logo#uid#" src="var(--logo-path#uid#)">
+        </div>
+        <!-- title -->
+        <div id="title#uid#">
+            Title
+        </div>
+        <!-- background -->
+        <div id="divBackground#uid#">
+            <img id="bg#uid#" src="var(--background-path#uid#)" />
+        </div>
+    </div>
+
+    <script language="javascript">
+
+        jeedom.cmd.update['#id#'] = function (_options) {
+            // récupération des paramètres
+
+            // largeur : largeur du cadre (en pixels)
+            let borderWidth = is_numeric('#largeur#') ? parseFloat('#largeur#') : 300;
+            document.documentElement.style.setProperty('--border-color-width#uid#', borderWidth + 'px');
+            // hauteur : hauteur du cadre (en pixels)
+            let borderHeight = is_numeric('#hauteur#') ? parseFloat('#hauteur#') : 300;
+            document.documentElement.style.setProperty('--border-color-height#uid#', borderHeight + 'px');
+            // epaisseur : épaisseur du cadre (en pixels)
+            let borderDepth = is_numeric('#epaisseur#') ? parseFloat('#epaisseur#') : 2;
+            document.documentElement.style.setProperty('--border-color-depth#uid#', borderDepth + 'px');
+
+            // couleurBord : couleur du cadre
+            let borderColor = ('#couleurBord#' != '#' + 'couleurBord#') ? "#couleurBord#" : '#ffffff';
+            document.documentElement.style.setProperty('--border-color#uid#', borderColor);
+            // couleurBordAlerte : couleur du cadre sur événement déclenché
+            let borderColorAlert = ('#couleurBordAlerte#' != '#' + 'couleurBordAlerte#') ? "#couleurBordAlerte#" : '#ff0000';
+            document.documentElement.style.setProperty('--border-alert-color#uid#', borderColorAlert);
+            // couleurBordClignotante : couleur du cadre clignotant
+            let borderColorBlinking = ('#couleurClignotante#' != '#' + 'couleurClignotante#') ? "#couleurClignotante#" : '#ff0000';
+            document.documentElement.style.setProperty('--blinking-border-color#uid#', borderColorBlinking);
+
+            // titre : choix et couleurs du titre
+            let title = ('#titre#' != '#' + 'titre#') ? "#titre#" : '';
+            document.getElementById('title#uid#').innerHTML = title;
+            // couleurTitre : couleur du titre si pas d'événement en cours
+            let titleColor = ('#couleurTitre#' != '#' + 'couleurTitre#') ? "#couleurTitre#" : 'rgba(255,255,255,1.0)';
+            document.documentElement.style.setProperty('--title-color#uid#', titleColor);
+            // couleurTitreAlerte : couleur du titre sur événement déclenché
+            let titleColorAlert = ('#couleurTitreAlerte#' != '#' + 'couleurTitreAlerte#') ? "#couleurTitreAlerte#" : '';
+            document.documentElement.style.setProperty('--title-alert-color#uid#', titleColorAlert);
+            // couleurTitreFond : couleur du fond du titre sur événement déclenché
+            let titleColorBackground = ('#couleurTitreFond#' != '#' + 'couleurTitreFond#') ? "#couleurTitreFond#" : '';
+            document.documentElement.style.setProperty('--title-background-color#uid#', titleColorBackground);
+            
+            // urlLogo: logo (ex : 'montheme/images/cadres/alarmLogo.png')
+            // urlLogoAlerte: logo si événement en cours (ex : 'montheme/images/cadres/sirene.gif')
+            let logoPath = '';
+            let logoAlertPath = '';
+            if ('#urlLogo#' != '#' + 'urlLogo#') {
+                logoPath = "#urlLogo#";
+                document.getElementById("logo#uid#").setAttribute("src", logoPath);
+                //document.getElementById('title#uid#').height = 40;// Math.max(document.getElementById('title#uid#').height, document.getElementById('logo#uid#').height);
+                logoAlertPath = ('#urlLogoAlerte#' != '#' + 'urlLogoAlerte#') ? "#urlLogoAlerte#" : logoPath;
+            }
+            else {
+                document.getElementById('divLogo#uid#').hidden = true;
+            }
+
+
+            // urlImageFond: image de fond (ex : 'montheme/images/cadres/alarmBackground.png')
+            if ('#urlImageFond#' != '#' + 'urlImageFond#') {
+                document.getElementById('bg#uid#').setAttribute("src", "#urlImageFond#");
+            }
+            else {
+                document.getElementById('bg#uid#').hidden = true;
+            }
+
+            document.getElementById('bg#uid#').setAttribute("width", (borderWidth - 2 * borderDepth) + 'px');
+            document.getElementById('bg#uid#').setAttribute("height", (borderHeight - 2*borderDepth - 26) + 'px');
+
+            // Actions sur récupération de valeur de commande
+            var cmdValue = _options.display_value;
+            /* A compléter pour la possibilité future de contrôler plusieurs commandes
+            var checkValue = cmdValue.indexOf(",");
+            if (checkValue) {
+                var cmdParams = cmdValue.split(",");
+                var updateCmd = cmdParams[0];
+            }
+            else {
+                // Mauvais paramétrage
+            }
+            */
+
+            let updateCmd = parseInt(cmdValue[0]);
+            if (updateCmd == 0) {
+                // cadre non clignotant
+                $('#title#uid#').css('color', titleColor);
+                document.getElementById("logo#uid#").setAttribute("src", logoPath);
+                $('#myGlower#uid#').css('border', 'var(--border-color-depth#uid#) solid var(--border-color#uid#)');
+                $('#myGlower#uid#').css('animation', 'none');
+            } else {
+                // cadre clignotant
+                $('#title#uid#').css('color', titleColorAlert);
+                document.getElementById("logo#uid#").setAttribute("src", logoAlertPath);
+                $('#myGlower#uid#').css('border', 'var(--border-color-depth#uid#) solid var(--border-alert-color#uid#)');
+                $('#myGlower#uid#').css('animation', 'glow 0.5s infinite alternate');
+            }
+        }
+
+        jeedom.cmd.update['#id#']({
+            display_value: '#state#',
+            valueDate: '#valueDate#',
+            collectDate: '#collectDate#',
+            alertLevel: '#alertLevel#'
+        });
+    </script>
+</div>
