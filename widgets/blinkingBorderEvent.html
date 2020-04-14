@@ -77,7 +77,7 @@
         --title-background-color#uid#: "rgba(241,7,7,0.2)";
     }
 
-    @-webkit-keyframes glow {
+    @-webkit-keyframes glow#uid# {
         to {
             box-shadow: 0 0 35px var(--blinking-border-color#uid#);
         }
@@ -236,7 +236,7 @@
                 $('#title#uid#').css('color', titleColorAlert);
                 document.getElementById("logo#uid#").setAttribute("src", logoAlertPath);
                 $('#myGlower#uid#').css('border', 'var(--border-color-depth#uid#) solid var(--border-alert-color#uid#)');
-                $('#myGlower#uid#').css('animation', 'glow 0.5s infinite alternate');
+                $('#myGlower#uid#').css('animation', 'glow#uid# 0.5s infinite alternate');
             }
         }
 
