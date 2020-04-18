@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway);
 
 /*///////////////////////////Cadres///////////////////////////*/
-#cadreHRR1 {
+#cadreHGR1 {
   width: 100%;
   height: 100%;            
 
@@ -11,7 +11,7 @@
    border-radius: 25px;  
 border: 2px solid   #cfcfcf ;        
                 }
-#pictureHRR1 {
+#pictureHGR1 {
  background:radial-gradient( #5c5b5b, #cfcfcf);
   border-radius:50%;
   height:45px;
@@ -27,7 +27,7 @@ line-height:41px;
         
         
 }
-#titreHRR1 {
+#titreHGR1 {
 
  min-width : 40px;
 font-family:sans-serif ;
@@ -61,6 +61,6 @@ border-top-right-radius:25px;   /*rayon haut droit*/
 border-bottom-left-radius:0px;   /*rayon bas gauche*/
   border: 1px solid   #cfcfcf;					/*Hauteur minimum des cases de titre*/
 }
-#contenuHRR1 {
+#contenuHGR1 {
   height: 100%;          
 }
