@@ -60,7 +60,7 @@ text-shadow:   -1px -1px 0 #000,
      1px 1px 7px #141414,
      1px 1px 10px #141414,
      1px 1px 12px #141414,
-     1px 1px 18px #141414;color:#fff;
+     1px 1px 18px #141414;color:var(--cadre-couleur);
 
  
 font-size: 22px;
