@@ -15,16 +15,16 @@
             
             
             
-            #cadre2 {
-           margin-top: 10px;
+ #cadre2 {
+ margin-top: 10px;
  
   width: 100%;
   height: calc(100% - 10px);            
   border: 1px solid  var(--cadre-couleur);
- border-radius:5px;
-   background: rgba( 80, 80, 80, 0.5);
-            
-            background: linear-gradient(180deg,var( --degraderfond));
+  border-radius:5px;
+  background: rgba( 80, 80, 80, 0.5);
+          
+  background: linear-gradient(180deg,var( --degraderfond));
           /*Couleur de fond des cadres*/ 
              
                 }
