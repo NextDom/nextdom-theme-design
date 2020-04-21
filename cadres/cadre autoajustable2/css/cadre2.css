@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+/*///////////////////////////Cadres///////////////////////////*/
+:root {
+  --cadre-couleur: #FFD100;
+  --lumcadre-couleur: #ff8c00;
+  --cursor-color: #ffffff;
+ 
+  --border-menu: #151515;
+  --degrader1: #2C2C2C;
+  --degrader2: #555;
+}
+            
+            
+            
+            #cadre2 {
+           margin-top: 10px;
+ 
+  width: 100%;
+  height: calc(100% - 10px);            
+  border: 1px solid  var(--cadre-couleur);
+ border-radius:5px;
+   background: rgba( 80, 80, 80, 0.5);
+            
+            background: linear-gradient(180deg, rgba(50, 50, 50, 0.5) 0%, rgba(20,17,34,0.1600841020001751) 73%, rgba(70, 70, 70, 0.2) 80%, rgba(222,171,17,0.3) 100%);
+          /*Couleur de fond des cadres*/ 
+             
+                }
+#picture2 {
+margin : -20px;
+ background:radial-gradient(var(--degrader1), var(--degrader2) );
+  border-radius:50%;
+  height:45px;
+  width:45px;
+ border: 2px inset var(--cadre-couleur);
+    text-align:center;
+  position:static;
+  color: var(--cursor-color);					/*Couleur des icônes*/
+  font-size: x-large;
+line-height:41px; 
+}
+            
+#titre2 {
+
+font-family:sans-serif ;
+ 	/*Police d'écriture*/
+  color: var(--cursor-color);					/*Couleur de la police d'écriture*/
+  text-align: left;
+				/*Alignement du texte*/
+ 
+text-shadow:   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000,
+     1px 1px 2px #141414,
+     1px 1px 3px #141414,
+     1px 1px 5px #141414,
+     1px 1px 7px #141414,
+     1px 1px 10px #141414,
+     1px 1px 12px #141414,
+     1px 1px 18px #141414;color:#fff;
+
+ 
+font-size: 22px;
+ font-weight: bolt;
+ margin-top: -45px;					/*Hauteur des cases de titre*/	
+  margin-left : 50px;
+            }          
+#contenu2 {
+  height: 100%;          
+}
+#cadre2:hover {
+ 
+    border: 1px solid var(--lumcadre-couleur);
+  
+    box-shadow: inset rgba(0,0,0,0.35) 2px 2px 12px, var(--cadre-couleur) 0 0 10px;
+
+    
+    outline: 0;
+         
+}
+            
+            
+#pictureR2 {
+margin : -20px;
+ background:radial-gradient(var(--degrader1), var(--degrader2) );
+  border-radius:50%;
+  height:45px;
+  width:45px;
+ border: 2px inset var(--cadre-couleur);
+    text-align:center;
+  position:static;
+  color: var(--cursor-color);					/*Couleur des icônes*/
+  font-size: x-large;
+line-height:41px;  
+}
+
+#pictureC2 {
+margin : -20px;
+ background:radial-gradient(var(--degrader1), var(--degrader2) );
+  border-radius:7px;
+  height:45px;
+  width:45px;
+ border: 2px inset var(--cadre-couleur);
+    text-align:center;
+  position:static;
+  color: var(--cursor-color);					/*Couleur des icônes*/
+  font-size: x-large;
+line-height:41px; 
+       
+}
+#pictureC1 {
+margin-top : -20px;
+ background:radial-gradient(var(--degrader1), var(--degrader2) );
+  border-radius:7px;
+  height:45px;
+  width:45px;
+ border: 2px inset var(--cadre-couleur);
+    text-align:center;
+  position:static;
+  color: var(--cursor-color);					/*Couleur des icônes*/
+  font-size: x-large;
+line-height:41px; 
+}
+#pictureR1 {
+margin-top : -20px;
+ background:radial-gradient(var(--degrader1), var(--degrader2) );
+  border-radius:50%;
+  height:45px;
+  width:45px;
+ border: 2px inset var(--cadre-couleur);
+    text-align:center;
+  position:static;
+  color: var(--cursor-color);					/*Couleur des icônes*/
+  font-size: x-large;
+line-height:41px; 
+}            
