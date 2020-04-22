@@ -1,11 +1,6 @@
 
-
-<!--doc  il faut copier le pack css et img dans soit data/custom/themes/cadre  pour nextdom ou bien montheme/themes/cadre pour jeedom
-ensuite renseigner le path data , la ref du cadre et des élements à modifier
--->
-
 <!DOCTYPE html>
-
+<!-- Pour ce menu, il faut placer le dossier /css et / image dans un repertoire cadre -->
 <html lang="fr">
 <head>
   </head>
@@ -13,77 +8,24 @@ ensuite renseigner le path data , la ref du cadre et des élements à modifier
 
     <div id="cadre">
       
-      <div id="titre">lumiere</div><!--modifier le texte -->
-      <div id="picture"><i class="fas fa-lightbulb"></i></div> <!--modifier la ref de l'icone -->
-      <div id="contenu"></div>
+      <div id="titre">lumiere</div><!-- ne modifier que le texte-->
+      <div id="picture"><i class="fas fa-lightbulb"></i></div> <!-- ne modifier que l'icone-->
+      <div id="contenu"></div><!-- ne rien modifier -->
 </div>
   
  <script language="javascript">
  // ***********************************************
         // *** debut DES MODIFICATIONS par l'utilisateur ***
         // *********************************************** 
-   var pathData = "data/custom";// metre l'emplacement du pack cadre
-      var refcadre = "4"; // metre le code du cadre 
-   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
-  var cssFilename = "cadre";// nom generique du css.
+   var pathData = "data/custom";// metre l'emplacement du pack cadre pour ,nextom data/custom, pour jeedom : montheme
+      var refcadre = "3V"; // metre le code du cadre 
+ 
+   var refimage = "82.png"; // metre la ref de l'image de contour du cadre si utile
+  var cssFilename = "cadre3V";// nom generique du css.
 var couleurfond = "#a4a1a1";// couleur fond cadre.
 var couleurtexte = "white"; // couleur texte.
- var  degrade1 = "#2C2C2C";// couleur degradé 1.
- var  degrade2 = "#555"; // taille texte.
-<!DOCTYPE html>
 
-<html lang="fr">
-<head>
-  </head>
-<body>
-
-    <div id="cadre">
-      
-      <div id="titre">lumiere</div>
-      <div id="picture"><i class="fas fa-lightbulb"></i></div>
-      <div id="contenu"></div>
-</div>
-  
- <script language="javascript">
- // ***********************************************
-        // *** debut DES MODIFICATIONS par l'utilisateur ***
-        // *********************************************** 
-   var pathData = "data/custom";// metre l'emplacement du pack cadre
-      var refcadre = "4"; // metre le code du cadre 
-   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
-  var cssFilename = "cadre";// nom generique du css.
-var couleurfond = "#a4a1a1";// couleur fond cadre.
-var couleurtexte = "white"; // couleur texte.
- var  degrade1 = "#2C2C2C";// couleur degradé 1.
- var  degrade2 = "#555";// couleur degradé 2
-var fontsize = "20px";
-<!DOCTYPE html>
-
-<html lang="fr">
-<head>
-  </head>
-<body>
-
-    <div id="cadre">
-      
-      <div id="titre">lumiere</div>
-      <div id="picture"><i class="fas fa-lightbulb"></i></div>
-      <div id="contenu"></div>
-</div>
-  
- <script language="javascript">
- // ***********************************************
-        // *** debut DES MODIFICATIONS par l'utilisateur ***
-        // *********************************************** 
-   var pathData = "data/custom";// metre l'emplacement du pack cadre
-      var refcadre = "4"; // metre le code du cadre 
-   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
-  var cssFilename = "cadre";// nom generique du css.
-var couleurfond = "#a4a1a1";// couleur fond cadre.
-var couleurtexte = "white"; // couleur texte.
- var  degrade1 = "#2C2C2C";// couleur degradé 1.
- var  degrade2 = "#555";// couleur degradé 2
-var fontsize = "20px";
+var fontsize = "22px";// texte.
 
    
      // ***********************************************
@@ -96,90 +38,15 @@ var fontsize = "20px";
         cssLink.setAttribute('rel', 'stylesheet');
         cssLink.setAttribute('type', 'text/css');
         // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
-      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
+    // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +'.css?v=' + (new Date()).getTime());
+      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +'.css');
         document.getElementsByTagName('head')[0].appendChild(cssLink);
    
-   
-    document.documentElement.style.setProperty('--fontsize', fontsize);
-    document.documentElement.style.setProperty('--degrader1', degrade1);
-    document.documentElement.style.setProperty('--degrader2', degrade2);
-	document.documentElement.style.setProperty('--couleurfond', couleurfond);
-    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
-	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
-    
 
-document.getElementById('cadre').id = 'cadre' + refcadre;
-document.getElementById('picture').id = 'picture' + refcadre;
-document.getElementById('titre').id = 'titre' + refcadre;
-document.getElementById('contenu').id = 'contenu' + refcadre;
-
-         </script>
-  
-</body>
-
-</html>
-
-
-   
-     // ***********************************************
-        // *** FIN DES MODIFICATIONS par l'utilisateur ***
-        // ***********************************************
-  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
-		
-   
-    var cssLink = document.createElement('link');
-        cssLink.setAttribute('rel', 'stylesheet');
-        cssLink.setAttribute('type', 'text/css');
-        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
-      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
-        document.getElementsByTagName('head')[0].appendChild(cssLink);
-   
-   
-    document.documentElement.style.setProperty('--fontsize', fontsize);
-    document.documentElement.style.setProperty('--degrader1', degrade1);
-    document.documentElement.style.setProperty('--degrader2', degrade2);
-	document.documentElement.style.setProperty('--couleurfond', couleurfond);
-    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
-	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
-    
-
-document.getElementById('cadre').id = 'cadre' + refcadre;
-document.getElementById('picture').id = 'picture' + refcadre;
-document.getElementById('titre').id = 'titre' + refcadre;
-document.getElementById('contenu').id = 'contenu' + refcadre;
-
-         </script>
-  
-</body>
-
-</html>
-
-var fontsize = "20px";
-
-   
-     // ***********************************************
-        // *** FIN DES MODIFICATIONS par l'utilisateur ***
-        // ***********************************************
-  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
-		
-   
-    var cssLink = document.createElement('link');
-        cssLink.setAttribute('rel', 'stylesheet');
-        cssLink.setAttribute('type', 'text/css');
-        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
-      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
-      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
-        document.getElementsByTagName('head')[0].appendChild(cssLink);
-   
-   
-    document.documentElement.style.setProperty('--fontsize', fontsize);
-    document.documentElement.style.setProperty('--degrader1', degrade1);
-    document.documentElement.style.setProperty('--degrader2', degrade2);
-	document.documentElement.style.setProperty('--couleurfond', couleurfond);
-    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
-	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
+    	document.documentElement.style.setProperty('--fontsize' + cssFilename, fontsize);
+	document.documentElement.style.setProperty('--couleurfond' + cssFilename, couleurfond);
+    	document.documentElement.style.setProperty('--cursor-color' + cssFilename, couleurtexte);
+	document.documentElement.style.setProperty('--imagedefond' + cssFilename, imagedefondlink);
     
 
 document.getElementById('cadre').id = 'cadre' + refcadre;
