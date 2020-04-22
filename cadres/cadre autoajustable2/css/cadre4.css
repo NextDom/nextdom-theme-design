@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+/*///////////////////////////Cadres///////////////////////////*/
+:root {
+--fontsizecadre4 = 20px;
+  --cadre-couleurcadre4: white;
+  --lumcadre-couleurcadre4: #ff8c00;
+  --cursor-colorcadre4: #ffffff;
+--couleurfondcadre4 :  #a4a1a1;
+ --imagedefondcadre4:  url("/../data/custom/themes/cadre/img/44.png") ;
+  --border-menucadre4: #151515;
+ --degrader1cadre4: #2C2C2C;
+  --degrader2cadre4: #555;
+  --degraderfondcadre4 :255, 0, 238;
+}
+            
+      
+#cadre4 {
+margin-top: 10px;
+ 
+ width: 100%;
+height: calc(100% - 10px);            
+ /*border: 2px solid  var(--cadre-couleurcadre4);
+ border-radius:10px;
+        
+background: linear-gradient(180deg,rgba(50, 50, 50, 0.5) 0%, rgba(20,17,34,0.2) 73%, rgba(120, 120, 120, 0.2) 100%);*/
+border-image-source: var(--imagedefondcadre4);
+border-image-slice:100;
+	
+background-clip: padding-box;
+padding:10px; 
+background-color: var(--couleurfondcadre4);
+border-image-outset:7px;
+border-image-width:auto;
+border-image-repeat: Strech round; 
+
+      }
+            
+
+            
+#titre4 {
+position:static;
+font-family:sans-serif ;
+color: var(--cursor-colorcadre4);					
+text-align: center;
+text-shadow:   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000,
+     1px 1px 1px #141414,
+     1px 1px 1px #141414,
+     1px 1px 3px #141414,
+     1px 1px 4px #141414,
+     1px 1px 5px #141414,
+     1px 1px 6px #141414,
+     1px 1px 9px #141414;color:var(--cadre-couleurcadre4);
+border-radius:10PX;
+border: 2px inset var(--cadre-couleurcadre4);
+font-size: var(--fontsizecadre4);
+font-weight: bolt;
+margin-top: -20px;					
+margin-right : 25px;
+margin-left : 25px;
+border-radius: 15px;
+background: linear-gradient(180deg,var(--degrader1cadre4)20%,var(--degrader2cadre4) 80%,var(--degrader1cadre4)100%);
+
+}  
+        
+#contenu4 {
+  height: 100%;          
+}
+          
+#picture4 {
+margin : -20px;
+background:radial-gradient(var(--degrader1cadre4), var(--degrader2cadre4) );
+border-radius:50%;
+height:45px;
+width:45px;
+border: 2px inset var(--cadre-couleurcadre4);
+text-align:center;
+position: absolute; bottom: 0; left:50%; 
+color: var(--cursor-colorcadre4);					
+font-size: x-large;
+line-height:41px; 
+}          
