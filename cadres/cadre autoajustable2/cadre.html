@@ -1,16 +1,194 @@
 
-<link rel="stylesheet"  href="data/custom/themes/cadre/css/cadre2.css"><!-- pour menxtdom-- 
 
-<!-- <link rel="stylesheet"  href="montheme/themes/cadre/css/cadre2.css">--><!-- pour jeedom -->
+<!--doc  il faut copier le pack css et img dans soit data/custom/themes/cadre  pour nextdom ou bien montheme/themes/cadre pour jeedom
+ensuite renseigner la ref du cadre et des élements à modifier
+-->
 
+<!DOCTYPE html>
 
+<html lang="fr">
+<head>
+  </head>
+<body>
 
+    <div id="cadre">
+      
+      <div id="titre">lumiere</div><!--modifier le texte -->
+      <div id="picture"><i class="fas fa-lightbulb"></i></div> <!--modifier la ref de l'icone -->
+      <div id="contenu"></div>
+</div>
+  
+ <script language="javascript">
+ // ***********************************************
+        // *** debut DES MODIFICATIONS par l'utilisateur ***
+        // *********************************************** 
+   var pathData = "data/custom";// metre l'emplacement du pack cadre
+      var refcadre = "4"; // metre le code du cadre 
+   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
+  var cssFilename = "cadre";// nom generique du css.
+var couleurfond = "#a4a1a1";// couleur fond cadre.
+var couleurtexte = "white"; // couleur texte.
+ var  degrade1 = "#2C2C2C";// couleur degradé 1.
+ var  degrade2 = "#555"; // taille texte.
+<!DOCTYPE html>
 
+<html lang="fr">
+<head>
+  </head>
+<body>
 
-    <div id="cadre2"><!-- mettre le code cadre exemple HVR1-->
-      <div id="pictureC2><i class="fa fa-home"></i></div> <!-- mettre ref https://fontawesome.com/icons/bell?style=solid-->
-     <!-- mettre le code pictureR1  ou picutureR2 ou pictureC1 ou pictureC2-->
-	 <div id="titre2">chambre</div> 
-	     <div id="contenu2"></div>
+    <div id="cadre">
+      
+      <div id="titre">lumiere</div>
+      <div id="picture"><i class="fas fa-lightbulb"></i></div>
+      <div id="contenu"></div>
+</div>
+  
+ <script language="javascript">
+ // ***********************************************
+        // *** debut DES MODIFICATIONS par l'utilisateur ***
+        // *********************************************** 
+   var pathData = "data/custom";// metre l'emplacement du pack cadre
+      var refcadre = "4"; // metre le code du cadre 
+   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
+  var cssFilename = "cadre";// nom generique du css.
+var couleurfond = "#a4a1a1";// couleur fond cadre.
+var couleurtexte = "white"; // couleur texte.
+ var  degrade1 = "#2C2C2C";// couleur degradé 1.
+ var  degrade2 = "#555";// couleur degradé 2
+var fontsize = "20px";
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  </head>
+<body>
+
+    <div id="cadre">
+      
+      <div id="titre">lumiere</div>
+      <div id="picture"><i class="fas fa-lightbulb"></i></div>
+      <div id="contenu"></div>
+</div>
+  
+ <script language="javascript">
+ // ***********************************************
+        // *** debut DES MODIFICATIONS par l'utilisateur ***
+        // *********************************************** 
+   var pathData = "data/custom";// metre l'emplacement du pack cadre
+      var refcadre = "4"; // metre le code du cadre 
+   var refimage = "82.png"; // metre la ref de l'image de contour du cadre
+  var cssFilename = "cadre";// nom generique du css.
+var couleurfond = "#a4a1a1";// couleur fond cadre.
+var couleurtexte = "white"; // couleur texte.
+ var  degrade1 = "#2C2C2C";// couleur degradé 1.
+ var  degrade2 = "#555";// couleur degradé 2
+var fontsize = "20px";
+
+   
+     // ***********************************************
+        // *** FIN DES MODIFICATIONS par l'utilisateur ***
+        // ***********************************************
+  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
+		
+   
+    var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
+        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
+      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
+   
+   
+    document.documentElement.style.setProperty('--fontsize', fontsize);
+    document.documentElement.style.setProperty('--degrader1', degrade1);
+    document.documentElement.style.setProperty('--degrader2', degrade2);
+	document.documentElement.style.setProperty('--couleurfond', couleurfond);
+    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
+	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
     
-    </div>
+
+document.getElementById('cadre').id = 'cadre' + refcadre;
+document.getElementById('picture').id = 'picture' + refcadre;
+document.getElementById('titre').id = 'titre' + refcadre;
+document.getElementById('contenu').id = 'contenu' + refcadre;
+
+         </script>
+  
+</body>
+
+</html>
+
+
+   
+     // ***********************************************
+        // *** FIN DES MODIFICATIONS par l'utilisateur ***
+        // ***********************************************
+  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
+		
+   
+    var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
+        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
+      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
+   
+   
+    document.documentElement.style.setProperty('--fontsize', fontsize);
+    document.documentElement.style.setProperty('--degrader1', degrade1);
+    document.documentElement.style.setProperty('--degrader2', degrade2);
+	document.documentElement.style.setProperty('--couleurfond', couleurfond);
+    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
+	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
+    
+
+document.getElementById('cadre').id = 'cadre' + refcadre;
+document.getElementById('picture').id = 'picture' + refcadre;
+document.getElementById('titre').id = 'titre' + refcadre;
+document.getElementById('contenu').id = 'contenu' + refcadre;
+
+         </script>
+  
+</body>
+
+</html>
+
+var fontsize = "20px";
+
+   
+     // ***********************************************
+        // *** FIN DES MODIFICATIONS par l'utilisateur ***
+        // ***********************************************
+  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
+		
+   
+    var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
+        // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+      // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename + refcadre +'.css?v=' + (new Date()).getTime());
+      cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +refcadre +'.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
+   
+   
+    document.documentElement.style.setProperty('--fontsize', fontsize);
+    document.documentElement.style.setProperty('--degrader1', degrade1);
+    document.documentElement.style.setProperty('--degrader2', degrade2);
+	document.documentElement.style.setProperty('--couleurfond', couleurfond);
+    document.documentElement.style.setProperty('--cursor-color', couleurtexte);
+	document.documentElement.style.setProperty('--imagedefond', imagedefondlink);
+    
+
+document.getElementById('cadre').id = 'cadre' + refcadre;
+document.getElementById('picture').id = 'picture' + refcadre;
+document.getElementById('titre').id = 'titre' + refcadre;
+document.getElementById('contenu').id = 'contenu' + refcadre;
+
+         </script>
+  
+</body>
+
+</html>
