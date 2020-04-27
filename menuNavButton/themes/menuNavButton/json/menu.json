@@ -1,0 +1,71 @@
+{
+    "page": [{
+            "label": "Home",
+            "link": "3",
+            "icon": "fas fa-home"
+        },
+        {
+            "label": "temperature",
+            "link": "5",
+            "icon": " fas fa-thermometer-half"
+        },
+        {
+            "label": "chaufage",
+            "link": "18",
+            "icon": "fas fa-fire-alt"
+        },
+        {
+            "label": "CAM",
+            "link": "11",
+            "icon": "fas fa-video"
+        },
+        {
+            "label": "REVEIL",
+            "link": "7",
+            "icon": "fas fa-user-clock"
+        },
+        {
+            "label": "BASSIN",
+            "link": "8",
+            "icon": "fas fa-swimmer"
+        },
+        {
+            "label": "Products",
+            "link": "9",
+            "icon": "fas fa-cog"
+        },
+
+        {
+            "label": "ELEC",
+            "link": "17",
+            "icon": "fas fa-bolt"
+        },
+        {
+            "label": "3D",
+            "link": "10",
+            "icon": "fas fa-cubes"
+        },
+        {
+            "label": "PLANTE",
+            "link": "22",
+            "icon": "fas fa-leaf"
+        }
+    ],
+    "iframe": "yes",
+    "frameTop": "0px",
+    "frameWidth": "1320px",
+    "frameHeight": "820px",
+
+    "timeout": "1",
+
+    "cssFilename": "style.css",
+    "inactiveBackgroundCssImage": "Metal",
+    "activeBackgroundCssImage": "Metal",
+
+    "cursorColor": "#33b8cc",
+    "cursorColorShadow": "blue",
+    "cursorDefaultColor": "gray",
+    "borderMenu": "#151515",
+    "backgroundActiveLink": "#202020",
+    "backgroundDefaultLink": "#151515"
+}

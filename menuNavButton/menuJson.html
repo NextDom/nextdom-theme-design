@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!--
+  Menu NavButton pour Design Nextdom et Jeedom (@noodom), 
+  version avec fichier de configuration JSon
+  origine : https://codepen.io/AlbertFeynman/pen/mjXeMV (proposé par @esso1)
+
+  - Copier le contenu du répertoire https://github.com/NextDom/nextdom-theme-design/tree/master/menuNavButton/themes sous /var/www/html/data/custom/themes pour Nextdom ou /var/www/html/montheme/themes pour Jeedom
+  - Dans le mode Design, créer un design pour le menu (dans la configuration du design, positionner la largeur de vos pages Design)
+  - Passer en mode Edition dans le design, puis ajouter "Texte/html" et copier/coller ce code HTML
+  - Modifier les paramètres d'affichage du Text/html : Position X=0, Position Y=0, Largeur=largeur de vos pages Design, Hauteur=100
+  - Dans le fichier /js/menu.json, faire les modifications suivantes :
+    - Modifier le contenu du Json pour adapter le contenu à ses besoins (voir détail du contenu ci-dessous)
+  - Repositionner la largeur du "Texte/html" du menu pour l'adapter en fonction du nombre d'éléments créés
+
+  - /!\ /!\ Attention, ne pas utiliser de traducteur automatique sur son navigateur, sinon, le code du mnu est traduit et casse le contenu de ce fichier : le menu ne fonctionnera pas /!\ /!\
+  
+  - /!\ /!\ Attention, à moins d'agir en connaissance de cause, il n'est pas nécessaire de modifier le contenu de ce fichier
+            Pour toute personnalisation du menu, il faut seulement modifier le fichier /json/menu.json /!\ /!\
+-->
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Json Nav Button Menu</title>
+</head>
+
+<body>
+    <nav id="menu">
+        <!-- Génération dynamique du menu depuis le json de configuration -->
+    </nav>
+
+    <div id="content" class="content" style="padding: 0px">
+        <div id="i_frame">
+            <!-- Div pour inclure les écrans de design dans une iframe -->
+        </div>
+    </div>
+
+    <script language="javascript">
+        //
+        // Renseigner les différents champs ci-dessous dans le fichier /json/menu.json //
+        //
+
+        // Pour chaque item du menu, renseigner les différents champs ci-dessous
+        // - label : libellé du champ à afficher dans le menu
+        // - link : identifiant du design destinataire du lien du menu
+        //
+        // Gestion des liens dans une iframe : mettre iframe à yes et définir sa position (Top), largeur et hauteur
+        // - "iframe": "yes"
+        // - "frameTop": "0px"
+        // - "frameWidth": "1024px"
+        // - "frameHeight": "580px"
+        //
+        // - "timeout": "1", // (facultatif) temps d'attente (en ms) avant chargement de la frame au lancement du menu (0 : pas de chargement au lancement)
+        //
+        // Gestion du CSS
+        // - "cssFilename": "style.css", // (facultatif) nom du fichier CSS à utiliser
+        // - "inactiveBackgroundCssImage": "Metal", // (facultatif) type image de fond du menu sans focus
+        // - "activeBackgroundCssImage": "Metal", // (facultatif) type image de fond du menu avec focus
+
+        // Gestion des couleurs
+        // - "cursorColor": "#33b8cc", // (facultatif) couleur du curseur sélectionné
+        //      "cursorColor": "#93cc01", //pour Jeedom
+        // - "cursorColorShadow": "blue", // (facultatif) couleur de l'ombre autour du curseur sélectionné
+        //      "cursorColorShadow": "green", // pour Jeedom
+        // - "cursorDefaultColor": "gray", // (facultatif) couleur des éléments non sélectionnés du menu
+        // - "borderMenu": "#151515", // (facultatif) couleur de bordure du menu
+        // - "backgroundActiveLink": "#202020", // (facultatif) couleur de fond du curseur sélectionné
+        // - "backgroundDefaultLink": "#151515", // (facultatif) couleur de fond du curseur non sélectionné
+
+        // *** NE PAS MODIFIER ***
+        //  A modifier seulement en connaissance de cause : il est préférable d'utiliser le paramétrage Json
+
+        // nom du menu
+        var menuName = "menuNavButton";
+        // url du fichier de configuration
+        var pathData = "data/custom"; // Nextdom
+        var jsonUrl = "/themes/menuNavButton/json/menu.json";
+        var jsonFile = pathData + jsonUrl;
+        // Valeurs par défaut (valeurs utilisées si non précisées dans le json de configuration)
+        // paramétrage des frames
+        var defaultFrameTop = "0px";
+        var defaultFrameWidth = "1280px";
+        var defaultFrameHeight = "1000px";
+        // nom de fichier CSS
+        var cssFilename = "style.css";
+        // nom de l'image de fond du menu sans focus
+        var inactiveBackgroundCssImage = "Metal";
+        // nom de l'image de fond du menu avec focus
+        var activeBackgroundCssImage = "Metal";
+        // paramétrage des couleurs
+        var cursorColor = "#33b8cc";
+        var cursorColorShadow = "blue";
+        var cursorDefaultColor = "gray";
+        var borderMenu = "#151515";
+        var backgroundActiveLink = "#202020";
+        var backgroundDefaultLink = "#151515";
+
+        // données json
+        var json_theme = null;
+
+        // url de page d'accueil (premier lien du menu récupéré dynamiquement)
+        var homeLink = "";
+
+        // temps d'attente avant chargement du design du premier bouton
+        var waitForLoadingFrame = 1; // ms
+
+        // Calcul de l'url de destination
+        function getUrlDestination(urlParam) {
+            if (isNaN(urlParam)) {
+                return urlParam;
+            } else {
+                return 'index.php?v=d&p=plan&plan_id=' + urlParam + '&fullscreen=1';
+            }
+        }
+
+        // Affichage du plan idPlan
+        function gotoPlan(idPlan) {
+            let frame_destination = document.getElementById('iframe_a');
+            let urlDestination = getUrlDestination(idPlan);
+
+            if (isNaN(idPlan)) {
+                // url externe
+                window.open(urlDestination, '_blank');
+            } else {
+                if (frame_destination === null) {
+                    // pas de frame
+                    if (window.location.href.split('?')[1] != urlDestination.split('?')[1]) {
+                        window.location.href = urlDestination;
+                    }
+                } else {
+                    // gestion de la navigation par frame
+                    if (frame_destination.src.split('?')[1] != urlDestination.split('?')[1]) {
+                        frame_destination.src = urlDestination;
+                    }
+                }
+            }
+        }
+
+        // chargement de la page de design du bouton de menu sélectionné
+        function loadFrame() {
+            if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {
+                gotoPlan(homeLink);
+            }
+        }
+
+        // vérification de la présence d'un fichier (ici pour le fichier json de paramétrage)
+        function checkFile(urlFile, plateforme) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // récupération du fichier de configuration OK
+                        let resp = xhr.responseText;
+                        let respJson = JSON.parse(resp);
+                        jsonCallback(respJson);
+                    } 
+                    else {
+                        // récupération du fichier de configuration KO pour Nextdom : essai avec le path Jeedom
+                        if (plateforme == "Nextdom") {
+                            pathData = "montheme"; // Jeedom
+                            jsonFile = pathData + jsonUrl;
+                            checkFile(jsonFile, "Jeedom");
+                        } else {
+                            jsonCallback(null);
+                        }
+                    }
+                }
+            }
+
+            xhr.open('GET', urlFile, false);
+            xhr.send();
+
+            return (xhr.status == "200");
+        }
+
+        function jsonCallback(response) {
+            if (response != null) {
+                // chargement du menu
+                json_theme = response;
+                initData();
+                createTheme();
+                initAfterCreation();
+            } else {
+                // fichier de configuration non trouvé
+                let menu = document.getElementById("menu");
+                menu.innerHTML = "Attention, problème de chargement du fichier de configuration menu.json. Vérifiez son existence et emplacement";
+            }
+        }
+
+        // Initialisation des données avant la création du menu
+        function initData() {
+            if (typeof (json_theme["cssFilename"]) !== "undefined") {
+                cssFilename = json_theme["cssFilename"];
+            }
+
+            if (typeof (json_theme["inactiveBackgroundCssImage"]) !== "undefined") {
+                inactiveBackgroundCssImage = json_theme["inactiveBackgroundCssImage"];
+            }
+            inactiveBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'inactive' +
+                inactiveBackgroundCssImage + 'Background.png)';
+
+
+            if (typeof (json_theme["activeBackgroundCssImage"]) !== "undefined") {
+                activeBackgroundCssImage = json_theme["activeBackgroundCssImage"];
+            }
+            activeBackgroundCssImage = 'url(/../' + pathData + '/themes/' + menuName + '/img/' + 'active' +
+                activeBackgroundCssImage + 'Background.png)';
+
+            // initialisation CSS
+            var cssLink = document.createElement('link');
+            cssLink.setAttribute('rel', 'stylesheet');
+            cssLink.setAttribute('type', 'text/css');
+            // décommenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+            cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename + '?v=' + (new Date()).getTime());
+            //cssLink.setAttribute('href', pathData + '/themes/' + menuName + '/css/' + cssFilename);
+            document.getElementsByTagName('head')[0].appendChild(cssLink);
+
+            // mise à jour des images de fond du CSS
+            document.documentElement.style.setProperty('--image-path-inactive', inactiveBackgroundCssImage);
+            document.documentElement.style.setProperty('--image-path-active', activeBackgroundCssImage);
+
+            if (typeof (json_theme["cursorColor"]) !== "undefined") {
+                cursorColor = json_theme["cursorColor"];
+            }
+            if (typeof (json_theme["cursorColorShadow"]) !== "undefined") {
+                cursorColorShadow = json_theme["cursorColorShadow"];
+            }
+            if (typeof (json_theme["cursorDefaultColor"]) !== "undefined") {
+                cursorDefaultColor = json_theme["cursorDefaultColor"];
+            }
+            if (typeof (json_theme["borderMenu"]) !== "undefined") {
+                borderMenu = json_theme["borderMenu"];
+            }
+            if (typeof (json_theme["backgroundActiveLink"]) !== "undefined") {
+                backgroundActiveLink = json_theme["backgroundActiveLink"];
+            }
+            if (typeof (json_theme["backgroundDefaultLink"]) !== "undefined") {
+                backgroundDefaultLink = json_theme["backgroundDefaultLink"];
+            }
+        }
+
+        // Création dynamique du menu
+        function createTheme() {
+            // récupération du temps d'attente pour le chargement de la frame au chargement de la page (en ms)
+            if ((typeof json_theme["timeout"] !== undefined) && !isNaN(json_theme["timeout"])) {
+                waitForLoadingFrame = json_theme["timeout"];
+            }
+
+            // creation de la frame
+            let menu_id = document.getElementById('i_frame');
+            if ((typeof json_theme["iframe"] !== undefined) && (json_theme["iframe"] === "yes")) {
+                // position de l'iframe
+                let frameTop = defaultFrameTop;
+
+                if (typeof (json_theme["frameTop"]) !== "undefined") {
+                    frameTop = json_theme["frameTop"]
+                }
+
+                let menu_content = document.getElementById('content');
+                menu_content.style = "padding: 0px; position: absolute; top: " + frameTop;
+
+                // iframe pour afficher la page courante
+                let menu_f = document.createElement("div");
+                menu_f.className = "menuf";
+
+                let menu_iframe = document.createElement("iframe");
+                menu_iframe.id = "iframe_a";
+
+                let frameWidth = defaultFrameWidth;
+                if (typeof (json_theme["frameWidth"]) !== "undefined") {
+                    frameWidth = json_theme["frameWidth"];
+                }
+                menu_iframe.width = frameWidth;
+
+                let frameHeight = defaultFrameHeight;
+                if (typeof (json_theme["frameHeight"]) !== "undefined") {
+                    frameHeight = json_theme["frameHeight"];
+                }
+                menu_iframe.height = frameHeight;
+
+                menu_iframe.frameBorder = "0";
+                menu_iframe.scrolling = "no";
+                menu_iframe.src = "";
+
+                menu_f.appendChild(menu_iframe);
+                menu_id.appendChild(menu_f);
+            }
+
+            // construction du menu
+            let menu = document.getElementById("menu");
+            let menu_ul = document.createElement("ul");
+            menu.appendChild(menu_ul);
+
+            for (let i = 0; i < json_theme["page"].length; i++) {
+                let menu_item = document.createElement("li");
+                let menu_item_a = document.createElement("a");
+
+                let link = json_theme["page"][i]["link"];
+                menu_item.setAttribute("onclick", "gotoPlan(" + link + ")");
+                if (homeLink === "") {
+                    homeLink = link;
+
+                    // focus sur premier element du menu
+                    menu_item.className = "active";
+                    menu_item_a.className = "active-text";
+                }
+
+                menu_item_a.setAttribute("href", "#");
+                let menu_item_a_i = document.createElement("i");
+                menu_item_a_i.className = json_theme["page"][i]["icon"];
+                menu_item_a_i.setAttribute("aria-hidden", "true");
+
+                menu_item_a.appendChild(menu_item_a_i);
+                menu_item.appendChild(menu_item_a);
+                menu_ul.appendChild(menu_item);
+            }
+
+            menu.appendChild(menu_ul);
+        }
+
+        // Initialisation du menu après sa création
+        function initAfterCreation() {
+            // gestion de la sélection du menu
+            const lis = document.querySelectorAll("#menu li");
+            const a = document.querySelectorAll("#menu li a");
+
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].addEventListener("click", function () {
+                    for (let i = 0; i < lis.length; i++) {
+                        lis[i].classList.remove("active");
+                        a[i].classList.remove("active-text");
+                    }
+                    this.classList.add("active");
+                    a[i].classList.add("active-text");
+                });
+            }
+
+            // modification des couleurs du menu
+            document.documentElement.style.setProperty('--cursor-color', cursorColor);
+            document.documentElement.style.setProperty('--cursor-color-shadow', cursorColorShadow);
+            document.documentElement.style.setProperty('--cursor-default-color', cursorDefaultColor);
+            document.documentElement.style.setProperty('--border-menu', borderMenu);
+            document.documentElement.style.setProperty('--background-active-link', backgroundActiveLink);
+            document.documentElement.style.setProperty('--background-default-link', backgroundDefaultLink);
+
+            // gestion par frame : affichage du premier lien au chargement
+            if (waitForLoadingFrame != 0) {
+                setTimeout(loadFrame, waitForLoadingFrame);
+            }
+        }
+
+        checkFile(jsonFile, "Nextdom");
+    </script>
+</body>
+
+</html>
