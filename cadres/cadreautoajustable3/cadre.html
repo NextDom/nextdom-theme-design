@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<!-- Pour ce menu, il faut placer le dossier /css et / image dans un repertoire cadre -->
+<html lang="fr">
+<head>
+  </head>
+<body>
+
+    <div id="cadre">
+      
+      <div id="titre">salon</div><!-- ne modifier que le texte-->
+      <div id="picture"><i class="fas fa-lightbulb"></i></div> <!-- ne modifier que l'icone-->
+      <div id="contenu"></div><!-- ne rien modifier -->
+</div>
+  
+ <script language="javascript">
+ // ***********************************************
+        // *** debut DES MODIFICATIONS par l'utilisateur ***
+        // *********************************************** 
+   var pathData = "data/custom";// metre l'emplacement du pack cadre pour ,nextom data/custom, pour jeedom : montheme
+      var refcadre = "51"; // metre le code du cadre (51 52 53 54 55)
+ var imgcadre = "92.png"; // metre la ref de l'image de contour du cadre si utile
+   var refimage = "F14.png"; // metre la ref de l'image de fond du cadre 
+  var cssFilename = "cadre51";// nom generique du css.le num correspond a la refcadre
+var couleurtexte = "white"; // couleur texte.
+
+var fontsize = "22px";// texte.
+
+   
+     // ***********************************************
+        // *** FIN DES MODIFICATIONS par l'utilisateur ***
+        // ***********************************************
+  var imagedefondlink = 'url("/../' + pathData + '/themes/cadre/img/' + refimage + '")' ;
+	var imagedecadrelink = 'url("/../' + pathData + '/themes/cadre/img/' + imgcadre + '")' ;	
+   
+    var cssLink = document.createElement('link');
+        cssLink.setAttribute('rel', 'stylesheet');
+        cssLink.setAttribute('type', 'text/css');
+        // dĂ©commenter la ligne ci-dessous et commenter la ligne suivante pour forcer le chargement du css (en cas de modification)
+    cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +'.css?v=' + (new Date()).getTime());
+     // cssLink.setAttribute('href', pathData + '/themes/cadre/css/' + cssFilename +'.css');
+        document.getElementsByTagName('head')[0].appendChild(cssLink);
+   
+
+    	document.documentElement.style.setProperty('--fontsize' + cssFilename, fontsize);
+	document.documentElement.style.setProperty('--couleurfond' + cssFilename, couleurfond);
+    	document.documentElement.style.setProperty('--cursor-color' + cssFilename, couleurtexte);
+	document.documentElement.style.setProperty('--imagedefond' + cssFilename, imagedefondlink);
+    document.documentElement.style.setProperty('--cadre' + cssFilename, imagedecadrelink);
+
+document.getElementById('cadre').id = 'cadre' + refcadre;
+document.getElementById('picture').id = 'picture' + refcadre;
+document.getElementById('titre').id = 'titre' + refcadre;
+document.getElementById('contenu').id = 'contenu' + refcadre;
+
+         </script>
+  
+</body>
+
+</html>
