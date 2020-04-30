@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+/*///////////////////////////Cadres///////////////////////////*/
+:root {
+--fontsizecadre53 = 20px;
+  --cadre-couleurcadre53: white;
+  --lumcadre-couleurcadre53: #ff8c00;
+  --cursor-colorcadre53: #ffffff;
+--couleurfondcadre53 :  #a4a1a1;
+ 
+  --border-menucadre53: #153535;
+ --degrader1cadre53: #878a87;
+  --degrader2cadre53: #404240;
+  --degraderfondcadre53 :255, 0, 238;
+--imagedefondcadre53: url(/../data/custom/themes/cadre/img/F10.png);
+--cadrecadre53: url(/../data/custom/themes/cadre/img/77.png);
+
+}
+            
+      
+#cadre53 {
+margin-top: 10px;
+ 
+ width: 100%;
+height: calc(100% - 10px);            
+border: 2px solid  var(--cadre-couleurcadre53);
+ border-radius:20px;
+        
+background-image:var(--imagedefondcadre53);
+
+background-repeat:no-repeat;
+background-size: 100% 100%;
+border-image-source:var(--cadrecadre53);
+border-image-slice:30;
+	
+border-image-width:auto;
+border-image-repeat: Strech round;
+      }
+            
+
+            
+#titre53 {
+position:static;
+font-family:sans-serif ;
+color: var(--cursor-colorcadre53);					
+text-align: center;
+text-shadow:   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000,
+     1px 1px 1px #141414,
+     1px 1px 1px #141414,
+     1px 1px 3px #141414,
+     1px 1px 4px #141414,
+     1px 1px 5px #141414,
+     1px 1px 6px #141414,
+     1px 1px 9px #141414;color:var(--cadre-couleurcadre53);
+border-radius:10PX;
+border: 2px inset var(--cadre-couleurcadre53);
+font-size: var(--fontsizecadre53);
+font-weight: bolt;
+margin-right : 35px;
+margin-left : 35px;
+margin-top: 10px;
+
+border-radius:5PX;
+background: linear-gradient(180deg,var(--degrader1cadre53)20%,var(--degrader2cadre53) 80%,var(--degrader1cadre53)100%);
+ 
+  background-image: radial-gradient(circle at 50% 30px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 20px, grey);
+}  
+       
+#contenu53 {
+  height: 100%;          
+}
+          
+#picture53 {
+margin : -20px;
+background:radial-gradient(var(--degrader1cadre53), var(--degrader2cadre53) );
+border-radius:40%;
+height:45px;
+width:45px;
+border: 2px inset var(--cadre-couleurcadre53);
+text-align:center;
+position: absolute; bottom: 0; left:50%; 
+color: var(--cursor-colorcadre53);					
+font-size: x-large;
+line-height:41px; 
+}          
