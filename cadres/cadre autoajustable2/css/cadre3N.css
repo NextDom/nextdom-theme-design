@@ -3,25 +3,25 @@
 
 /*///////////////////////////Cadres///////////////////////////*/
 :root {
---fontsizecadre3B = 20px;
-  --cadre-couleurcadre3B: white;
-  --lumcadre-couleurcadre3B: #ff8c00;
-  --cursor-colorcadre3B: #ffffff;
---couleurfondcadre3B :  #a4a1a1;
+--fontsizecadre3N = 20px;
+  --cadre-couleurcadre3N: white;
+  --lumcadre-couleurcadre3N: #ff8c00;
+  --cursor-colorcadre3N: #ffffff;
+--couleurfondcadre3N :  #a4a1a1;
  
-  --border-menucadre3B: #151515;
- --degrader1cadre3B: #2C2C2C;
-  --degrader2cadre3B: #555;
-  --degraderfondcadre3B :255, 0, 238;
+  --border-menucadre3N: #151515;
+ --degrader1cadre3N: #2C2C2C;
+  --degrader2cadre3N: #555;
+  --degraderfondcadre3N :255, 0, 238;
 }
             
       
-#cadre3B {
+#cadre3N {
 margin-top: 10px;
  
  width: 100%;
 height: calc(100% - 10px);            
-border: 2px solid  var(--cadre-couleurcadre3B);
+border: 2px solid  var(--cadre-couleurcadre3N);
  border-radius:10px;
         
 background: linear-gradient(180deg,rgba(50, 50, 50, 0.5) 0%, rgba(20,17,34,0.2) 73%, rgba(120, 120, 120, 0.2) 100%);*/
@@ -30,10 +30,10 @@ background: linear-gradient(180deg,rgba(50, 50, 50, 0.5) 0%, rgba(20,17,34,0.2) 
             
 
             
-#titre3B {
+#titre3N {
 position:static;
 font-family:sans-serif ;
-color: var(--cursor-colorcadre3B);					
+color: var(--cursor-colorcadre3N);					
 text-align: center;
 text-shadow:   -1px -1px 0 #000,  
     1px -1px 0 #000,
@@ -45,33 +45,33 @@ text-shadow:   -1px -1px 0 #000,
      1px 1px 4px #141414,
      1px 1px 5px #141414,
      1px 1px 6px #141414,
-     1px 1px 9px #141414;color:var(--cadre-couleurcadre3B);
+     1px 1px 9px #141414;color:var(--cadre-couleurcadre3N);
 border-radius:10PX;
-border: 2px inset var(--cadre-couleurcadre3B);
-font-size: var(--fontsizecadre3B);
+border: 2px inset var(--cadre-couleurcadre3N);
+font-size: var(--fontsizecadre3N);
 font-weight: bolt;
 margin-top: -20px;					
 margin-right : 25px;
 margin-left : 25px;
 border-radius: 15px;
-background: linear-gradient(180deg,var(--degrader1cadre3B)20%,var(--degrader2cadre3B) 80%,var(--degrader1cadre3B)100%);
+background: linear-gradient(180deg,var(--degrader1cadre3N)20%,var(--degrader2cadre3N) 80%,var(--degrader1cadre3N)100%);
 
 }  
         
-#contenu3B {
+#contenu3N {
   height: 100%;          
 }
           
-#picture3B {
+#picture3N {
 margin : -20px;
-background:radial-gradient(var(--degrader1cadre3B), var(--degrader2cadre3B) );
+background:radial-gradient(var(--degrader1cadre3N), var(--degrader2cadre3N) );
 border-radius:50%;
 height:45px;
 width:45px;
-border: 2px inset var(--cadre-couleurcadre3B);
+border: 2px inset var(--cadre-couleurcadre3N);
 text-align:center;
 position: absolute; bottom: 0; left:50%; 
-color: var(--cursor-colorcadre3B);					
+color: var(--cursor-colorcadre3N);					
 font-size: x-large;
 line-height:41px; 
 }          
