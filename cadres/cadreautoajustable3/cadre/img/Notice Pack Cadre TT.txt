@@ -1,0 +1,19 @@
+Pack "Tenjho-Tenge" - Cadre
+Pour usage avec le widget Cadre AutoAjustable de @Esso1 et @Noodom
+
+Nommenclature:
+TT-<1ière lettre=Thème><2ième lettre=coloris>
+
+Thème:
+- B = Black (Dark)
+- W = White (Light)
+
+- Coloris:
+- B = Bleu
+- E = Rose
+- J = Jaune
+- O = Orange
+- R = Rouge
+- T = Violet
+- V = Vert
+- Z = Zero couleur
