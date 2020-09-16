@@ -1,20 +1,23 @@
 <!--
   Menu pour Design Nextdom/Jeedom (@noodom)
 
-  - Copier le répertoire /themes dans /data/custom
+  - Copier le fichier nextdom-theme-design/menuFlyOut/themes/menuFlyOut/icon css/menu.css sous data/custom/themes/css pour Nextdom (ou /html/montheme/css pour Jeedom)
+  - Copier le contenu du répertoire nextdom-theme-design/packIcons/ sous data/custom/packIcons pour Nextdom (sous /html/montheme/packIcons) : facultatif, seulement si utilisation des icônes des packs fournis
   - Si utilisation d'icones perso.
-    - Copier les images des icones perso. dans /data/custom/themes/menuFlyOut/images
-    - Créer la liste des icones perso. en css /data/custom/themes/menuFlyOut/menu.css
-    - Modifier les liens vers les icones (ex : <i class="icon-design-jeedom"></i>)
+    - Copier les images (au format png) de ses icones persos dans /data/custom/packIcons/customIcons pour Nextdom (sous /html/montheme/packIcons/customIcons pour Jeedom)
+    - Modifier la valeur "icon" dans le json du code ci-dessous (ex : "icon": "iconePerso" pour l'image /data/custom/packIcons/customIcons/iconePerso.png)
   - Si utilisation des icônes fontawesome standards
-    - Modifier les liens vers les icones (ex : <i class="fas fa-igloo"></i>)
+    - Modifier la valeur "icon" dans le json (ex : "icon": "fas fa-cloud-sun")
     (Liste des icônes disponibles ici : https://fontawesome.com/icons?d=gallery)
   - Si pas d'utilisation des icônes fontawesome standards
     - Supprimer le lien vers font-awesome.min.css (pour alléger le chargement de la page)
   - Dans le code HTML ci-dessous :
-    - Modifier l'arborescence du menu pour adapter le contenu à ses besoins
+	- Pour Jeedom seulement, remplacer l'arborescence "data/custom/themes/menuFlyOut/css/menu.css" par "montheme/menuFlyOut/css/menu.css" pour Jeedom)
+	- Pour Jeedom seulement, remplacer var pathData = "data/custom"; par var pathData = "montheme";
+    - Modifier le contenu de l'arborescence du menu (variable json_theme_flyout ci-dessous) pour adapter le contenu à ses besoins
     - Pour chaque appel à "gotoPlan(XXX);", modifier XXX par l'identifiant de votre page Design cible.
-    - Dans le mode Design, pour chaque page du menu, passer en mode édition, puis ajouter "Texte/html" puis copier/coller ce code HTML
+    - Mode Navigation par Frame (conseillé)  : "iframe": "yes" : Dans un Design VIDE, passer en mode édition, puis ajouter "Texte/html" puis copier/coller ce code HTML
+	- Mode sans frame (déconseillé) : "iframe": "no" : Dans le mode Design, pour chaque page du menu, passer en mode édition, puis ajouter "Texte/html" puis copier/coller ce code HTML
 -->
 
 <!DOCTYPE html>
@@ -47,6 +50,8 @@
     // - link : id du design de destination de l'item du menu (inutile si l'item a des sous-menus)
     //       il est possible de remplacer l'id du design par une url d'un site : il sera ouvert dans un onglet différent
     // - page : liste des sous-menus de l'item (contiendra une liste d'items pour le sous-menu)
+    // url du fichier de configuration
+    var pathData = "data/custom"; // "data/custom" pour Nextdom, "montheme" pour Jeedom
     var json_theme_flyout = {
         "onglet1": [{
             "label": "Accueil",
@@ -288,7 +293,7 @@
         }
 
         if (isParent) {
-            menu_item_a.href = "javascript:void(0)";
+            menu_item_a.href = "#";
         } else {
             menu_item_a.setAttribute("onclick", "gotoPlan(\"" + link + "\")");
         }
@@ -312,31 +317,31 @@
                     // récupération de l'icône personnalisé (customIcon=yes)
                     let slash = (icon.startsWith("/")) ? "" : "/";
                     let extension = (icon.toLowerCase().endsWith(".png")) ? "" : ".png";
-                    defaultIcon = "data/custom/packIcons/customIcons" + slash + icon + extension;
+                    defaultIcon = pathData + "/packIcons/customIcons" + slash + icon + extension;
                 } else {
                     // récuperation de l'icône du pack
-                    defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
+                    defaultIcon = pathData + "/packIcons/" + packIconsName + "/" + icon + "_" + packIconsColor + ".png";
                 }
 
                 // vérification existence de l'icône
                 if (!checkImage(defaultIcon)) {
                     // icône du pack demandé avec la couleur par défaut
-                    defaultIcon = "data/custom/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+                    defaultIcon = pathData + "/packIcons/" + packIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
                     if (!checkImage(defaultIcon)) {
                         // icône du pack par défaut avec la couleur demandée
-                        defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
+                        defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/" + icon + "_" + packIconsColor + ".png";
                         if (!checkImage(defaultIcon)) {
                             // icône du pack par défaut avec la couleur par défaut
-                            defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
+                            defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/" + icon + "_" + defaultPackIconsColor + ".png";
                             if (!checkImage(defaultIcon)) {
                                 // icône vierge du pack et couleur demandés
-                                defaultIcon = "data/custom/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
+                                defaultIcon = pathData + "/packIcons/" + packIconsName + "/vierge_" + packIconsColor + ".png";
                                 if (!checkImage(defaultIcon)) {
                                     // icône vierge du pack par défaut avec la couleur demandée
-                                    defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
+                                    defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/vierge_" + packIconsColor + ".png";
                                     if (!checkImage(defaultIcon)) {
                                         // icône vierge du pack et couleur par défaut
-                                        defaultIcon = "data/custom/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
+                                        defaultIcon = pathData + "/packIcons/" + defaultPackIconsName + "/vierge_" + defaultPackIconsColor + ".png";
                                     }
                                 }
                             }
