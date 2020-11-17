@@ -23,8 +23,8 @@
             --border-color: #33b8cc;
             --border-alert-color: #ff0000;
             --border-color-depth: "2";
-          	--outside-width: "50";
-          	--border-size: "10px 10px 10px 10px";
+            --outside-width: "50";
+            --border-size: "10px 10px 10px 10px";
         }
 
         @-webkit-keyframes glow {
@@ -34,8 +34,8 @@
         }
 
         #myGlower {
-          	width: 300px;
-          	height: 300px;
+            width: 300px;
+            height: 300px;
             margin: var(--outside-width);
             border: var(--border-color-depth) solid var(--border-color);
             border-radius: var(--border-size);
@@ -69,9 +69,9 @@
         document.documentElement.style.setProperty('--border-alert-color', borderAlertColor);
         document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
       	document.documentElement.style.setProperty('--outside-width', outsideWidth + 'px');
-		var borderSizeList = borderSize.replaceAll(' ','').split(',');
+        var borderSizeList = borderSize.split(',');
         document.documentElement.style.setProperty('--border-size', borderSizeList[0] + 'px ' + borderSizeList[1] + 'px ' + borderSizeList[2] + 'px ' + borderSizeList[3] + 'px');
-		var calcSize = 'calc(100% - ' + (2*outsideWidth) + 'px)';
+        var calcSize = 'calc(100% - ' + (2*outsideWidth) + 'px)';
         $('#myGlower').css('width', calcSize);
       	$('#myGlower').css('height', calcSize);
         // Actions sur récupération de valeur de commande
