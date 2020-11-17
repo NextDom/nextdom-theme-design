@@ -20,6 +20,7 @@
         /* ! Ne pas modifier : voir modifications utilisateurs plus bas ! */
         :root {
             --blinking-border-color: #33b8cc;
+            --blinking-border-size: "35px";
             --border-color: #33b8cc;
             --border-alert-color: #ff0000;
             --border-color-depth: "2";
@@ -29,7 +30,7 @@
 
         @-webkit-keyframes glow {
             to {
-                box-shadow: 0 0 35px var(--blinking-border-color);
+                box-shadow: 0 0 var(--blinking-border-size) var(--blinking-border-color);
             }
         }
 
@@ -58,18 +59,20 @@
         var blinkingBorderColor = "#ff0000"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de l'épaisseur du cadre (en pixels)
         var borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
-      	// choix de la largeur autour du cadre (ne pas mettre 0 : espace contenant le clignotement)
-      	var outsideWidth = "20";
+      	// choix de la largeur du clignotement autour du cadre (ne pas mettre 0 : espace contenant le clignotement)
+      	var outsideWidth = "50";
       	// choix de la taille de l'arrondi du cadre pour chaque coin (une valeur pour chaque coin)
       	var borderSize = "10,10,10,10";
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
+      	document.documentElement.style.setProperty('--blinking-border-size', outsideWidth + 'px');
         document.documentElement.style.setProperty('--border-color', borderColor);
         document.documentElement.style.setProperty('--border-alert-color', borderAlertColor);
         document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
       	document.documentElement.style.setProperty('--outside-width', outsideWidth + 'px');
-        var borderSizeList = borderSize.split(',');
+        //var borderSizeList = borderSize.split(',');
+      	var borderSizeList = borderSize.split(',');
         document.documentElement.style.setProperty('--border-size', borderSizeList[0] + 'px ' + borderSizeList[1] + 'px ' + borderSizeList[2] + 'px ' + borderSizeList[3] + 'px');
         var calcSize = 'calc(100% - ' + (2*outsideWidth) + 'px)';
         $('#myGlower').css('width', calcSize);
