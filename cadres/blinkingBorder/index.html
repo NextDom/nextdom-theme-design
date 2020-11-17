@@ -26,6 +26,7 @@
             --border-color-height: "300";
             --border-color-depth: "2";
           	--outside-width: "50";
+          	--border-size: "10px 10px 10px 10px";
         }
 
         @-webkit-keyframes glow {
@@ -39,7 +40,7 @@
             height: var(--border-color-height);
             margin: var(--outside-width);
             border: var(--border-color-depth) solid var(--border-color);
-            border-radius: 10px 10px 10px 10px;
+            border-radius: var(--border-size);
             animation-play-state: paused;
         }
     </style>
@@ -65,6 +66,8 @@
         var borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
       	// choix de la largeur autour du cadre (ne pas mettre 0 : espace contenant le clignotement)
       	var outsideWidth = "50";
+      	// choix de la taille de l'arrondi du cadre pour chaque coin (une valeur pour chaque coin)
+      	var borderSize = "10,10,10,10";
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
@@ -74,6 +77,8 @@
         document.documentElement.style.setProperty('--border-color-height', borderHeight + 'px');
         document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
       	document.documentElement.style.setProperty('--outside-width', outsideWidth + 'px');
+		let borderSizeList = borderSize.replaceAll(' ','').split(',');
+        document.documentElement.style.setProperty('--border-size', borderSizeList[0] + 'px ' + borderSizeList[1] + 'px ' + borderSizeList[2] + 'px ' + borderSizeList[3] + 'px');
 
         // Actions sur récupération de valeur de commande
         $('#myGlower')[0].setAttribute('data-cmd_id', cmdId);
