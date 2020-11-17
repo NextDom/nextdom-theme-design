@@ -25,6 +25,7 @@
             --border-color-width: "300";
             --border-color-height: "300";
             --border-color-depth: "2";
+          	--outside-width: "50";
         }
 
         @-webkit-keyframes glow {
@@ -36,7 +37,7 @@
         #myGlower {
             width: var(--border-color-width);
             height: var(--border-color-height);
-            margin: 50px;
+            margin: var(--outside-width);
             border: var(--border-color-depth) solid var(--border-color);
             border-radius: 10px 10px 10px 10px;
             animation-play-state: paused;
@@ -49,7 +50,7 @@
     <script language="javascript">
         // MODIFICATIONS UTILISATEUR
         // commande modifiant dynamiquement le comportement du cadre
-        var cmdId = 1518;
+        var cmdId = 970;
         // choix de la couleur du cadre
         var borderColor = "#ffffff"; // #33b8cc Nextdom, #93cc01 Jeedom
         // choix de la couleur du cadre sur événement déclenché
@@ -62,6 +63,8 @@
         var borderHeight = "300";
         // choix de l'épaisseur du cadre (en pixels)
         var borderDepth = "2"; // mettre 0 pour ne pas ajouter cadre
+      	// choix de la largeur autour du cadre (ne pas mettre 0 : espace contenant le clignotement)
+      	var outsideWidth = "50";
         // FIN MODIFICATIONS UTILISATEUR
 
         document.documentElement.style.setProperty('--blinking-border-color', blinkingBorderColor);
@@ -70,6 +73,7 @@
         document.documentElement.style.setProperty('--border-color-width', borderWidth + 'px');
         document.documentElement.style.setProperty('--border-color-height', borderHeight + 'px');
         document.documentElement.style.setProperty('--border-color-depth', borderDepth + 'px');
+      	document.documentElement.style.setProperty('--outside-width', outsideWidth + 'px');
 
         // Actions sur récupération de valeur de commande
         $('#myGlower')[0].setAttribute('data-cmd_id', cmdId);
